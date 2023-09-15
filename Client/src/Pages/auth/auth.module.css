@@ -37,24 +37,31 @@
   }
   
   .registrationButton {
-    background-color: #007bff; /* Blue background color */
-    color: #fff; /* White text color */
-    padding: 10px 20px; 
-    font-weight: 500; /* Bold text */
+    background-color: #007bff; 
+    color: #fff; 
+    padding: 10px; 
     border: none;
-    border-radius: 50px;
+    border-radius: 25px;
     width: 300px;
-    height: auto;
     transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; 
   }
   
   .registrationButton:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
     cursor: pointer;
-    transform: scale(1.05); /* Slight scale-up effect on hover */
+    transform: scale(1.05);
   }
   
-    .headingForRegistration {
-        align-self: center;
-        font-weight: 500;
-    }
+  .headingForRegistration {
+      align-self: center;
+      font-weight: 500;
+  }
+  .registrationButton:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
