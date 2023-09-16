@@ -99,8 +99,8 @@ const SideBar = () => {
         <h1 style={{ color: 'white', fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: '40px' }}>
           Menu
         </h1>
-        {user && user.email && (
-        <h3 style={{ color: 'white'}}>{user.email.split('@')[0]}</h3>
+        {user && user.name && (
+        <h3 style={{ color: 'white'}}>{user.name}</h3>
       )}    
         {list('left')}
       </SwipeableDrawer>

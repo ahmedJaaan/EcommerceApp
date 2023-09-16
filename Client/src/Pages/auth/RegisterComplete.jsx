@@ -4,13 +4,19 @@ import { toast } from 'react-toastify';
 import styles from './auth.module.css';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
-import { RingLoader } from 'react-spinners'; // Import RingLoader
+import { RingLoader } from 'react-spinners';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from "axios"
+import { createOrUpdateUser } from '../../APIs/auth';
+
 
 const RegisterComplete = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Loading state for the button
+  const [isLoading, setIsLoading] = useState(false); 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => ({ ...state }))
 
   useEffect(() => {
     setEmail(window.localStorage.getItem('emailForRegistration'));
@@ -18,17 +24,17 @@ const RegisterComplete = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // Set loading state to true while processing
+    setIsLoading(true);
 
     if (!email || !password) {
       toast.error('Please enter both email and password.');
-      setIsLoading(false); // Reset loading state
+      setIsLoading(false);
       return;
     }
 
     if (password.length < 6) {
       toast.error('Password must be at least 6 characters long.');
-      setIsLoading(false); // Reset loading state
+      setIsLoading(false); 
       return;
     }
 
@@ -36,10 +42,25 @@ const RegisterComplete = () => {
       const result = await signInWithEmailLink(auth, email, window.location.href);
       if (result.user.emailVerified === true) {
         window.localStorage.removeItem('emailForRegistration');
-
-        if (auth.currentUser) {
-          await updatePassword(auth.currentUser, password);
-          const idTokenResult = await auth.currentUser.getIdTokenResult();
+        const user = auth.currentUser;
+        if (user) {
+          await updatePassword(user, password);
+          const idTokenResult = await user.getIdTokenResult();
+          createOrUpdateUser(idTokenResult.token)
+         .then((res) => {
+          dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            name: res.name,
+            email: res.email,
+            token: idTokenResult.token,
+            role: res.role,
+            _id: res._id,
+          },
+        });
+      })
+      .catch((err) => console.log("error in creating or updating user",err));
+      
           navigate('/');
           toast.success('You have been registered successfully.');
         } else {

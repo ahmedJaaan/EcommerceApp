@@ -8,20 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { RingLoader } from 'react-spinners'; 
 import { FcGoogle } from 'react-icons/fc'; 
-import axios from "axios";
-
-const createOrUpdateUser = async(authtoken) => {
-  return await axios.post(
-    "http://localhost:8080/api/create-or-update-user",
-    {
-      headers: {
-        Authorization: `Bearer ${authtoken}`
-      }
-    }
-
-  )
-}
-
+import { createOrUpdateUser } from '../../APIs/auth';
 
 
 const Login = () => {
@@ -31,13 +18,13 @@ const Login = () => {
   const [isGoogleLoading, setIsGoogleLoading] = useState(false); 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {user} = useSelector((state) => ({...state}))
- 
+  const { user } = useSelector((state) => ({ ...state }))
+  // console.log(user);
   useEffect(() => {
-    if(user && user.token) {
-        navigate('/')
+    if (user && user.token) {
+      navigate('/');
     }
-}, [user]);
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,16 +33,22 @@ const Login = () => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
+      // console.log("hhhhhhhhhhhh",idTokenResult.token)
       createOrUpdateUser(idTokenResult.token)
-      .then(res => console.log("Create or Update Res", res ))
-      .catch((err) => console.log("Error in update create res", res));
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          email: user.email,
-          token: idTokenResult,
-        },
-      });
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            name: res.name,
+            email: res.email,
+            token: idTokenResult.token,
+            role: res.role,
+            _id: res._id,
+          },
+        });
+      })
+      .catch((err) => console.log("error in creating or updating user",err));
+      
       navigate('/');
     } catch (error) {
       const errorCode = error.message;
@@ -73,22 +66,29 @@ const Login = () => {
       const result = await signInWithPopup(auth, googleAuthProvider); 
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          email: user.email,
-          token: idTokenResult,
-        },
-      });
+      createOrUpdateUser(idTokenResult.token)
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            name: res.name,
+            email: res.email,
+            token: idTokenResult.token,
+            role: res.role,
+            _id: res._id,
+          },
+        });
+      })
+      .catch((err) => console.log("error in creating or updating user",err));
+      
       navigate('/');
     } catch (error) {
       console.log(error);
     } finally {
       setIsGoogleLoading(false);
-      toast.success("You have logged in using google")
+      toast.success("You have logged in using Google")
     }
   };
-
   const loginFormJSX = (
     <form onSubmit={handleSubmit} className={styles.form}>
       <h1 className={styles.headingForRegistration}>Login</h1>

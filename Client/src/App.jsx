@@ -10,6 +10,14 @@ import RegisterComplete from './Pages/auth/RegisterComplete'
 import { useDispatch } from 'react-redux'
 import { auth } from './firebase'
 import ForgotPassword from './Pages/auth/ForgotPassword'
+import { currentUser } from "./APIs/auth"
+import History from './Pages/user/History'
+import UserRoute from './Routes/UserRoute'
+import Password from './Pages/user/Password'
+import Wishlist from './Pages/user/Wishlist'
+import AdminRoute from './Routes/AdminRoute'
+import Category from './Pages/admin/Category'
+
 
 function App() {
 
@@ -20,13 +28,19 @@ function App() {
       if (user) {
         const idTokenResult = await user.getIdTokenResult();
 
-        dispatch({
-          type: "LOGGED_IN_USER",
+        currentUser(idTokenResult.token)
+         .then((res) => {
+          dispatch({
+          type: 'LOGGED_IN_USER',
           payload: {
-            email: user.email,
+            name: res.name,
+            email: res.email,
             token: idTokenResult.token,
+            role: res.role,
+            _id: res._id,
           },
         });
+      }).catch(err => console.log("err responding from app.jsx"))
       };
     }
     );
@@ -44,6 +58,14 @@ return (
     <Route exact path='/register/complete' element={<RegisterComplete />}/>
     <Route exact path='/login' element={<Login />}/>
     <Route exact path='/forgot/password' element={<ForgotPassword />}/>
+    <Route element={<UserRoute />}>
+    <Route exact path='/user/history' element={<History />}/>
+    <Route exact path='/user/password' element={<Password />}/>
+    <Route exact path='/user/wishlist' element={<Wishlist />}/>
+    </Route>
+    <Route element={<AdminRoute allowedRoles={["admin"]}/>}>
+      <Route path="/admin/category" element={<Category />}/>
+    </Route>
   </Routes>
   </>
 )
