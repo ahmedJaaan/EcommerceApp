@@ -65,3 +65,24 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+
+  .GoogleButton {
+    background-color: #37383a; 
+    color: #fff; 
+    padding: 10px; 
+    border: none;
+    border-radius: 25px;
+    width: 300px;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;  
+  }
+
+  .GoogleButton:hover{
+    background-color: #1e1f20; 
+    cursor: pointer;
+    transform: scale(1.05); 
+  }

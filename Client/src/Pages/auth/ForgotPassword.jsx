@@ -1,66 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import { sendSignInLinkToEmail } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
+import { sendPasswordResetEmail } from 'firebase/auth';
 import { toast } from 'react-toastify';
-import styles from './auth.module.css'; 
+import styles from './auth.module.css';
 import { auth } from '../../firebase';
 import { RingLoader } from 'react-spinners';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const Register = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const {user} = useSelector((state) => ({...state}))
   const navigate = useNavigate();
+  const {user} = useSelector((state) => ({...state}));
 
   useEffect(() => {
     if(user && user.token) {
         navigate('/')
     }
 }, [user]);
-
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-
+    
     if (!email) {
       toast.error('Email is required');
-      setIsLoading(false); // Reset loading state
       return;
     }
 
+    setIsLoading(true);
+
     const actionCodeSettings = {
-      url: 'http://localhost:5173/register/complete',
+      url: 'http://localhost:5173/login',
       handleCodeInApp: true,
     };
 
-    sendSignInLinkToEmail(auth, email, actionCodeSettings)
-      .then(() => {
-        toast.success(`Email has been Sent To ${email} For Registration, Please Check Your Inbox for Link`);
-        window.localStorage.setItem('emailForRegistration', email);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsLoading(false); 
-      });
+    try {
+      await sendPasswordResetEmail(auth, email, actionCodeSettings);
+      toast.success('Check your email for a password reset link');
+    } catch (error) {
+      console.error('Password reset email error:', error);
+      toast.error('An error occurred while sending the password reset email');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const registerForm = (
+  const ForgotPasswordForm = (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <h1 className={styles.headingForRegistration}>Register</h1>
+      <h1 className={styles.headingForRegistration}>Forgot Password</h1>
 
       <input
-        type='email'
+        type="email"
         value={email}
         className={styles.inputForRegistration}
         onChange={(e) => setEmail(e.target.value)}
         autoFocus
-        placeholder='Enter Your Email'
+        placeholder="Enter Your Email For Recovery"
       />
-      <button type="submit" className={styles.registrationButton} disabled={isLoading}>
+      <button type="submit" className={styles.registrationButton} disabled={!email}>
         {isLoading ? (
           <RingLoader
             size={25}
@@ -68,7 +64,7 @@ const Register = () => {
             loading={isLoading}
           />
         ) : (
-          'Register'
+          'Send Link'
         )}
       </button>
     </form>
@@ -76,9 +72,9 @@ const Register = () => {
 
   return (
     <div className={styles.container}>
-      {registerForm}
+      {ForgotPasswordForm}
     </div>
   );
-}
+};
 
-export default Register;
+export default ForgotPassword;

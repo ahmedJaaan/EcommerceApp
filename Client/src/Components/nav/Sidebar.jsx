@@ -9,6 +9,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { BiMenuAltLeft, BiHomeAlt2 } from 'react-icons/bi';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const SideBar = () => {
   const [state, setState] = React.useState({
@@ -23,6 +24,7 @@ const SideBar = () => {
     setState({ ...state, [anchor]: false });
   };
 
+  const { user } = useSelector((state) => ({ ...state }));
 
   const customItems = [
     {
@@ -44,7 +46,7 @@ const SideBar = () => {
       text: 'Wishlist',
       link: '/user/wishlist',
       icon: <BiHomeAlt2 size={32} style={{ color: 'white' }} />,
-    }
+    },
   ];
 
   const list = (anchor) => (
@@ -65,7 +67,7 @@ const SideBar = () => {
           <NavLink
             key={item.text}
             to={item.link}
-            onClick={closeDrawer('left')} 
+            onClick={closeDrawer('left')}
             style={{ textDecoration: 'none', width: '100%', color: 'inherit' }}
           >
             <ListItemButton sx={{ width: '100%' }}>
@@ -76,6 +78,7 @@ const SideBar = () => {
         ))}
       </List>
       <Divider />
+     
     </Box>
   );
 
@@ -93,9 +96,13 @@ const SideBar = () => {
           style: { backgroundColor: '#313866' },
         }}
       >
-        <h1 style={{ color: 'white', fontFamily: "sans-serif", fontWeight: "90", fontSize: "40px" }}>Menu</h1>
+        <h1 style={{ color: 'white', fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: '40px' }}>
+          Menu
+        </h1>
+        {user && user.email && (
+        <h3 style={{ color: 'white'}}>{user.email.split('@')[0]}</h3>
+      )}    
         {list('left')}
-        
       </SwipeableDrawer>
     </div>
   );

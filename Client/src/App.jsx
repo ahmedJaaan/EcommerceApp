@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify'
 import RegisterComplete from './Pages/auth/RegisterComplete'
 import { useDispatch } from 'react-redux'
 import { auth } from './firebase'
-
+import ForgotPassword from './Pages/auth/ForgotPassword'
 
 function App() {
 
@@ -43,6 +43,7 @@ return (
     <Route exact path='/register' element={<Register />}/>
     <Route exact path='/register/complete' element={<RegisterComplete />}/>
     <Route exact path='/login' element={<Login />}/>
+    <Route exact path='/forgot/password' element={<ForgotPassword />}/>
   </Routes>
   </>
 )

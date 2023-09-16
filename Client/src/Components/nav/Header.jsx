@@ -9,9 +9,15 @@ import { useDispatch } from 'react-redux';
 import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 import { FiLogOut } from "react-icons/fi"
+import { useSelector } from 'react-redux';
+
+
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {user} = useSelector((state) => ({...state}));
+
   const logout = () => {
     signOut(auth).then(
       dispatch({
@@ -26,6 +32,8 @@ const Header = () => {
     <div className={styles.flexContainer}>
       <SideBar />
       <div className={styles.navLinkContainer}>
+      {!user && (
+        <>
         <NavLink to="/register" className={styles.link}>
           <AiOutlineUserAdd size={32} style={{ color: 'blue' }} />
           Register
@@ -34,8 +42,10 @@ const Header = () => {
           <BiUserPin size={32} style={{ color: 'blue' }} />
           Login
         </NavLink>
+        </>
+      )}
+      {user && (
         <button 
-        to="/login" 
         className={styles.logoutButton} 
         style={{border: 'none'}}
         onClick={logout}
@@ -43,6 +53,7 @@ const Header = () => {
           <FiLogOut size={32} style={{ color: 'blue' }} />
           Logout
         </button>
+        )}
       </div>
     </div>
   );
