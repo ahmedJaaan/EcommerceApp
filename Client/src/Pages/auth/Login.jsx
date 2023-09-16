@@ -8,6 +8,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { RingLoader } from 'react-spinners'; 
 import { FcGoogle } from 'react-icons/fc'; 
+import axios from "axios";
+
+const createOrUpdateUser = async(authtoken) => {
+  return await axios.post(
+    "http://localhost:8080/api/create-or-update-user",
+    {
+      headers: {
+        Authorization: `Bearer ${authtoken}`
+      }
+    }
+
+  )
+}
+
 
 
 const Login = () => {
@@ -31,8 +45,10 @@ const Login = () => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
       const { user } = result;
-
       const idTokenResult = await user.getIdTokenResult();
+      createOrUpdateUser(idTokenResult.token)
+      .then(res => console.log("Create or Update Res", res ))
+      .catch((err) => console.log("Error in update create res", res));
       dispatch({
         type: 'LOGGED_IN_USER',
         payload: {
