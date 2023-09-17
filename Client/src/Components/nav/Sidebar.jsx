@@ -47,6 +47,16 @@ const SideBar = () => {
       link: '/user/wishlist',
       icon: <BiHomeAlt2 size={32} style={{ color: 'white' }} />,
     },
+    {
+      text: 'Wishlist',
+      link: '/user/wishlist',
+      icon: <BiHomeAlt2 size={32} style={{ color: 'white' }} />,
+    },
+    {
+      text: 'Category',
+      link: '/admin/category',
+      icon: <BiHomeAlt2 size={32} style={{ color: 'white' }} />,
+    },
   ];
 
   const list = (anchor) => (
