@@ -10,49 +10,53 @@ import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 import { FiLogOut } from "react-icons/fi"
 import { useSelector } from 'react-redux';
-
-
+import AdminSideBar from './AdminSideBar';
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {user} = useSelector((state) => ({...state}));
+  const { user } = useSelector((state) => ({ ...state }));
 
   const logout = () => {
-    signOut(auth).then(
+    signOut(auth).then(() => {
       dispatch({
         type: "LOGOUT",
         payload: null,
-      }),
-        toast.info("You have Logged out"),
-        navigate("/login")
-      )
+      });
+      toast.info("You have Logged out");
+      navigate("/login");
+    });
   }
+
   return (
     <div className={styles.flexContainer}>
-      <SideBar />
-      <div className={styles.navLinkContainer}>
-      {!user && (
-        <>
-        <NavLink to="/register" className={styles.link}>
-          <AiOutlineUserAdd size={32} style={{ color: 'blue' }} />
-          Register
-        </NavLink>
-        <NavLink to="/login" className={styles.link}>
-          <BiUserPin size={32} style={{ color: 'blue' }} />
-          Login
-        </NavLink>
-        </>
+      {user && user.role === 'admin' ? (
+        <AdminSideBar />
+      ) : (
+        <SideBar />
       )}
-      {user && (
-        <button 
-        className={styles.logoutButton} 
-        style={{border: 'none'}}
-        onClick={logout}
-        >
-          <FiLogOut size={32} style={{ color: 'blue' }} />
-          Logout
-        </button>
+      <div className={styles.navLinkContainer}>
+        {!user && (
+          <>
+            <NavLink to="/register" className={styles.link}>
+              <AiOutlineUserAdd size={32} style={{ color: 'blue' }} />
+              Register
+            </NavLink>
+            <NavLink to="/login" className={styles.link}>
+              <BiUserPin size={32} style={{ color: 'blue' }} />
+              Login
+            </NavLink>
+          </>
+        )}
+        {user && (
+          <button
+            className={styles.logoutButton}
+            style={{ border: 'none' }}
+            onClick={logout}
+          >
+            <FiLogOut size={32} style={{ color: 'blue' }} />
+            Logout
+          </button>
         )}
       </div>
     </div>

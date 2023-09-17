@@ -10,10 +10,10 @@ const AdminRoute = ({ allowedRoles }) => {
 
   useEffect(() => {
     if (user && user.token) {
-      console.log("User token:", user.token);
+      // console.log("User token:", user.token);
       currentAdmin(user.token)
         .then((res) => {
-          console.log("Admin role from API:", res.role);
+          // console.log("Admin role from API:", res.role);
           setIsAdmin(res.role === "admin");
         })
         .catch((err) => {
@@ -23,7 +23,7 @@ const AdminRoute = ({ allowedRoles }) => {
     }
   }, [user]);
 
-  console.log("Is Admin:", isAdmin);
+  // console.log("Is Admin:", isAdmin);
 
   return isAdmin ? (
     <Outlet />

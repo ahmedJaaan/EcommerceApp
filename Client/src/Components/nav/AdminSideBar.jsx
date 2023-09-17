@@ -7,16 +7,17 @@ import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { BiMenuAltLeft } from 'react-icons/bi';
+import { BiMenuAltLeft, BiCategoryAlt } from 'react-icons/bi';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {SiApachekafka} from "react-icons/si"
-import {BsClockHistory} from "react-icons/bs"
+import {BsClockHistory, BsUbuntu} from "react-icons/bs"
 import {PiLockKey} from "react-icons/pi"
 import {BsBagHeart} from "react-icons/bs"
+import {IoTicketOutline} from "react-icons/io5"
+import {FaConnectdevelop} from "react-icons/fa"
 
-
-const SideBar = () => {
+const AdminSideBar = () => {
   const [state, setState] = React.useState({
     left: false,
   });
@@ -36,6 +37,26 @@ const SideBar = () => {
       text: 'Home',
       link: '/',
       icon: <SiApachekafka size={32} style={{ color: 'white' }} />,
+    },
+    {
+        text: 'Products',
+        link: '/admin/product',
+        icon: <BsUbuntu size={32} style={{ color: 'white' }} />,
+    },
+    {
+        text: 'Categories',
+        link: '/admin/category',
+        icon: <BiCategoryAlt size={32} style={{ color: 'white' }} />,
+    },
+    {
+        text: 'Sub Categories',
+        link: '/admin/sub',
+        icon: <FaConnectdevelop size={32} style={{ color: 'white' }} />,
+    },
+    {
+        text: 'Coupon',
+        link: '/admin/coupon',
+        icon: <IoTicketOutline size={32} style={{ color: 'white' }} />,
     },
     {
       text: 'History',
@@ -114,4 +135,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default AdminSideBar;

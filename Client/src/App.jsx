@@ -16,7 +16,7 @@ import UserRoute from './Routes/UserRoute';
 import Password from './Pages/user/Password';
 import Wishlist from './Pages/user/Wishlist';
 import AdminRoute from './Routes/AdminRoute';
-import Category from './Pages/admin/Category';
+import CategoryCreate from './Pages/admin/CategoryCreate';
 
 function App() {
   const [userRole, setUserRole] = useState(null);
@@ -68,7 +68,7 @@ function App() {
           <Route exact path='/user/wishlist' element={<Wishlist />} />
         </Route>
         <Route element={<AdminRoute allowedRoles={['admin']} userRole={userRole} />}>
-          <Route path="/admin/category" element={<Category />} />
+          <Route path="/admin/category" element={<CategoryCreate />} />
         </Route>
       </Routes>
     </>
