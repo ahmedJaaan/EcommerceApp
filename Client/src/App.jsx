@@ -17,6 +17,9 @@ import Password from './Pages/user/Password';
 import Wishlist from './Pages/user/Wishlist';
 import AdminRoute from './Routes/AdminRoute';
 import CategoryCreate from './Pages/admin/CategoryCreate';
+import CategoryUpdate from './Pages/admin/CategoryUpdate';
+
+
 
 function App() {
   const [userRole, setUserRole] = useState(null);
@@ -31,7 +34,7 @@ function App() {
         currentUser(idTokenResult.token)
           .then((res) => {
             setUserRole(res.role);
-            console.log("Response from currentUser API:", res); // Debug log
+            console.log("Response from currentUser API:", res); 
             dispatch({
               type: 'LOGGED_IN_USER',
               payload: {
@@ -69,6 +72,7 @@ function App() {
         </Route>
         <Route element={<AdminRoute allowedRoles={['admin']} userRole={userRole} />}>
           <Route path="/admin/category" element={<CategoryCreate />} />
+          <Route path="/admin/category/:slug" element={<CategoryUpdate />} />
         </Route>
       </Routes>
     </>

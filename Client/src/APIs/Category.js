@@ -29,16 +29,15 @@ export const getCategories = async () => {
     try {
       const response = await axios.delete(
         `http://localhost:8080/api/category/${slug}`,
-        null,
         {
             headers: {
-                authtoken
+                authtoken,
             }
         }
       )
       return response.data;
     } catch (error) {
-      console.error("Error in Deleting categories:", error);
+      console.log("Error in Deleting categories:", error);
       throw error;
     }
   };
@@ -48,7 +47,7 @@ export const getCategories = async () => {
     try {
       const response = await axios.put(
         `http://localhost:8080/api/category/${slug}`,
-        null,
+        category,
         {
             headers: {
                 authtoken
