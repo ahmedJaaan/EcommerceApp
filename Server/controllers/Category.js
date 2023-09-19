@@ -1,5 +1,7 @@
 const Category = require("../Models/category");
+const Sub = require("../Models/sub");
 const slugify = require( 'slugify');
+
 
 exports.create = async(req, res) => {
     try {
@@ -46,3 +48,16 @@ exports.remove = async(req, res) => {
     }
 };
 
+
+exports.getSubs = async (req, res) => {
+  
+    try {
+      const subs = await Sub.find({ parent: req.params._id }).exec();
+      //console.log(subs);
+      res.json(subs);
+    } catch (err) {
+      console.error(err);
+      res.status(400).send("Error in getting subs");
+    }
+  };
+  

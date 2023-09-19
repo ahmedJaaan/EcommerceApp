@@ -78,3 +78,13 @@ export const getCategories = async () => {
       throw error;
     }
   };
+
+  export const getCategorySub = async (_id) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/category/subs/${_id}`);
+      return response.data; 
+    } catch (error) {
+      console.error('Error fetching subcategories:', error);
+      return []; 
+    }
+  };

@@ -50,6 +50,7 @@ const Login = () => {
       .catch((err) => console.log("error in creating or updating user",err));
       
       navigate('/');
+      toast.success("Logged in successfully");
     } catch (error) {
       const errorCode = error.message;
       const errorMessage = errorCode;
