@@ -1,12 +1,12 @@
 import React from 'react'
 import { RingLoader } from 'react-spinners'
 
-const CategoryForm = ({handleSubmit, styles, name, setName, loading }) => {
+const CategoryForm = ({handleSubmit, styles, name, setName, loading, placeholder, buttonName }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
         type='text'
-        placeholder='Enter Category Name'
+        placeholder={placeholder}
         onChange={(e) => setName(e.target.value)}
         value={name}
         autoFocus
@@ -19,7 +19,7 @@ const CategoryForm = ({handleSubmit, styles, name, setName, loading }) => {
           <RingLoader color={'#ffffff'} loading={true} size={20} />
         </button>
       ) : (
-        <button className={`${styles.categoryCreateButton}`}>Create Category</button>
+        <button className={`${styles.categoryCreateButton}`}>{buttonName}</button>
       )}
     </form>
   )

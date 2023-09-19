@@ -16,9 +16,10 @@ import UserRoute from './Routes/UserRoute';
 import Password from './Pages/user/Password';
 import Wishlist from './Pages/user/Wishlist';
 import AdminRoute from './Routes/AdminRoute';
-import CategoryCreate from './Pages/admin/CategoryCreate';
-import CategoryUpdate from './Pages/admin/CategoryUpdate';
-
+import CategoryCreate from './Pages/admin/Category/CategoryCreate';
+import CategoryUpdate from './Pages/admin/Category/CategoryUpdate';
+import SubCreate from "./Pages/admin/Sub/SubCreate"
+import SubUpdate from './Pages/admin/Sub/Subupdate';
 
 
 function App() {
@@ -73,6 +74,8 @@ function App() {
         <Route element={<AdminRoute allowedRoles={['admin']} userRole={userRole} />}>
           <Route path="/admin/category" element={<CategoryCreate />} />
           <Route path="/admin/category/:slug" element={<CategoryUpdate />} />
+          <Route path="/admin/sub" element={<SubCreate />} />
+          <Route path="/admin/sub/:slug" element={<SubUpdate />} />
         </Route>
       </Routes>
     </>

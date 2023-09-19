@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateCategory, getCategory } from "../../APIs/Category";
-import styles from "../auth/auth.module.css";
+import { updateCategory, getCategory } from "../../../APIs/Category";
+import styles from "../../auth/auth.module.css";
 import { RingLoader } from "react-spinners";
 import { useNavigate, useParams } from "react-router-dom";
+
 
 const CategoryUpdate = () => {
   const [name, setName] = useState("");

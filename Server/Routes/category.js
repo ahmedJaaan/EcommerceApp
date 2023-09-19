@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const {create, read, update, remove, list} = require("../controllers/Catefory")
+const {create, read, update, remove, list} = require("../controllers/Category")
 const {authCheck, adminCheck} = require("../middlewares/auth")
 
 router.post("/category", authCheck, adminCheck, create);
