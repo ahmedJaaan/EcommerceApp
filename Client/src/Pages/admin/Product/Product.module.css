@@ -1,0 +1,79 @@
+.prdouctContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    ;
+}
+
+.productsHeading {
+    text-align: center;
+}
+
+.productInput {
+    outline: none;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid aquamarine;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.productInput:active {
+    
+    border-bottom: 3px solid aquamarine;
+}
+.productsSubHeading {
+    font-weight: 500;
+}
+
+
+.shippingDropdown {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #ffffff;
+    border: none;
+    border-bottom: 2px solid aquamarine;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    width: 100%;
+  }
+  
+  .shippingDropdown:hover {
+    border-color: #3498db;
+  }
+  
+  .shippingDropdown option {
+    background-color: #ffffff;
+    color: #333;
+    border-radius: 0%; 
+  }
+  
+  .shippingDropdown option:checked {
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+
+  .productButton {
+    background-color: rgb(74, 31, 194);
+    border-radius: 25px;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 100px;
+  }
+
+  .productButton:hover {
+    background-color: #000cb1;
+    cursor: pointer; 
+  }
+
+  .error {
+    color: red;
+  }

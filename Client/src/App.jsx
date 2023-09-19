@@ -20,7 +20,7 @@ import CategoryCreate from './Pages/admin/Category/CategoryCreate';
 import CategoryUpdate from './Pages/admin/Category/CategoryUpdate';
 import SubCreate from "./Pages/admin/Sub/SubCreate"
 import SubUpdate from './Pages/admin/Sub/Subupdate';
-
+import ProductCreate from './Pages/admin/Product/ProductCreate';
 
 function App() {
   const [userRole, setUserRole] = useState(null);
@@ -76,6 +76,7 @@ function App() {
           <Route path="/admin/category/:slug" element={<CategoryUpdate />} />
           <Route path="/admin/sub" element={<SubCreate />} />
           <Route path="/admin/sub/:slug" element={<SubUpdate />} />
+          <Route path="/admin/product" element={<ProductCreate />} />
         </Route>
       </Routes>
     </>

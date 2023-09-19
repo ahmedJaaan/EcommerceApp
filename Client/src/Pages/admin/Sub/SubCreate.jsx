@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { getCategories } from '../../../APIs/Category';
 import { createSub, removeSub, getSubs } from '../../../APIs/Sub';
 import styles from '../Admin.module.css';
-import ConfirmationPopup from '../../../Components/Popup';
+import ConfirmationPopup from '../../../Components/Popup/Popup';
 import CategoryForm from '../../../Components/Forms/CategoryForm';
 import LocalSearch from '../../../Components/Forms/LocalSearch';
 import { Link } from "react-router-dom";
@@ -46,7 +46,7 @@ const SubCreate = () => {
   const loadSubs = () => {
     getSubs()
       .then((res) => {
-        console.log('Categories:', res);
+        // console.log('Categories:', res);
         setSubs(res);
       })
       .catch((err) => {

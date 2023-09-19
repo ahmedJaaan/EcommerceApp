@@ -7,7 +7,7 @@ import { RingLoader } from 'react-spinners';
 import { CiEdit } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
 import { GoTrash } from 'react-icons/go';
-import ConfirmationPopup from '../../../Components/Popup';
+import ConfirmationPopup from '../../../Components/Popup/Popup';
 import CategoryForm from '../../../Components/Forms/CategoryForm';
 import LocalSearch from '../../../Components/Forms/LocalSearch';
 
@@ -101,6 +101,7 @@ const CategoryCreate = () => {
       setName={setName}
       loading={loading}
       buttonName="Create Category"
+      placeholder="Enter Category Name"
        />
        <LocalSearch 
        keyword={keyword} 
