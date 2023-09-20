@@ -14,7 +14,7 @@ import {SiApachekafka} from "react-icons/si"
 import {BsClockHistory} from "react-icons/bs"
 import {PiLockKey} from "react-icons/pi"
 import {BsBagHeart} from "react-icons/bs"
-
+import {LiaModx} from "react-icons/lia"
 
 const SideBar = () => {
   const [state, setState] = React.useState({
@@ -52,6 +52,11 @@ const SideBar = () => {
       link: '/user/wishlist',
       icon: <BsBagHeart size={32} style={{ color: 'white' }} />,
     },
+    {
+      text: 'Profile',
+      link: '/user/profile',
+      icon: <LiaModx size={34} style={{ color: 'white' }} />,
+    }
     
   ];
 

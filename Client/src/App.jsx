@@ -21,6 +21,9 @@ import CategoryUpdate from './Pages/admin/Category/CategoryUpdate';
 import SubCreate from "./Pages/admin/Sub/SubCreate"
 import SubUpdate from './Pages/admin/Sub/Subupdate';
 import ProductCreate from './Pages/admin/Product/ProductCreate';
+import AdminDasboard from './Pages/admin/AdminDasboard';
+import UpdateProfile from './Pages/auth/UpdateProfile';
+
 
 function App() {
   const [userRole, setUserRole] = useState(null);
@@ -70,6 +73,7 @@ function App() {
           <Route exact path='/user/history' element={<History />} />
           <Route exact path='/user/password' element={<Password />} />
           <Route exact path='/user/wishlist' element={<Wishlist />} />
+          <Route exact path='/user/profile' element={<UpdateProfile />} />
         </Route>
         <Route element={<AdminRoute allowedRoles={['admin']} userRole={userRole} />}>
           <Route path="/admin/category" element={<CategoryCreate />} />
@@ -77,6 +81,7 @@ function App() {
           <Route path="/admin/sub" element={<SubCreate />} />
           <Route path="/admin/sub/:slug" element={<SubUpdate />} />
           <Route path="/admin/product" element={<ProductCreate />} />
+          <Route path="/admin/dashboard" element={<AdminDasboard />} />
         </Route>
       </Routes>
     </>

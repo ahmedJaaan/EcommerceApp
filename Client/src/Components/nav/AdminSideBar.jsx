@@ -10,13 +10,12 @@ import ListItemText from '@mui/material/ListItemText';
 import { BiMenuAltLeft, BiCategoryAlt } from 'react-icons/bi';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import {SiApachekafka} from "react-icons/si"
-import {BsClockHistory, BsUbuntu} from "react-icons/bs"
+import {SiApachekafka, SiQuantconnect} from "react-icons/si"
+import {BsClockHistory, BsUbuntu, BsGearWideConnected, BsBagHeart} from "react-icons/bs"
 import {PiLockKey} from "react-icons/pi"
-import {BsBagHeart} from "react-icons/bs"
 import {IoTicketOutline} from "react-icons/io5"
 import {FaConnectdevelop} from "react-icons/fa"
-
+import {LiaModx} from "react-icons/lia"
 const AdminSideBar = () => {
   const [state, setState] = React.useState({
     left: false,
@@ -39,6 +38,11 @@ const AdminSideBar = () => {
       icon: <SiApachekafka size={32} style={{ color: 'white' }} />,
     },
     {
+      text: 'Admin Dashboard',
+      link: '/admin/dashboard',
+      icon: <FaConnectdevelop size={32} style={{ color: 'white' }} />,
+    },
+    {
         text: 'Products',
         link: '/admin/product',
         icon: <BsUbuntu size={32} style={{ color: 'white' }} />,
@@ -48,10 +52,11 @@ const AdminSideBar = () => {
         link: '/admin/category',
         icon: <BiCategoryAlt size={32} style={{ color: 'white' }} />,
     },
+    
     {
         text: 'Sub Categories',
         link: '/admin/sub',
-        icon: <FaConnectdevelop size={32} style={{ color: 'white' }} />,
+        icon: <SiQuantconnect size={32} style={{ color: 'white' }} />,
     },
     {
         text: 'Coupon',
@@ -73,6 +78,11 @@ const AdminSideBar = () => {
       link: '/user/wishlist',
       icon: <BsBagHeart size={32} style={{ color: 'white' }} />,
     },
+    {
+      text: 'Profile',
+      link: '/user/profile',
+      icon: <LiaModx size={34} style={{ color: 'white' }} />,
+    }
     
   ];
 
@@ -123,7 +133,7 @@ const AdminSideBar = () => {
           style: { backgroundColor: '#313866' },
         }}
       >
-        <h1 style={{ color: 'white', fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: '40px' }}>
+        <h1 style={{ color: 'white', fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: '40px', marginLeft: '5px' }}>
           Menu
         </h1>
         {user && user.name && (
