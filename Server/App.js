@@ -14,7 +14,7 @@ mongoose.connect("mongodb://localhost:27017/E-Commerce")
 .catch((err) => console.log("error in database", err));
 
 app.use(morgan("dev"));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '100mb' }));
 app.use(cors());
 
 fs.readdirSync("./Routes").map((r) => app.use("/api", require("./Routes/" + r))) 

@@ -22,6 +22,7 @@ const ProductForm = ({
     title,
     description,
     price,
+    images,
     category,
     subs,
     shipping,
@@ -68,7 +69,7 @@ const ProductForm = ({
         ))}
       </Select>
       </>}
-      <FileUpload />
+      <FileUpload values={values} setValues={setValues} images={images}/>
       <h4 className={styles.productsSubHeading}>Title</h4>
       <input
         name="title"

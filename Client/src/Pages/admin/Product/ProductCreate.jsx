@@ -53,7 +53,7 @@ const ProductCreate = () => {
         // console.log(res);
         setLoading(false);
         toast.success(`${res.title} is created`);
-        setValues(initialState);
+        setValues(initialState);        
       })
       .catch((err) => {
         console.log(err);
