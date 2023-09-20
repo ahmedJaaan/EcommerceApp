@@ -4,7 +4,7 @@ import { createProduct } from '../../../APIs/product';
 import { toast } from 'react-toastify';
 import { getCategories, getCategorySub } from '../../../APIs/Category';
 import ProductForm from '../../../Components/Forms/ProductForm';
-
+import FileUpload from '../../../Components/Forms/FileUpload';
 
 const initialState = {
   title: '',

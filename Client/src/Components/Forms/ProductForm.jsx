@@ -2,7 +2,7 @@ import React from 'react';
 import { RingLoader } from 'react-spinners';
 import styles from '../../Pages/admin/Product/Product.module.css';
 import {Select} from 'antd';
-
+import FileUpload from "./FileUpload";
 const {Option} = Select;
 
 
@@ -68,7 +68,7 @@ const ProductForm = ({
         ))}
       </Select>
       </>}
-
+      <FileUpload />
       <h4 className={styles.productsSubHeading}>Title</h4>
       <input
         name="title"
