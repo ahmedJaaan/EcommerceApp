@@ -110,9 +110,13 @@ const SideBar = () => {
         <h1 style={{ color: 'white', fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: '40px' }}>
           Menu
         </h1>
-        {user && user.name && (
-        <h3 style={{ color: 'white'}}>{user.name}</h3>
-      )}    
+         {/* {user && user.name && (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
+            <img src={user.picture} alt={user.name}  />
+            <h3 style={{ color: 'white', marginTop: '10px' }}>{user.name}</h3>
+          </div>
+        )}  */}
+    
         {list('left')}
       </SwipeableDrawer>
     </div>

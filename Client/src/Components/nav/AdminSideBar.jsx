@@ -137,8 +137,11 @@ const AdminSideBar = () => {
           Menu
         </h1>
         {user && user.name && (
-        <h3 style={{ color: 'white'}}>{user.name}</h3>
-      )}    
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
+            <img src={user.picture} alt={user.name} style={{ width: '80px', height: '80px', borderRadius: '50%' }} />
+            <h3 style={{ color: 'white', marginTop: '10px' }}>{user.name}</h3>
+          </div>
+        )}    
         {list('left')}
       </SwipeableDrawer>
     </div>
