@@ -23,7 +23,7 @@ import SubUpdate from './Pages/admin/Sub/Subupdate';
 import ProductCreate from './Pages/admin/Product/ProductCreate';
 import AdminDasboard from './Pages/admin/AdminDasboard';
 import UpdateProfile from './Pages/auth/UpdateProfile';
-
+import AllProducts from './Pages/admin/Product/AllProduct';
 
 function App() {
   const [userRole, setUserRole] = useState(null);
@@ -82,6 +82,7 @@ function App() {
           <Route path="/admin/sub/:slug" element={<SubUpdate />} />
           <Route path="/admin/product" element={<ProductCreate />} />
           <Route path="/admin/dashboard" element={<AdminDasboard />} />
+          <Route path="/admin/products" element={<AllProducts />} />
         </Route>
       </Routes>
     </>

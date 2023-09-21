@@ -45,14 +45,19 @@ const AdminSideBar = () => {
       icon: <FaConnectdevelop size={32} style={{ color: 'white' }} />,
     },
     {
-        text: 'Products',
-        link: '/admin/product',
-        icon: <BsUbuntu size={32} style={{ color: 'white' }} />,
+      text: 'Create Products',
+      link: '/admin/product',
+      icon: <BsUbuntu size={32} style={{ color: 'white' }} />,
     },
     {
-        text: 'Categories',
-        link: '/admin/category',
-        icon: <BiCategoryAlt size={32} style={{ color: 'white' }} />,
+      text: 'All Products',
+      link: '/admin/products',
+      icon: <LiaModx size={34} style={{ color: 'white' }} />,
+    },
+    {
+      text: 'Categories',
+      link: '/admin/category',
+      icon: <BiCategoryAlt size={32} style={{ color: 'white' }} />,
     },
     
     {
@@ -80,11 +85,6 @@ const AdminSideBar = () => {
       link: '/user/wishlist',
       icon: <BsBagHeart size={32} style={{ color: 'white' }} />,
     },
-    {
-      text: 'Profile',
-      link: '/user/profile',
-      icon: <LiaModx size={34} style={{ color: 'white' }} />,
-    }
     
   ];
 

@@ -4,7 +4,7 @@ import { createProduct } from '../../../APIs/product';
 import { toast } from 'react-toastify';
 import { getCategories, getCategorySub } from '../../../APIs/Category';
 import ProductForm from '../../../Components/Forms/ProductForm';
-import FileUpload from '../../../Components/Forms/FileUpload';
+import { useNavigate } from 'react-router-dom';
 
 const initialState = {
   title: '',
@@ -25,7 +25,7 @@ const ProductCreate = () => {
   const [categories, setCategories] = useState([]);
   const [subOptions, setSubOptions] = useState([]);
   const [showSub, setShowSub] = useState(false);
-  
+  const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
   
   
@@ -53,7 +53,8 @@ const ProductCreate = () => {
         // console.log(res);
         setLoading(false);
         toast.success(`${res.title} is created`);
-        setValues(initialState);        
+        setValues(initialState);
+        navigate("/admin/products");        
       })
       .catch((err) => {
         console.log(err);

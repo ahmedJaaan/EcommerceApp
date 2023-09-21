@@ -32,3 +32,20 @@ export const createProduct = async (product, authtoken) => {
       throw error;
     }
   }
+
+  export const removeProduct = async (slug, authtoken) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/product/${slug}`,
+        {
+            headers: {
+                authtoken
+            }
+        }
+      )
+      return response.data;
+    } catch (error) {
+      console.error("Error in Deleting Product:", error);
+      throw error;
+    }
+  };
