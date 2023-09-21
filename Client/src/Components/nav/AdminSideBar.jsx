@@ -16,6 +16,8 @@ import {PiLockKey} from "react-icons/pi"
 import {IoTicketOutline} from "react-icons/io5"
 import {FaConnectdevelop} from "react-icons/fa"
 import {LiaModx} from "react-icons/lia"
+import { Avatar } from '@mui/material';
+import styles from './Nav.module.css';
 const AdminSideBar = () => {
   const [state, setState] = React.useState({
     left: false,
@@ -129,18 +131,20 @@ const AdminSideBar = () => {
         open={state.left}
         onClose={closeDrawer('left')}
         onOpen={toggleDrawer('left', true)}
+          className={styles.drawer}
+
         PaperProps={{
-          style: { backgroundColor: '#313866' },
+          style: { backgroundColor: '#313866',  },
         }}
       >
         <h1 style={{ color: 'white', fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: '40px', marginLeft: '5px' }}>
           Menu
         </h1>
         {user && user.name && (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
-            <img src={user.picture} alt={user.name} style={{ width: '80px', height: '80px', borderRadius: '50%' }} />
-            <h3 style={{ color: 'white', marginTop: '10px' }}>{user.name}</h3>
-          </div>
+          <NavLink to="/user/profile" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center',  }}>
+          <Avatar  src={user.picture} sx={{ width: 40, height: 40 , marginRight: '10px', marginLeft: '5px'}} />
+            <h3 style={{ color: 'white'  }}>{user.name}</h3>
+          </NavLink>
         )}    
         {list('left')}
       </SwipeableDrawer>

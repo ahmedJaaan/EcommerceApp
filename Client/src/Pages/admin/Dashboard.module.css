@@ -1,0 +1,25 @@
+
+
+
+.loaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    
+}
+
+.productGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    overflow: hidden;
+    
+  }
+  
+  .productGridItem {
+    width: 100%; 
+    box-sizing: border-box;
+  }

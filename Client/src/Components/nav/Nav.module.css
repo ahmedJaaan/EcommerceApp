@@ -39,3 +39,7 @@
     background: lightblue;
   }
   
+
+  .drawer{
+    overflow: hidden;
+  }
