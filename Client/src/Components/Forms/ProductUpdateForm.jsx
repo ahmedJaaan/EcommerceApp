@@ -16,8 +16,7 @@ const ProductUpdateForm = ({
   categories,
   arrayOfSubs,
   setArrayOfSubs,
-  setShowSub,
-  showSub,
+  selectedCategory,
   subOptions
 }) => {
   const {
@@ -44,9 +43,8 @@ const ProductUpdateForm = ({
           className={styles.shippingDropdown}
           onChange={handleCategoryChange}
           name="category"
-          value={category}
+          value={selectedCategory ? selectedCategory : category}
         >
-        <option>{category ? category.name : 'Select Category'}</option>
           {categories.map((categoryItem) => (
             <option key={categoryItem._id} value={categoryItem._id}>
               {categoryItem.name}
@@ -71,8 +69,6 @@ const ProductUpdateForm = ({
         ))}
       </Select>
       </>
-
-
       
       <FileUpload 
       values={values} 

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getProduct } from '../../../APIs/product';
+import { getProduct, updateProduct } from '../../../APIs/product';
 import { useSelector } from 'react-redux';
 import ProductUpdateForm from '../../../Components/Forms/ProductUpdateForm';
 import { getCategories, getCategorySub } from '../../../APIs/Category';
+import { toast } from 'react-toastify';
+
 
 const initialState = {
   title: '',
@@ -22,7 +24,8 @@ const ProductUpdate = () => {
   const [values, setValues] = useState(initialState);
   const [subOptions, setSubOptions] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [arrayOfSubIds, setArrayOfSubs] = useState([]);
+  const [arrayOfSubs, setArrayOfSubs] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");   
   const { user } = useSelector((state) => state);
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -60,20 +63,42 @@ const ProductUpdate = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Implement your product update logic here
+    values.subs = arrayOfSubs;
+    values.category = selectedCategory ? selectedCategory : values.category;
+    updateProduct(slug, values, user.token)
+      .then((res) => {
+        toast.success(`${res.title} is updated`);
+        navigate("/admin/products");
+      })
+      .catch((err) => {
+        console.error(err);
+        if (err.response.status === 400) {
+          const errorMessage = err.response.data;
+          toast.error(errorMessage);
+        }
+      })  
   };
   const handleCategoryChange = (e) => {
-    const selectedCategoryId = e.target.value;
-    if (selectedCategoryId) { 
-      setValues({ ...values, subs: [], category: selectedCategoryId });
-      getCategorySub(selectedCategoryId)
+    e.preventDefault();
+      setValues({ ...values, subs: [] });
+      
+      
+      setSelectedCategory(e.target.value);
+      
+      
+      
+      getCategorySub(e.target.value)
         .then((response) => {
           setSubOptions(response);
         })
         .catch((error) => {
           console.error('Error loading subcategories:', error);
         });
-    }
+      
+      if(values.category._id === e.target.value) {
+        loadProduct();
+      }
+      setArrayOfSubs([]);
   };
   
   const handleChange = (e) => {
@@ -91,8 +116,9 @@ const ProductUpdate = () => {
         setValues={setValues}
         categories={categories}
         subOptions={subOptions}
-        arrayOfSubs={arrayOfSubIds}
+        arrayOfSubs={arrayOfSubs}
         setArrayOfSubs={setArrayOfSubs}
+        selectedCategory={selectedCategory}
       />
     </div>
   );

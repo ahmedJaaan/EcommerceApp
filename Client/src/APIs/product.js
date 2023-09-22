@@ -62,3 +62,21 @@ export const createProduct = async (product, authtoken) => {
       throw error;
     }
   }
+
+  export const updateProduct = async (slug, product, authtoken) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8080/api/product/${slug}`,
+        product,
+        {
+            headers: {
+                authtoken
+            }
+        }
+      )
+      return response.data;
+    } catch (error) {
+      console.error("Error in Updating Product:", error);
+      throw error;
+    }
+  };
