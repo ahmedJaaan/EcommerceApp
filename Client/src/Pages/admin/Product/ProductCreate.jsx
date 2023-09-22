@@ -12,7 +12,7 @@ const initialState = {
   price: '',
   category: '',
   subs: [],
-  shipping: 'Yes', 
+  shipping: '', 
   quantity: '',
   images: [],
   color: '',
@@ -47,14 +47,16 @@ const ProductCreate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     createProduct(values, user.token)
       .then((res) => {
-        // console.log(res);
         setLoading(false);
-        toast.success(`${res.title} is created`);
-        setValues(initialState);
+        setValues({
+          ...initialState,
+          images: [], 
+        });
         navigate("/admin/products");        
+        toast.success(`${res.title} is created`);
       })
       .catch((err) => {
         console.log(err);
@@ -64,6 +66,7 @@ const ProductCreate = () => {
         setLoading(false);
       });
   };
+  
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });

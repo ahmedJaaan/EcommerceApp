@@ -17,7 +17,7 @@ const AllProducts = () => {
   const loadAllProducts = () => {
     getProductsByCount(100)
       .then(data => {
-        console.log(data);
+        // console.log(data);
         setProducts(data);
         setLoading(false);
         

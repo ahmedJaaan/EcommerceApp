@@ -4,7 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { CgEditUnmask } from "react-icons/cg";
 import styles from "./cards.module.css";
 import defaultImg from "../../assets/5191452-200.png";
-import ConfirmationPopup from '../Popup/Popup'; // Replace with your ConfirmationPopup component
+import ConfirmationPopup from '../Popup/Popup'; 
 import { removeProduct } from '../../APIs/product';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -51,7 +51,7 @@ const {user} = useSelector((state) => ({ ...state }));
         />}
         actions={[
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <NavLink>
+            <NavLink to={`/admin/product/${slug}`}>
             <CgEditUnmask
               key="edit"
               size={20}

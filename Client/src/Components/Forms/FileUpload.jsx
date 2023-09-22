@@ -80,7 +80,7 @@ const FileUpload = ({ values, setValues }) => {
       <div className={styles.uploadContainer}>
         <label htmlFor="fileInput" className={styles.uploadLabel}>
           {loading ? (
-            <RingLoader color="#36D7B7" size={20} />
+            <RingLoader color="#36D7B7" size={20}  />
           ) : (
             "Choose Image"
           )}

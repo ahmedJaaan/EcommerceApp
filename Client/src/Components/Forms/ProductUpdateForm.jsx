@@ -6,14 +6,16 @@ import FileUpload from "./FileUpload";
 const {Option} = Select;
 
 
-const ProductForm = ({
+const ProductUpdateForm = ({
   handleSubmit,
   handleChange,
   handleCategoryChange,
   values,
-  categories,
   loading,
   setValues,
+  categories,
+  arrayOfSubs,
+  setArrayOfSubs,
   setShowSub,
   showSub,
   subOptions
@@ -33,10 +35,10 @@ const ProductForm = ({
 
   return (
     <form onSubmit={handleSubmit} className={styles.productContainer}>
-      <h1 className={styles.productsHeading}>Create Product</h1>
+      <h1 className={styles.productsHeading}>Update Product</h1>
       <h4 className={styles.productsSubHeading}>Category</h4>
 
-      <div className={styles.dropdownContainer}>
+       <div className={styles.dropdownContainer}>
         <select
           id="categoryDropdown"
           className={styles.shippingDropdown}
@@ -44,7 +46,7 @@ const ProductForm = ({
           name="category"
           value={category}
         >
-        <option>Select Category</option>
+        <option>{category ? category.name : 'Select Category'}</option>
           {categories.map((categoryItem) => (
             <option key={categoryItem._id} value={categoryItem._id}>
               {categoryItem.name}
@@ -53,22 +55,24 @@ const ProductForm = ({
         </select>
       </div>
 
-      {showSub && <>
+      <>
       <h4 className={styles.productsSubHeading}>Sub Category</h4>
       <Select
       mode="multiple"
       style={{ width: '100%' }}
       placeholder="Select Sub Category"
-      value={subs}
+      value={arrayOfSubs}
       name="subs"
-      onChange={(value) => setValues({ ...values, subs: value })}
+      onChange={(value) => setArrayOfSubs(value)}
       >
         <Option value="" >Select Sub Category</Option>
         {subOptions.map((subItem) => (
           <Option key={subItem._id} value={subItem._id}>{subItem.name}</Option>
         ))}
       </Select>
-      </>}
+      </>
+
+
       
       <FileUpload 
       values={values} 
@@ -134,11 +138,10 @@ const ProductForm = ({
       <h4 className={styles.productsSubHeading}>Shipping</h4>
       <select
         className={styles.shippingDropdown}
-        value={shipping}
+        value={shipping === "Yes" ? "Yes" : "No"}
         onChange={handleChange}
         name="shipping"
       >
-        <option>Please select</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
       </select>
@@ -147,11 +150,11 @@ const ProductForm = ({
         {loading ? (
           <RingLoader size={25} color={'white'} loading={loading} />
         ) : (
-          'Create Product'
+          'Update Product'
         )}
       </button>
     </form>
   );
 };
 
-export default ProductForm;
+export default ProductUpdateForm;

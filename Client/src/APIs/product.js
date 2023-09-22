@@ -49,3 +49,16 @@ export const createProduct = async (product, authtoken) => {
       throw error;
     }
   };
+
+
+  export const getProduct = async (slug) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/product/${slug}`
+      )
+      return response.data;
+    } catch (error) {
+      console.error("Error in getting Product:", error);
+      throw error;
+    }
+  }
