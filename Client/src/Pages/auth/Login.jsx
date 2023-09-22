@@ -52,15 +52,17 @@ const Login = () => {
       navigate('/');
       toast.success("Logged in successfully");
     } catch (error) {
-      const errorCode = error.message;
-      const errorMessage = errorCode;
-
-      toast.error(errorMessage);
+      if (error.code === 'auth/invalid-email') {
+        setEmailError('Invalid email address.');
+      } else if (error.code === 'auth/wrong-password') {
+        setPasswordError('Invalid password.');
+      } else {
+        toast.error("Failed to log in. Please check your credentials.");
+      }
     } finally {
       setIsLoading(false);
     }
   };
-
   const googleLogin = async () => {
     setIsGoogleLoading(true); 
     try {
