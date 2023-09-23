@@ -6,24 +6,27 @@ import { currentAdmin } from "../APIs/auth";
 const AdminRoute = ({ allowedRoles }) => {
   const location = useLocation();
   const { user } = useSelector((state) => ({ ...state }));
-  const [isAdmin, setIsAdmin] = useState("admin");
+  const [isAdmin, setIsAdmin] = useState(true);
 
   useEffect(() => {
     if (user && user.token) {
-      // console.log("User token:", user.token);
       currentAdmin(user.token)
         .then((res) => {
-          // console.log("Admin role from API:", res.role);
           setIsAdmin(res.role === "admin");
         })
         .catch((err) => {
           console.log("API Error:", err);
           setIsAdmin(false);
         });
+    } else {
+      setIsAdmin(false); // No user or token, so set isAdmin to false
     }
   }, [user]);
 
-  // console.log("Is Admin:", isAdmin);
+  // Redirect unauthenticated users to the homepage
+  if (!user || !user.token) {
+    return <Navigate to="/" />;
+  }
 
   return isAdmin ? (
     <Outlet />

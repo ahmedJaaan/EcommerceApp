@@ -1,0 +1,13 @@
+.row-card {
+    flex: 1;
+    margin: 8px;
+    max-width: calc(33.33% - 16px); /* Adjust card width as needed */
+  }
+  
+  .card-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px; /* Adjust row margin as needed */
+  }
+  
+  

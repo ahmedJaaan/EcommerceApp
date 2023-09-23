@@ -1,21 +1,22 @@
+/* Default styles for all screen sizes */
 .loaderContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100vw;
-    position: fixed;    
+    position: fixed;
 }
 
 .productGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin: 10px;
 }
 
 .productGridItem {
-    width: 100%; 
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -35,5 +36,34 @@ body {
     overflow-x: hidden;
 }
 
+/* Media query for PCs (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .productGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
+    .landingSection {
+        font-size: 36px;
+    }
+}
 
+/* Media query for tablets and smaller PCs (min-width: 768px, max-width: 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .productGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .landingSection {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .productGrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .landingSection {
+        font-size: 24px;
+    }
+}

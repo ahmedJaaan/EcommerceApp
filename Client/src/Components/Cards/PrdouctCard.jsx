@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card} from "antd"
+import {Card } from "antd"
 import {MdOutlineViewInAr} from "react-icons/md"
 import {FaOpencart} from "react-icons/fa"
 import defaultImg from "../../assets/5191452-200.png";
