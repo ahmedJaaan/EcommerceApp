@@ -34,7 +34,7 @@ const Header = ({path}) => {
       {user && user.role === 'admin' ? (
         <AdminSideBar path={path}/>
       ) : (
-        <SideBar />
+        <SideBar path={path}/>
       )}
       <div className={styles.navLinkContainer}>
         {!user && (

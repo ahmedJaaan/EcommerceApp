@@ -11,7 +11,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
-    /* overflow: hidden; */ 
+    margin: 10px;
 }
 
 .productGridItem {
@@ -26,6 +26,7 @@
     background: blue;
     color: white;
     height: 25%;
+    font-size: 30px;
 }
 
 body {

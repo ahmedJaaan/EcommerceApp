@@ -1,0 +1,8 @@
+.userIcon {
+    transition: 0.3s ease;
+    
+}
+
+.userIcon:hover {
+    transform: scale(1.05);
+}

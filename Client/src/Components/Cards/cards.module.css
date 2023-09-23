@@ -1,9 +1,8 @@
 .AdminIcon {
     transition: 0.3s ease;
+    
 }
 
 .AdminIcon:hover {
-    transform: scale(1.5);
-    
-    
+    transform: scale(1.25);
 }

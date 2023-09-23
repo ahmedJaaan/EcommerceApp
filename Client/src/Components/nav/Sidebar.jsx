@@ -16,7 +16,7 @@ import {PiLockKey} from "react-icons/pi"
 import {BsBagHeart} from "react-icons/bs"
 import {LiaModx} from "react-icons/lia"
 
-const SideBar = () => {
+const SideBar = ({ path }) => {
   const [state, setState] = React.useState({
     left: false,
   });
@@ -96,7 +96,7 @@ const SideBar = () => {
   return (
     <div>
       <Button onClick={toggleDrawer('left', true)} style={{ fontSize: 50 }}>
-        <BiMenuAltLeft />
+      <BiMenuAltLeft style={{ color: path==="/" ? "white" : "blue" }}/>
       </Button>
       <SwipeableDrawer
         anchor="left"
