@@ -6,7 +6,7 @@ const UpdateProfile = () => {
   const {user} = useSelector((state) => ({...state}));
 useEffect(() => {
   console.log(user)
-})
+}, [])
   return (
     <div>UpdateProfile</div>
   )

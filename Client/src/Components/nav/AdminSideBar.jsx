@@ -10,15 +10,17 @@ import ListItemText from '@mui/material/ListItemText';
 import { BiMenuAltLeft, BiCategoryAlt } from 'react-icons/bi';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import {SiApachekafka, SiQuantconnect} from "react-icons/si"
-import {BsClockHistory, BsUbuntu, BsGearWideConnected, BsBagHeart} from "react-icons/bs"
-import {PiLockKey} from "react-icons/pi"
-import {IoTicketOutline} from "react-icons/io5"
-import {FaConnectdevelop} from "react-icons/fa"
-import {LiaModx} from "react-icons/lia"
+import { SiApachekafka, SiQuantconnect } from 'react-icons/si';
+import { BsClockHistory, BsUbuntu, BsGearWideConnected, BsBagHeart } from 'react-icons/bs';
+import { PiLockKey } from 'react-icons/pi';
+import { IoTicketOutline } from 'react-icons/io5';
+import { FaConnectdevelop } from 'react-icons/fa';
+import { LiaModx } from 'react-icons/lia';
 import { Avatar } from '@mui/material';
 import styles from './Nav.module.css';
-const AdminSideBar = () => {
+import {TbBrandReact} from "react-icons/tb";
+
+const AdminSideBar = ({path}) => {
   const [state, setState] = React.useState({
     left: false,
   });
@@ -85,8 +87,14 @@ const AdminSideBar = () => {
       link: '/user/wishlist',
       icon: <BsBagHeart size={32} style={{ color: 'white' }} />,
     },
+    {
+      text: 'Profile',
+      link: '/user/profile',
+      icon: <TbBrandReact size={32} style={{ color: 'white' }} />,
+    },
     
   ];
+
 
   const list = (anchor) => (
     <Box
@@ -98,6 +106,18 @@ const AdminSideBar = () => {
         justifyContent: 'space-between',
         height: '100vh',
         backgroundColor: '#313866',
+        overflowY: 'scroll', 
+        scrollbarWidth: 'thin', 
+        scrollbarColor: '#6649b8 #1e1e24', 
+        '&::-webkit-scrollbar': {
+          width: '0.35rem',
+        },
+        '&::-webkit-scrollbar-track': {
+          background: '#1e1e24',
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: '#6649b8',
+        },
       }}
       role="presentation"
     >
@@ -117,35 +137,33 @@ const AdminSideBar = () => {
         ))}
       </List>
       <Divider />
-     
     </Box>
   );
 
   return (
     <div>
       <Button onClick={toggleDrawer('left', true)} style={{ fontSize: 50 }}>
-        <BiMenuAltLeft />
+        <BiMenuAltLeft style={{ color: path==="/" ? "white" : "blue" }}/>
       </Button>
       <SwipeableDrawer
         anchor="left"
         open={state.left}
         onClose={closeDrawer('left')}
         onOpen={toggleDrawer('left', true)}
-          className={styles.drawer}
-
+        className={styles.drawer}
         PaperProps={{
-          style: { backgroundColor: '#313866',  },
+          style: { backgroundColor: '#313866' },
         }}
       >
         <h1 style={{ color: 'white', fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: '40px', marginLeft: '5px' }}>
           Menu
         </h1>
         {user && user.name && (
-          <NavLink to="/user/profile" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center',  }}>
-          <Avatar  src={user.picture} sx={{ width: 40, height: 40 , marginRight: '10px', marginLeft: '5px'}} />
-            <h3 style={{ color: 'white'  }}>{user.name}</h3>
+          <NavLink to="/user/profile" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <Avatar src={user.picture} sx={{ width: 40, height: 40, marginRight: '10px', marginLeft: '5px' }} />
+            <h3 style={{ color: 'white' }}>{user.name}</h3>
           </NavLink>
-        )}    
+        )}
         {list('left')}
       </SwipeableDrawer>
     </div>

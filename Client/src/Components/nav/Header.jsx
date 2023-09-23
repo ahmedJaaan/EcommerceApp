@@ -12,10 +12,11 @@ import { FiLogOut } from "react-icons/fi"
 import { useSelector } from 'react-redux';
 import AdminSideBar from './AdminSideBar';
 
-const Header = () => {
+const Header = ({path}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
+
 
   const logout = () => {
     signOut(auth).then(() => {
@@ -29,9 +30,9 @@ const Header = () => {
   }
 
   return (
-    <div className={styles.flexContainer}>
+    <div className={styles.flexContainer} style={{backgroundColor: path==="/" ? "blue":"#fff"}} >
       {user && user.role === 'admin' ? (
-        <AdminSideBar />
+        <AdminSideBar path={path}/>
       ) : (
         <SideBar />
       )}
@@ -39,12 +40,12 @@ const Header = () => {
         {!user && (
           <>
             <NavLink to="/register" className={styles.link}>
-              <AiOutlineUserAdd size={32} style={{ color: 'blue' }} />
-              Register
+              <AiOutlineUserAdd size={32} style={{ color: path==="/" ? "white" : "blue" }} />
+              <span style={{ color: path==="/" ? "white" : "blue" }}>Register</span>
             </NavLink>
             <NavLink to="/login" className={styles.link}>
-              <BiUserPin size={32} style={{ color: 'blue' }} />
-              Login
+              <BiUserPin size={32} style={{ color: path==="/" ? "white" : "blue" }} />
+              <span style={{ color: path==="/" ? "white" : "blue" }}>Login</span>
             </NavLink>
           </>
         )}
@@ -54,8 +55,8 @@ const Header = () => {
             style={{ border: 'none' }}
             onClick={logout}
           >
-            <FiLogOut size={32} style={{ color: 'blue' }} />
-            Logout
+            <FiLogOut size={32} style={{ color: path==="/" ? "white" : "blue" }} />
+            <span style={{ color: path==="/" ? "white" : "blue" }}>Logout</span>
           </button>
         )}
       </div>
