@@ -30,7 +30,7 @@ const Header = ({path}) => {
   }
 
   return (
-    <div className={styles.flexContainer} style={{backgroundColor: path==="/" ? "blue":"#fff"}} >
+    <div className={path==="/" ? styles.HomeGradient : styles.flexContainer}  >
       {user && user.role === 'admin' ? (
         <AdminSideBar path={path}/>
       ) : (

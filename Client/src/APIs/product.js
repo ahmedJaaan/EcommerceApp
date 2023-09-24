@@ -81,14 +81,14 @@ export const createProduct = async (product, authtoken) => {
     }
   };
 
-  export const getProducts = async (sort, order, limit) => {
+  export const getProducts = async (sort, order, page) => {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/products",
         {
           sort,
           order,
-          limit
+          page
         },
       )
       return response.data;
@@ -98,3 +98,14 @@ export const createProduct = async (product, authtoken) => {
     }
   };
 
+export const getProductsCount = async () => {
+  try {
+    const response = await axios.get(
+      "http://localhost:8080/api/products/total"
+    )
+    return response.data;
+  } catch (error) {
+    console.error("Error in getting Product Count:", error);
+    throw error;
+  }
+}

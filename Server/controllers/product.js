@@ -61,18 +61,56 @@ exports.update = async(req, res) => {
     }  
 }
 
+// exports.list = async(req, res) => {
+//     try {
+//         const {sort, order, limit} = req.body;
+//         const products = await Product.find({})
+//         .populate("category")
+//         .populate("subs")
+//         .sort([[sort, order]])
+//         .limit(limit)
+//         .exec();
+//         res.json(products);
+//     } catch (error) {
+//         console.log("List products failed", error)
+//         res.status(400).send("Error in listing products");        
+//     }
+// }
+
 exports.list = async(req, res) => {
+    // console.table(req.body);
     try {
-        const {sort, order, limit} = req.body;
+        const {sort, order, page} = req.body;
+        const currentPage = page || 1;
+        const perPage = 3;
+        const skip = (currentPage - 1) * perPage;
         const products = await Product.find({})
+        .skip(skip)
         .populate("category")
         .populate("subs")
         .sort([[sort, order]])
-        .limit(limit)
+        .limit(perPage)
         .exec();
         res.json(products);
     } catch (error) {
         console.log("List products failed", error)
         res.status(400).send("Error in listing products");        
     }
-}
+};
+
+exports.productsCount = async (req, res) => {
+    try {
+      const total = await Product.find({}).estimatedDocumentCount().exec();
+  
+      if (!isNaN(total)) {
+        res.json(total);
+      } else {
+        console.error('Invalid products count:', total);
+        res.status(500).send('Error in calculating products count');
+      }
+    } catch (error) {
+      console.error('Error in getting Product Count:', error);
+      res.status(500).send('Error in calculating products count');
+    }
+  };
+  

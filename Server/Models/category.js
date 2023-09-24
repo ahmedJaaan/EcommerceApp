@@ -22,6 +22,10 @@ const categorySchema = new mongoose.Schema({
         unique: true,
         index: true,
         lowercase: true,
+    },
+    user : {
+        type: ObjectId,
+        ref: "User",
     }
 }, {timestamps: true}
 );

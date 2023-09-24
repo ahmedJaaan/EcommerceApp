@@ -4,6 +4,12 @@
     align-items: center;
   }
   
+  .HomeGradient {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: blue;
+  }
   .navLinkContainer {
     display: flex;
     align-items: center;
