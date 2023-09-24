@@ -80,3 +80,21 @@ export const createProduct = async (product, authtoken) => {
       throw error;
     }
   };
+
+  export const getProducts = async (sort, order, limit) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/products",
+        {
+          sort,
+          order,
+          limit
+        },
+      )
+      return response.data;
+    } catch (error) {
+      console.error("Error in getting Product:", error);
+      throw error;
+    }
+  };
+

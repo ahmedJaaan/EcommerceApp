@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getProductsByCount } from '../APIs/product';
+import { getProducts } from '../APIs/product';
 import { HashLoader } from 'react-spinners';
 import styles from './Home.module.css';
 import ProductCard from "../Components/Cards/PrdouctCard"
 import TypewriterEffect from '../Components/Cards/TypewriterEffect';
 import LoadingSkeleton from '../Components/Cards/LoadingSkeleton';
+import NewArrival from '../Components/Home/NewArrival';
+import BestSellers from '../Components/Home/BestSellers';
 
 const Home = ({ text }) => {
   const [products, setProducts] = useState([]);
@@ -15,7 +17,7 @@ const Home = ({ text }) => {
   }, []);
 
   const loadAllProducts = () => {
-    getProductsByCount(3)
+    getProducts("createdAt", "desc", 3)
       .then((res) => {
         setProducts(res);
         setLoading(false); 
@@ -48,18 +50,11 @@ const Home = ({ text }) => {
           </svg>
         </section>
         <section>
-          {loading ? (
-            <LoadingSkeleton count={6}/>
-          ) : (
-            <div className={styles.productGrid}>
-              {products.map((product) => (
-                <div key={product._id} className={styles.productGridItem}>
-                  <ProductCard product={product} loadAllProducts={loadAllProducts} />
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
+        <NewArrival styles={styles}/>
+        </section> 
+        <section >
+          <BestSellers styles={styles}/>
+        </section>      
       </>
     )
   );

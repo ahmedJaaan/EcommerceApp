@@ -36,6 +36,21 @@ body {
     overflow-x: hidden;
 }
 
+
+
+  .NewArrivals {
+
+
+text-align: center;
+background: linear-gradient(90deg, #0074e4, #0053a0, #003f7f, #001f3f);
+color: white;
+padding: 20px;
+margin-bottom: 100px;
+font-size: 24px;
+}
+
+
+
 /* Media query for PCs (min-width: 1024px) */
 @media (min-width: 1024px) {
     .productGrid {
