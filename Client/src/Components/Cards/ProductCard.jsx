@@ -11,7 +11,7 @@ const { Meta } = Card
 
 
 
-const PrdouctCard = ({product}) => {
+const ProductCard = ({product}) => {
   const { title, description, images, slug } = product;
 
   return (
@@ -26,7 +26,7 @@ const PrdouctCard = ({product}) => {
             <div 
             className={styles.userIcon}
             style={{display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
-            <NavLink to={`/admin/product/${slug}`}>
+            <NavLink to={`/product/${slug}`}>
             <MdOutlineViewInAr
               key="edit"
               size={25}
@@ -58,4 +58,4 @@ const PrdouctCard = ({product}) => {
   )
 }
 
-export default PrdouctCard
+export default ProductCard

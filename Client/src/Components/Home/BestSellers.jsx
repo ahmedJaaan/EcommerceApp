@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { getProducts, getProductsCount } from '../../APIs/product';
 import TypewriterEffect from '../Cards/TypewriterEffect';
 import LoadingSkeleton from "../Cards/LoadingSkeleton";
-import ProductCard from '../Cards/PrdouctCard';
+import ProductCard from '../Cards/ProductCard';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack'; // Import Stack component
-import Typography from '@mui/material/Typography';
 
 const BestSellers = ({styles}) => {
 
@@ -26,7 +25,7 @@ const BestSellers = ({styles}) => {
     getProductsCount()
       .then((res) => {
         setProductsCount(res);
-        console.log("Products Count", res);
+        // console.log("Products Count", res);
       })
       .catch((err) => {
         console.log('Error in getting products count', err);
@@ -75,13 +74,11 @@ const BestSellers = ({styles}) => {
           )}
           <Stack spacing={2} direction="row" alignItems="center" justifyContent="center">
   <Pagination
-     count={Math.ceil((productsCount / 3) * 10)}
+     count={Math.ceil((productsCount && productsCount.length / 3))}
     page={page}
-    // count={10}
+    size='small'
     onChange={handleChangePage}
   />
-
-  <Typography>Page: {page}</Typography>
 </Stack>
         </section>
   )

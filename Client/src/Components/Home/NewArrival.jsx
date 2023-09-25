@@ -2,30 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { getProducts, getProductsCount } from '../../APIs/product';
 import TypewriterEffect from '../Cards/TypewriterEffect';
 import LoadingSkeleton from '../Cards/LoadingSkeleton';
-import ProductCard from '../Cards/PrdouctCard';
+import ProductCard from '../Cards/ProductCard';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack'; // Import Stack component
-import Typography from '@mui/material/Typography';
 const NewArrival = ({ styles }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [productsCount, setProductsCount] = useState(0);
-
-  useEffect(() => {
-    loadAllProducts();
-  }, [page]);
-
   useEffect(() => {
     getProductsCount()
       .then((res) => {
         setProductsCount(res);
-        console.log("Products Count", res);
+        // console.log("Products Count", res);
       })
       .catch((err) => {
         console.log('Error in getting products count', err);
       });
   }, []);
+  
+  useEffect(() => {
+    loadAllProducts();
+    // console.log(productsCount && productsCount.length)
+  }, [page]);
+
 
   const loadAllProducts = () => {
     getProducts('createdAt', 'desc', page)
@@ -67,14 +67,12 @@ const NewArrival = ({ styles }) => {
         </div>
       )}
       <Stack spacing={2} direction="row" alignItems="center" justifyContent="center">
-  <Pagination
-     count={Math.ceil((productsCount / 3) * 10)}
+    <Pagination
+     count={Math.ceil((productsCount && productsCount.length / 3))}
     page={page}
-    // count={10}
+    size='small'
     onChange={handleChangePage}
-  />
-
-  <Typography>Page: {page}</Typography>
+    />
 </Stack>
 
     </section>

@@ -25,6 +25,7 @@ import AdminDasboard from "./Pages/admin/AdminDasboard";
 import UpdateProfile from "./Pages/auth/UpdateProfile";
 import AllProducts from "./Pages/admin/Product/AllProduct";
 import ProductUpdate from "./Pages/admin/Product/ProductUpdate";
+import Product from "./Pages/Product";
 
 function App() {
   const [userRole, setUserRole] = useState(null);
@@ -40,7 +41,7 @@ function App() {
         currentUser(idTokenResult.token)
           .then((res) => {
             setUserRole(res.role);
-            console.log("Response from currentUser API:", res);
+            // console.log("Response from currentUser API:", res);
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
@@ -76,6 +77,7 @@ function App() {
         <Route exact path="/register/complete" element={<RegisterComplete />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/forgot/password" element={<ForgotPassword />} />
+        <Route exact path="/product/:slug" element={<Product />} />
         <Route element={<UserRoute />}>
           <Route exact path="/user/history" element={<History />} />
           <Route exact path="/user/password" element={<Password />} />
