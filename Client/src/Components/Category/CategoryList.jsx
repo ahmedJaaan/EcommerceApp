@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import {getCategories} from "../../APIs/Category"
 import styles from "./CategoryList.module.css"
+import TypewriterEffect from '../Cards/TypewriterEffect'
+
 const CategoryList = () => {
     const [categories, setCategories] = useState([])
     
@@ -14,6 +16,19 @@ const CategoryList = () => {
 
     const showCategories = () => {
         return (
+            <section>
+            <div>
+            <h4 className={styles.NewArrivals}>
+            <TypewriterEffect
+  text={[
+    "Browse Our Categories",
+    "Discover Exciting Products",
+    "Find Your Perfect Item"
+  ]}
+/>
+
+        </h4>
+            </div>
           <div className={styles.container}>
             {categories.map((c) => (
               <div key={c._id} className={styles.box}>
@@ -25,6 +40,7 @@ const CategoryList = () => {
               </div>
             ))}
           </div>
+        </section>
         );
       };
       
