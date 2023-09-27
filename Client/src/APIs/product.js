@@ -115,7 +115,7 @@ export const productStars = async (productId, star, authtoken) => {
   try {
     const response = await axios.put(
       `http://localhost:8080/api/product/star/${productId}`,
-      star,
+      {star},
       {
           headers: {
               authtoken
@@ -125,6 +125,19 @@ export const productStars = async (productId, star, authtoken) => {
     return response.data;
   } catch (error) {
     console.error("Error in Updating Star:", error);
+    throw error;
+  }
+};
+
+
+export const getRelated = async (productId) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/api/product/related/${productId}`
+    )
+    return response.data;
+  } catch (error) {
+    console.error("Error in getting Related:", error);
     throw error;
   }
 };

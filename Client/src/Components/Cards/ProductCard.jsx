@@ -5,7 +5,7 @@ import {FaOpencart} from "react-icons/fa"
 import defaultImg from "../../assets/5191452-200.png";
 import { NavLink } from 'react-router-dom';
 import styles from "./ProductCard.module.css"
-
+import {showAverage} from "../../APIs/rating";
 
 const { Meta } = Card
 
@@ -15,7 +15,12 @@ const ProductCard = ({product}) => {
   const { title, description, images, slug } = product;
 
   return (
-    <div>
+    <>
+    {product && product.ratings && product.ratings.length > 0 ? (
+      showAverage(product)
+    ): (
+      <div>No Rating Yet</div>
+    )}
       <Card
         cover={<img src={images && images.length ? images[0].url : defaultImg}
           alt={title}
@@ -54,7 +59,7 @@ const ProductCard = ({product}) => {
         <Meta title={title} description={`${description && description.substring(0, 100)}...`} />
 
       </Card>
-    </div>
+    </>
   )
 }
 

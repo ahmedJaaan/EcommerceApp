@@ -12,12 +12,12 @@ import ProductItemList from '../Home/ProductItemList';
 import { Tabs } from "antd";
 import ReactStars from "react-stars";
 import StarRatingPopup from '../Popup/StarRatingPopup';
-
+import { showAverage } from '../../APIs/rating';
 const { TabPane } = Tabs;
 
-const SingleProduct = ({ product, onStarClick, star }) => {
+const SingleProduct = ({ product, onStarClick, star}) => {
   const { title, description, images, _id } = product;
-
+  
   return (
     <div className={styles.containerStyle}>
       <div>
@@ -48,7 +48,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
           <h1 className={styles.viewHeading}>{title}</h1>
         </span>
         <span style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-          
+        {product && product.ratings && product.ratings.length ? showAverage(product) : "NO Rating Yet"}   
         </span>
         <Card actions={[
           <div className={styles.actions}>

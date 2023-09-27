@@ -109,7 +109,7 @@ exports.productsCount = async (req, res) => {
       const {star} = req.body;
 
       const existingRatingObject = product.ratings.find(
-          (rating) => rating.postedBy.toString() === user._id.toString()
+          (ele) => ele.postedBy.toString() === user._id.toString()
       );
 
       if (existingRatingObject === undefined) {
@@ -137,3 +137,22 @@ exports.productsCount = async (req, res) => {
     }
   }
 
+exports.listRelated = async (req, res) => {
+    try {
+      const product = await Product.findById(req.params.productId).exec();
+      const related = await Product.find(
+        { 
+            _id: { $ne: product._id }, category: product.category 
+        }
+        )
+        .limit(6)
+        .populate('category')
+        .populate('subs')
+        .populate('ratings')
+        .exec();
+      res.json(related);
+    } catch (error) {
+      console.error('Error in listing related products:', error);
+      res.status(500).send('Error in listing related products');
+    }
+}

@@ -1,5 +1,4 @@
 import React, { Children, useState } from 'react'
-import ReactStars from "react-stars";
 import { Modal, Button } from 'antd';
 import {toast} from 'react-toastify';
 import {useSelector} from "react-redux"
@@ -21,8 +20,7 @@ const StarRatingPopup = ({children}) => {
     centered
     open={visible}
     onOk={() => {setVisible(false), toast.success('Thank You For Your Rating')}}
-    onCancel={() => setVisible(false)}
-    
+    onCancel={() => setVisible(false)}  
     >
         {children}
     </Modal>

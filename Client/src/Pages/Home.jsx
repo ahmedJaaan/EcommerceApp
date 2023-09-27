@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { getProducts } from '../APIs/product';
 import { HashLoader } from 'react-spinners';
 import styles from './Home.module.css';
-import TypewriterEffect from '../Components/Cards/TypewriterEffect';
 import NewArrival from '../Components/Home/NewArrival';
 import BestSellers from '../Components/Home/BestSellers';
 import LandingSection from '../Components/Home/LandingSection';
-
-const Home = ({ text }) => {
+import CategoryList from '../Components/Category/CategoryList';
+const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -37,6 +36,7 @@ const Home = ({ text }) => {
         <LandingSection styles={styles}/>
         <NewArrival styles={styles} />
         <BestSellers styles={styles}/>
+        <CategoryList styles={styles}/>
       </>
     )
   );
