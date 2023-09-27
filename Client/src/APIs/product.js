@@ -109,3 +109,22 @@ export const getProductsCount = async () => {
     throw error;
   }
 }
+
+
+export const productStars = async (productId, star, authtoken) => {
+  try {
+    const response = await axios.put(
+      `http://localhost:8080/api/product/star/${productId}`,
+      star,
+      {
+          headers: {
+              authtoken
+          }
+      }
+    )
+    return response.data;
+  } catch (error) {
+    console.error("Error in Updating Star:", error);
+    throw error;
+  }
+};

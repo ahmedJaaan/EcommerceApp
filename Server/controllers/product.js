@@ -1,6 +1,6 @@
 const Product = require("../Models/product");
 const slugify = require("slugify");
-
+const User = require("../Models/user");
 
 exports.create = async(req, res) => {
     try {
@@ -61,24 +61,9 @@ exports.update = async(req, res) => {
     }  
 }
 
-// exports.list = async(req, res) => {
-//     try {
-//         const {sort, order, limit} = req.body;
-//         const products = await Product.find({})
-//         .populate("category")
-//         .populate("subs")
-//         .sort([[sort, order]])
-//         .limit(limit)
-//         .exec();
-//         res.json(products);
-//     } catch (error) {
-//         console.log("List products failed", error)
-//         res.status(400).send("Error in listing products");        
-//     }
-// }
 
 exports.list = async(req, res) => {
-    // console.table(req.body);
+    // console.log(req.body);
     try {
         const {sort, order, page} = req.body;
         const currentPage = page || 1;
@@ -114,3 +99,41 @@ exports.productsCount = async (req, res) => {
     }
   };
   
+
+  exports.productStar = async (req, res) => {
+    
+    try {
+        // console.log(req.body);
+      const product = await Product.findById(req.params.productId).exec();
+      const user = await User.findOne({ email: req.user.email }).exec();
+      const {star} = req.body;
+
+      const existingRatingObject = product.ratings.find(
+          (rating) => rating.postedBy.toString() === user._id.toString()
+      );
+
+      if (existingRatingObject === undefined) {
+          const ratingAdded = await Product.findByIdAndUpdate(
+              product._id,
+              {
+                  $push: { ratings: { star, postedBy: user._id } },
+              },
+              { new: true }              
+          ).exec();
+        //   console.log(ratingAdded);
+          res.json(ratingAdded);
+      } else {
+          const ratingUpdated = await Product.updateOne(
+              {ratings: { $elemMatch: existingRatingObject }},
+              { $set: { "ratings.$.star": star } },
+              { new: true }
+          ).exec();
+        //   console.log(ratingUpdated);
+          res.json(ratingUpdated);
+      };
+        } catch (error) {
+      console.error('Error in updating product rating:', error);
+      res.status(500).send('Error in updating product rating');
+    }
+  }
+

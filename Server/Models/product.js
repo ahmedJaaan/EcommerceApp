@@ -60,12 +60,12 @@ const productSchema = new mongoose.Schema(
       maxlength: 30,
       required: true
     },
-    // ratings: [
-    //   {
-    //     star: Number,
-    //     postedBy: { type: ObjectId, ref: "User" },
-    //   },
-    // ],
+    ratings: [
+      {
+        star: Number,
+        postedBy: { type: ObjectId, ref: "User" },
+      },
+    ],
   },
   { timestamps: true }
 );

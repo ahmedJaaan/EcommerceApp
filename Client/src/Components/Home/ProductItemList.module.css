@@ -1,0 +1,9 @@
+.listContainer { 
+    display: flex; 
+    justify-content: space-between; 
+    padding: 5px 10px;
+    background-color: #fff;
+    font-size: 18px;
+
+}
+

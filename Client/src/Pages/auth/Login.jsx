@@ -19,7 +19,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }))
-  // console.log(user);
+  // // console.log(user);
   useEffect(() => {
     if (user && user.token) {
       navigate('/');
@@ -48,21 +48,19 @@ const Login = () => {
         });
       })
       .catch((err) => console.log("error in creating or updating user",err));
-      
-      navigate('/');
+    navigate('/');
       toast.success("Logged in successfully");
     } catch (error) {
       if (error.code === 'auth/invalid-email') {
-        setEmailError('Invalid email address.');
+        toast.error('Invalid email address.');
       } else if (error.code === 'auth/wrong-password') {
-        setPasswordError('Invalid password.');
+        toast.error('Invalid password.');
       } else {
         toast.error("Failed to log in. Please check your credentials.");
       }
     } finally {
       setIsLoading(false);
-    }
-  };
+  }}
   const googleLogin = async () => {
     setIsGoogleLoading(true); 
     try {
