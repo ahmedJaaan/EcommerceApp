@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: center;
     margin: 10px;
-    ;
 }
 
 .productsHeading {
@@ -21,7 +20,6 @@
 }
 
 .productInput:active {
-    
     border-bottom: 3px solid aquamarine;
 }
 .productsSubHeading {

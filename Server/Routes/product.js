@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const {create, listAll, remove, read, update, list, productsCount, productStar, listRelated} = require("../controllers/product")
+const {create, listAll, remove, read, update, list, productsCount, productStar, listRelated, searchFilters} = require("../controllers/product")
 const {authCheck, adminCheck} = require("../middlewares/auth")
 
 router.post("/product", authCheck, adminCheck, create);
@@ -14,4 +14,5 @@ router.post("/products", list);
 router.get("/products/total", productsCount);
 router.put("/product/star/:productId", authCheck, productStar);
 router.get("/product/related/:productId", listRelated);
+router.post("/search/filters", searchFilters);
 module.exports = router;

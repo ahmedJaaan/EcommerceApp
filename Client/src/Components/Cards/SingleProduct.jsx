@@ -4,7 +4,6 @@ import styles from './ProductCard.module.css';
 import { Card } from 'antd';
 import { DiRaphael } from "react-icons/di";
 import { GiCartwheel } from "react-icons/gi";
-import { AiOutlineStar } from "react-icons/ai";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import defaultImage from "../../assets/5191452-200.png";

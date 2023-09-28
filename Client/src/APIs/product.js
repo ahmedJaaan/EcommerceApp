@@ -141,3 +141,16 @@ export const getRelated = async (productId) => {
     throw error;
   }
 };
+
+export const fetchProductByFilter = async (arg) => {
+  try { 
+    const response = await axios.post(
+      "http://localhost:8080/api/search/filters",
+      arg
+    )
+    return response.data;
+  } catch (error) {
+    console.error("Error in fetching products filter:", error);
+    throw error;
+  }
+};

@@ -14,12 +14,12 @@ const ProductItemList = ({ product }) => {
       </li>
       <li className={styles.listContainer}>
         <span>Category </span>
-        <NavLink to={`/product/${category && category.slug}`}>{category && category.name}</NavLink>
+        <NavLink to={`/category/${category && category.slug}`}>{category && category.name}</NavLink>
       </li>
         {subs && subs.map((sub) => (
       <li className={styles.listContainer} key={sub._id}>
       <span>Sub Category</span>
-      <NavLink to={`/product/${sub && sub.slug}`}>{sub && sub.name}</NavLink>    
+      <NavLink to={`/sub/${sub && sub.slug}`}>{sub && sub.name}</NavLink>    
       </li>
         ))}
       <li className={styles.listContainer}>

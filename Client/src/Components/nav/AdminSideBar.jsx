@@ -19,7 +19,7 @@ import { LiaModx } from 'react-icons/lia';
 import { Avatar } from '@mui/material';
 import styles from './Nav.module.css';
 import {TbBrandReact} from "react-icons/tb";
-
+import {GrCloudlinux} from "react-icons/gr";
 const AdminSideBar = ({path}) => {
   const [state, setState] = React.useState({
     left: false,
@@ -40,6 +40,11 @@ const AdminSideBar = ({path}) => {
       text: 'Home',
       link: '/',
       icon: <SiApachekafka size={32} style={{ color: 'white' }} />,
+    },
+    {
+      text: 'Shop',
+      link: '/shop',
+      icon: <GrCloudlinux size={32} style={{ color: 'white' }} />,
     },
     {
       text: 'Admin Dashboard',

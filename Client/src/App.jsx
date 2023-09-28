@@ -26,7 +26,9 @@ import UpdateProfile from "./Pages/auth/UpdateProfile";
 import AllProducts from "./Pages/admin/Product/AllProduct";
 import ProductUpdate from "./Pages/admin/Product/ProductUpdate";
 import Product from "./Pages/Product";
-
+import CategoryHome from "./Components/Category/CategoryHome";
+import SubHome from "./Components/Category/SubHome";
+import Shop from "./Components/Search/Shop";
 function App() {
   const [userRole, setUserRole] = useState(null);
   const dispatch = useDispatch();
@@ -73,11 +75,14 @@ function App() {
       <Header path={location} />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/shop" element={<Shop />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/register/complete" element={<RegisterComplete />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/forgot/password" element={<ForgotPassword />} />
         <Route exact path="/product/:slug" element={<Product />} />
+        <Route path="/category/:slug" element={<CategoryHome />} />
+        <Route path="/sub/:slug" element={<SubHome />} />
         <Route element={<UserRoute />}>
           <Route exact path="/user/history" element={<History />} />
           <Route exact path="/user/password" element={<Password />} />

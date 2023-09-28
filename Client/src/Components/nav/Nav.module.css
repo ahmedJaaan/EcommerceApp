@@ -48,3 +48,14 @@
   .drawer{
     overflow: hidden;
   }
+
+
+  .centeredSearch {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%; /* Use a percentage value to make it expand to the available width */
+  }
+  

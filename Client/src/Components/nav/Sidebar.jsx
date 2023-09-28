@@ -15,7 +15,7 @@ import {BsClockHistory} from "react-icons/bs"
 import {PiLockKey} from "react-icons/pi"
 import {BsBagHeart} from "react-icons/bs"
 import {LiaModx} from "react-icons/lia"
-
+import {GrCloudlinux} from "react-icons/gr"
 const SideBar = ({ path }) => {
   const [state, setState] = React.useState({
     left: false,
@@ -30,13 +30,18 @@ const SideBar = ({ path }) => {
   };
 
   const { user } = useSelector((state) => ({ ...state }));
-
+  
   const customItems = [
     {
       text: 'Home',
       link: '/',
       icon: <SiApachekafka size={32} style={{ color: 'white' }} />,
     },
+    {
+      text: 'Shop',
+      link: '/shop',
+      icon: <GrCloudlinux size={32} style={{ color: 'white' }} />,
+    },  
     {
       text: 'History',
       link: '/user/history',
@@ -56,8 +61,7 @@ const SideBar = ({ path }) => {
       text: 'Profile',
       link: '/user/profile',
       icon: <LiaModx size={34} style={{ color: 'white' }} />,
-    }
-    
+    },
   ];
 
   const list = (anchor) => (

@@ -1,3 +1,4 @@
+/* Default styles for all screen sizes */
 .loaderContainer {
     display: flex;
     justify-content: center;
@@ -61,6 +62,7 @@ body {
 
 
 
+/* Media query for PCs (min-width: 1024px) */
 @media (min-width: 1024px) {
     .productGrid {
         grid-template-columns: repeat(3, 1fr);
@@ -71,6 +73,7 @@ body {
     }
 }
 
+/* Media query for tablets and smaller PCs (min-width: 768px, max-width: 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
     .productGrid {
         grid-template-columns: repeat(2, 1fr);

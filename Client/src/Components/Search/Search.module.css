@@ -1,0 +1,28 @@
+.homeSearch {
+    outline: none;
+    width: 1000px;
+    border: none;
+    color: black;
+    font-size: 20px;
+    border-radius: 50px;
+    border: 2px solid blue;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: rgb(182, 182, 207);
+    padding: 3px;
+}
+
+.searchInput {
+    outline: none;
+    width: 800px;
+    border: none;
+    text-align: center;
+    border-bottom: 2px solid aquamarine;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+.searchInput:active {
+    border-bottom: 3px solid aquamarine;
+}

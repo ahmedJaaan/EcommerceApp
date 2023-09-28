@@ -156,3 +156,27 @@ exports.listRelated = async (req, res) => {
       res.status(500).send('Error in listing related products');
     }
 }
+
+const handleQuery = async (req, res, query) => {
+  try {
+    const products = await Product.find({
+      $text: { $search: query },
+    })
+      .populate("category", "_id name")
+      .populate("subs", "_id name ")
+      .populate("ratings")
+      .exec();
+    res.json(products);
+  } catch (error) {
+    console.error("Error in searching products", error);
+    res.status(500).send("Error in searching products");
+  }
+}
+
+exports.searchFilters = async (req, res) => {
+  const {query} = req.body
+  
+  if (query) {
+    await handleQuery(req, res, query);
+  }
+};

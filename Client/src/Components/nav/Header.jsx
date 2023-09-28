@@ -11,12 +11,12 @@ import { toast } from 'react-toastify';
 import { FiLogOut } from "react-icons/fi"
 import { useSelector } from 'react-redux';
 import AdminSideBar from './AdminSideBar';
+import Search from '../Search/Search';
 
-const Header = ({path}) => {
+const Header = ({ path }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
-
 
   const logout = () => {
     signOut(auth).then(() => {
@@ -30,22 +30,25 @@ const Header = ({path}) => {
   }
 
   return (
-    <div className={path==="/" ? styles.HomeGradient : styles.flexContainer}  >
+    <div className={path === "/" ? styles.HomeGradient : styles.flexContainer}>
       {user && user.role === 'admin' ? (
-        <AdminSideBar path={path}/>
+        <AdminSideBar path={path} />
       ) : (
-        <SideBar path={path}/>
+        <SideBar path={path} />
       )}
+        <div className={styles.centeredSearch}>
+          <Search path={path}/>
+        </div>
       <div className={styles.navLinkContainer}>
         {!user && (
           <>
             <NavLink to="/register" className={styles.link}>
-              <AiOutlineUserAdd size={32} style={{ color: path==="/" ? "white" : "blue" }} />
-              <span style={{ color: path==="/" ? "white" : "blue" }}>Register</span>
+              <AiOutlineUserAdd size={32} style={{ color: path === "/" ? "white" : "blue" }} />
+              <span style={{ color: path === "/" ? "white" : "blue" }}>Register</span>
             </NavLink>
             <NavLink to="/login" className={styles.link}>
-              <BiUserPin size={32} style={{ color: path==="/" ? "white" : "blue" }} />
-              <span style={{ color: path==="/" ? "white" : "blue" }}>Login</span>
+              <BiUserPin size={32} style={{ color: path === "/" ? "white" : "blue" }} />
+              <span style={{ color: path === "/" ? "white" : "blue" }}>Login</span>
             </NavLink>
           </>
         )}
@@ -55,10 +58,11 @@ const Header = ({path}) => {
             style={{ border: 'none' }}
             onClick={logout}
           >
-            <FiLogOut size={32} style={{ color: path==="/" ? "white" : "blue" }} />
-            <span style={{ color: path==="/" ? "white" : "blue" }}>Logout</span>
+            <FiLogOut size={32} style={{ color: path === "/" ? "white" : "blue" }} />
+            <span style={{ color: path === "/" ? "white" : "blue" }}>Logout</span>
           </button>
         )}
+        {/* Center the Search component horizontally */}
       </div>
     </div>
   );

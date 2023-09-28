@@ -1,4 +1,3 @@
-/* Common styles for all screen sizes */
 .userIcon {
     transition: 0.3s ease;
 }
@@ -20,6 +19,7 @@
     grid-auto-flow: column;
     gap: 120px;
 }
+
 .viewHeadingContainer {
     display: flex;
     align-items: center;
