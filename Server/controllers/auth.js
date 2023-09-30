@@ -1,32 +1,33 @@
-const User = require("../Models/user")
+const User = require("../Models/user");
 
+exports.createOrUpdateUser = async (req, res, next) => {
+  const { name, picture, email } = req.user;
 
-exports.createOrUpdateUser = async(req, res, next) => {
-    const {name, picture, email} = req.user
+  const user = await User.findOneAndUpdate(
+    { email },
+    { name, picture },
+    { new: true }
+  );
 
-    const user = await User.findOneAndUpdate({email}, {name, picture}, {new: true});
-
-    if(user) {
-        console.log(user);
-        res.json(user);
-    } else {
-        const newUser = await new User({
-            email,
-            name: email.split('@')[0],
-            picture,
-        }).save();
-        res.json(newUser);
-    };
+  if (user) {
+    console.log(user);
+    res.json(user);
+  } else {
+    const newUser = await new User({
+      email,
+      name: email.split("@")[0],
+      picture,
+    }).save();
+    res.json(newUser);
+  }
 };
 
 exports.currentUser = async (req, res) => {
-    try {
-        const user = await User.findOne({ email: req.user.email });
-        res.json(user);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Server error' });
-    }
+  try {
+    const user = await User.findOne({ email: req.user.email });
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
 };
-
-

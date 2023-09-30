@@ -27,6 +27,7 @@ const ProductCard = ({ product }) => {
             style={{
               height: "200px",
               objectFit: "cover",
+              width: "100%",
               borderRadius: "10px",
             }}
           />
@@ -49,7 +50,10 @@ const ProductCard = ({ product }) => {
                 flexDirection: "column",
               }}
             >
-              <NavLink to={`/product/${slug}`}>
+              <NavLink
+                to={`/product/${slug}`}
+                style={{ textDecoration: "none" }}
+              >
                 <MdOutlineViewInAr
                   key="edit"
                   size={25}

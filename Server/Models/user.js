@@ -1,20 +1,21 @@
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema;
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema(
+  {
     name: String,
     email: {
-        type: String,
-        required: true,
-        index: true,
-        unique: true,
+      type: String,
+      required: true,
+      index: true,
+      unique: true,
     },
     role: {
-        type: String,
-        default: "subscriber",
+      type: String,
+      default: "subscriber",
     },
     cart: {
-        type: Array,
-        default: [],
+      type: Array,
+      default: [],
     },
     address: String,
     // wishlist: [{
@@ -22,7 +23,8 @@ const userSchema = new mongoose.Schema({
     //     ref: "Product"
     // }
     // ]
-}, {timestamps: true}
+  },
+  { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema)
+module.exports = mongoose.model("User", userSchema);
