@@ -5,7 +5,7 @@
 }
 
 .box {
-  flex-basis: calc(33.33% - 20px);
+  flex-basis: calc(20% - 20px);
   margin: 10px;
   padding: 20px;
   font-size: 30px;

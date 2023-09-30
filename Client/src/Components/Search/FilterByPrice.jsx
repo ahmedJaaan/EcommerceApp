@@ -22,7 +22,7 @@ const FilterByPrice = ({ handleSlider, price }) => {
           width: "200px",
         }}
         range
-        tooltip={(value) => `$${value}`}
+        tipFormatter={(value) => `$${value}`}
         value={price}
         onChange={handleSlider}
         max={5000}
