@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import { createCategory, getCategories, removeCategory } from '../../../APIs/Category';
-import styles from '../Admin.module.css';
-import { RingLoader } from 'react-spinners';
-import { CiEdit } from 'react-icons/ci';
-import { Link } from 'react-router-dom';
-import { GoTrash } from 'react-icons/go';
-import ConfirmationPopup from '../../../Components/Popup/Popup';
-import CategoryForm from '../../../Components/Forms/CategoryForm';
-import LocalSearch from '../../../Components/Forms/LocalSearch';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import {
+  createCategory,
+  getCategories,
+  removeCategory,
+} from "../../../APIs/Category";
+import styles from "../Admin.module.css";
+import { RingLoader } from "react-spinners";
+import { CiEdit } from "react-icons/ci";
+import { Link } from "react-router-dom";
+import { GoTrash } from "react-icons/go";
+import ConfirmationPopup from "../../../Components/Popup/Popup";
+import CategoryForm from "../../../Components/Forms/CategoryForm";
+import LocalSearch from "../../../Components/Forms/LocalSearch";
 
 const CategoryCreate = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [categoryToDelete, setCategoryToDelete] = useState('');
-  const [deleteLoading, setDeleteLoading] = useState(false); 
-  const [categoryNameToDelete, setCategoryNameToDelete] = useState(''); 
+  const [categoryToDelete, setCategoryToDelete] = useState("");
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [categoryNameToDelete, setCategoryNameToDelete] = useState("");
   const [keyword, setKeyword] = useState("");
 
   const { user } = useSelector((state) => ({ ...state }));
@@ -32,40 +36,37 @@ const CategoryCreate = () => {
   const handleRemove = async (slug, categoryName) => {
     setCategoryToDelete(slug);
     setShowConfirmation(true);
-    setCategoryNameToDelete(categoryName); 
+    setCategoryNameToDelete(categoryName);
   };
 
- 
-
-  const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword)
-
+  const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
 
   const confirmDelete = () => {
-    setDeleteLoading(true); 
+    setDeleteLoading(true);
     removeCategory(categoryToDelete, user.token)
       .then((res) => {
-        setDeleteLoading(false); 
+        setDeleteLoading(false);
         toast.info(`${res.name} is deleted`);
         loadCategories();
         setShowConfirmation(false);
       })
       .catch((err) => {
         console.log(err);
-        setDeleteLoading(false); 
+        setDeleteLoading(false);
         if (err.response && err.response.status === 400) {
           const errorMessage = err.response.data;
           toast.error(errorMessage);
         } else {
-          toast.error('An error occurred.');
+          toast.error("An error occurred.");
         }
       });
   };
 
   const cancelDelete = () => {
-    setCategoryToDelete('');
+    setCategoryToDelete("");
     setShowConfirmation(false);
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -74,7 +75,7 @@ const CategoryCreate = () => {
       .then((res) => {
         toast.success(`${res.name} is created`);
         setLoading(false);
-        setName('');
+        setName("");
         loadCategories();
       })
       .catch((err) => {
@@ -84,30 +85,26 @@ const CategoryCreate = () => {
           const errorMessage = err.response.data;
           toast.error(errorMessage);
         } else {
-          toast.error('An error occurred.');
+          toast.error("An error occurred.");
         }
       });
   };
 
-  
-
   return (
-    <div className={`${styles.categoryCreateContainer} ${styles.textCenter} ${styles.mt30}`}>
+    <div
+      className={`${styles.categoryCreateContainer} ${styles.textCenter} ${styles.mt30}`}
+    >
       <h1 className={`${styles.categoryCreateHeading}`}>Create Category</h1>
       <CategoryForm
-      handleSubmit={handleSubmit}
-      styles={styles}
-      name={name}
-      setName={setName}
-      loading={loading}
-      buttonName="Create Category"
-      placeholder="Enter Category Name"
-       />
-       <LocalSearch 
-       keyword={keyword} 
-       setKeyword={setKeyword}
-       styles={styles}
-       />
+        handleSubmit={handleSubmit}
+        styles={styles}
+        name={name}
+        setName={setName}
+        loading={loading}
+        buttonName="Create Category"
+        placeholder="Enter Category Name"
+      />
+      <LocalSearch keyword={keyword} setKeyword={setKeyword} styles={styles} />
       <hr />
       <ul>
         {categories.filter(searched(keyword)).map((c) => (
@@ -116,9 +113,12 @@ const CategoryCreate = () => {
             <Link to={`/admin/category/${c.slug}`} className={styles.icon}>
               <CiEdit size={20} />
             </Link>
-            <span className={styles.deleteicon} onClick={() => handleRemove(c.slug, c.name)}>
+            <span
+              className={styles.deleteicon}
+              onClick={() => handleRemove(c.slug, c.name)}
+            >
               {deleteLoading ? (
-                <RingLoader color={'#ffffff'} loading={true} size={15} /> 
+                <RingLoader color={"#ffffff"} loading={true} size={15} />
               ) : (
                 <GoTrash size={20} />
               )}
@@ -127,12 +127,12 @@ const CategoryCreate = () => {
         ))}
       </ul>
       {showConfirmation && (
-          <ConfirmationPopup
+        <ConfirmationPopup
           message={`Are you sure you want to delete the category "${categoryNameToDelete}"?`}
           onConfirm={confirmDelete}
-          onCancel={cancelDelete}           
-          />
-          )}
+          onCancel={cancelDelete}
+        />
+      )}
     </div>
   );
 };

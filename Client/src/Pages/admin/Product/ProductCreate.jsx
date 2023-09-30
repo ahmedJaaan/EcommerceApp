@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { createProduct } from '../../../APIs/product';
-import { toast } from 'react-toastify';
-import { getCategories, getCategorySub } from '../../../APIs/Category';
-import ProductForm from '../../../Components/Forms/ProductForm';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { createProduct } from "../../../APIs/product";
+import { toast } from "react-toastify";
+import { getCategories, getCategorySub } from "../../../APIs/Category";
+import ProductForm from "../../../Components/Forms/ProductForm";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
-  title: '',
-  description: '',
-  price: '',
-  category: '',
+  title: "",
+  description: "",
+  price: "",
+  category: "",
   subs: [],
-  shipping: '', 
-  quantity: '',
+  shipping: "",
+  quantity: "",
   images: [],
-  color: '',
-  brand: '',
+  color: "",
+  brand: "",
 };
 
 const ProductCreate = () => {
@@ -27,8 +27,7 @@ const ProductCreate = () => {
   const [showSub, setShowSub] = useState(false);
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
-  
-  
+
   useEffect(() => {
     loadCategories();
   }, []);
@@ -39,23 +38,22 @@ const ProductCreate = () => {
         setCategories(res);
       })
       .catch((err) => {
-        console.error('Error loading categories:', err);
+        console.error("Error loading categories:", err);
       });
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-  
+
     createProduct(values, user.token)
       .then((res) => {
         setLoading(false);
         setValues({
           ...initialState,
-          images: [], 
+          images: [],
         });
-        navigate("/admin/products");        
+        navigate("/admin/products");
         toast.success(`${res.title} is created`);
       })
       .catch((err) => {
@@ -66,7 +64,6 @@ const ProductCreate = () => {
         setLoading(false);
       });
   };
-  
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -77,35 +74,32 @@ const ProductCreate = () => {
     setValues({ ...values, subs: [], category: e.target.value });
     getCategorySub(e.target.value)
       .then((response) => {
-        const subId = response; 
+        const subId = response;
         setSubOptions(subId);
         // console.log(subId);
       })
       .catch((error) => {
-        console.error('Error loading subcategories:', error);
+        console.error("Error loading subcategories:", error);
       });
-      setShowSub(true);
-  }
-  
+    setShowSub(true);
+  };
 
-  
-    return (
-      <div>
-        <ProductForm
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          handleCategoryChange={handleCategoryChange}
-          values={values}
-          setValues={setValues}
-          categories={categories}
-          loading={loading}
-          setShowSub={setShowSub}
-          showSub={showSub}
-          subOptions={subOptions}
-        />
-      </div>
-    );
-  }
-  
+  return (
+    <div>
+      <ProductForm
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        handleCategoryChange={handleCategoryChange}
+        values={values}
+        setValues={setValues}
+        categories={categories}
+        loading={loading}
+        setShowSub={setShowSub}
+        showSub={showSub}
+        subOptions={subOptions}
+      />
+    </div>
+  );
+};
 
 export default ProductCreate;

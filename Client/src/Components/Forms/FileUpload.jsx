@@ -1,29 +1,33 @@
-import React, { useState } from 'react';
-import styles from '../../Pages/admin/Product/Product.module.css';
+import React, { useState } from "react";
+import styles from "../../Pages/admin/Product/Product.module.css";
 import Resizer from "react-image-file-resizer";
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { Avatar, Badge } from 'antd';
-import { RingLoader } from 'react-spinners';
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { Avatar, Badge } from "antd";
+import { RingLoader } from "react-spinners";
 
 const FileUpload = ({ values, setValues }) => {
   const { user } = useSelector((state) => ({ ...state }));
-  const allUploadedFiles = values.images || []; 
+  const allUploadedFiles = values.images || [];
   const [loading, setLoading] = useState(false);
 
   const handleImageRemove = (id) => {
     setLoading(true);
     axios
-      .post(`http://localhost:8080/api/removeimage`, { public_id: id }, {
-        headers: {
-          authtoken: user ? user.token : "",
-        },
-      })
+      .post(
+        `http://localhost:8080/api/removeimage`,
+        { public_id: id },
+        {
+          headers: {
+            authtoken: user ? user.token : "",
+          },
+        }
+      )
       .then((res) => {
-        const { images } = values; 
+        const { images } = values;
         const filteredImages = images.filter((img) => img.public_id !== id);
         setValues({ ...values, images: filteredImages });
-        setLoading(false); 
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -42,7 +46,7 @@ const FileUpload = ({ values, setValues }) => {
           files[i],
           720,
           720,
-          'JPEG',
+          "JPEG",
           100,
           0,
           (uri) => {
@@ -50,7 +54,7 @@ const FileUpload = ({ values, setValues }) => {
             axios
               .post(
                 `http://localhost:8080/api/uploadimages`,
-                { image: uri }, 
+                { image: uri },
                 {
                   headers: {
                     authtoken: user.token,
@@ -60,7 +64,7 @@ const FileUpload = ({ values, setValues }) => {
               .then((res) => {
                 console.log(res.data);
                 allUploadedFiles.push(res.data);
-                setValues({ ...values, images: allUploadedFiles }); 
+                setValues({ ...values, images: allUploadedFiles });
                 setLoading(false);
               })
               .catch((err) => {
@@ -68,7 +72,7 @@ const FileUpload = ({ values, setValues }) => {
                 setLoading(false);
               });
           },
-          'base64'
+          "base64"
         );
       }
     }
@@ -79,11 +83,7 @@ const FileUpload = ({ values, setValues }) => {
       <h4 className={styles.productsSubHeading}>Upload Image</h4>
       <div className={styles.uploadContainer}>
         <label htmlFor="fileInput" className={styles.uploadLabel}>
-          {loading ? (
-            <RingLoader color="#36D7B7" size={20}  />
-          ) : (
-            "Choose Image"
-          )}
+          {loading ? <RingLoader color="#36D7B7" size={20} /> : "Choose Image"}
         </label>
         <input
           type="file"
@@ -95,12 +95,12 @@ const FileUpload = ({ values, setValues }) => {
         />
       </div>
       <div>
-        {values.images && 
-          values.images.map((img) => { 
+        {values.images &&
+          values.images.map((img) => {
             return (
               <Badge
                 count="X"
-                style={{ marginTop: 20, marginRight: 10, cursor: 'pointer' }}
+                style={{ marginTop: 20, marginRight: 10, cursor: "pointer" }}
                 key={img.public_id}
                 onClick={() => handleImageRemove(img.public_id)}
               >

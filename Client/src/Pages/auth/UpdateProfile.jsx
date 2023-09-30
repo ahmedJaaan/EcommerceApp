@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const UpdateProfile = () => {
-  const {user} = useSelector((state) => ({...state}));
-useEffect(() => {
-  console.log(user)
-}, [])
-  return (
-    <div>UpdateProfile</div>
-  )
-}
+  const { user } = useSelector((state) => ({ ...state }));
+  useEffect(() => {
+    console.log(user);
+  }, []);
+  return <div>UpdateProfile</div>;
+};
 
-export default UpdateProfile
+export default UpdateProfile;

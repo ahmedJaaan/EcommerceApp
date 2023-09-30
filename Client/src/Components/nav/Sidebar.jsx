@@ -10,7 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { BiMenuAltLeft } from 'react-icons/bi';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import {SiApachekafka} from "react-icons/si"
+import {SiApachekafka, SiPydantic} from "react-icons/si"
 import {BsClockHistory} from "react-icons/bs"
 import {PiLockKey} from "react-icons/pi"
 import {BsBagHeart} from "react-icons/bs"
@@ -40,7 +40,7 @@ const SideBar = ({ path }) => {
     {
       text: 'Shop',
       link: '/shop',
-      icon: <GrCloudlinux size={32} style={{ color: 'white' }} />,
+      icon: <SiPydantic size={32} style={{ color: 'white' }} />,
     },  
     {
       text: 'History',

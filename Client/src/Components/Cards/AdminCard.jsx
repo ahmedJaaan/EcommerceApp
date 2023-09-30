@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Card } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CgEditUnmask } from "react-icons/cg";
 import styles from "./cards.module.css";
 import defaultImg from "../../assets/5191452-200.png";
-import ConfirmationPopup from '../Popup/Popup'; 
-import { removeProduct } from '../../APIs/product';
-import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import {NavLink} from 'react-router-dom';
-
-
-
+import ConfirmationPopup from "../Popup/Popup";
+import { removeProduct } from "../../APIs/product";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { NavLink } from "react-router-dom";
 
 const { Meta } = Card;
 
 const AdminCard = ({ product, loadAllProducts }) => {
   const { title, description, images, slug } = product;
   const [isDeletePopupVisible, setIsDeletePopupVisible] = useState(false);
-const {user} = useSelector((state) => ({ ...state }));
+  const { user } = useSelector((state) => ({ ...state }));
   const handleDeleteClick = () => {
     setIsDeletePopupVisible(true);
   };
@@ -34,7 +31,7 @@ const {user} = useSelector((state) => ({ ...state }));
       .catch((err) => {
         console.log(err);
         setIsDeletePopupVisible(false);
-        toast.error('An error occurred.');
+        toast.error("An error occurred.");
       });
   };
 
@@ -45,19 +42,32 @@ const {user} = useSelector((state) => ({ ...state }));
   return (
     <div>
       <Card
-        cover={<img src={images && images.length ? images[0].url : defaultImg}
-          alt={title}
-          style={{ height: "200px", objectFit: "cover", borderRadius: "10px", }}
-        />}
+        cover={
+          <img
+            src={images && images.length ? images[0].url : defaultImg}
+            alt={title}
+            style={{
+              height: "200px",
+              objectFit: "cover",
+              borderRadius: "10px",
+            }}
+          />
+        }
         actions={[
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <NavLink to={`/admin/product/${slug}`}>
-            <CgEditUnmask
-              key="edit"
-              size={20}
-              style={{ color: "blue", marginLeft: "100px" }}
-              className={styles.AdminIcon}
-            />
+              <CgEditUnmask
+                key="edit"
+                size={20}
+                style={{ color: "blue", marginLeft: "100px" }}
+                className={styles.AdminIcon}
+              />
             </NavLink>
             <RiDeleteBin6Line
               key="delete"
@@ -66,10 +76,13 @@ const {user} = useSelector((state) => ({ ...state }));
               className={styles.AdminIcon}
               onClick={handleDeleteClick}
             />
-          </div>
+          </div>,
         ]}
       >
-        <Meta title={title} description={`${description && description.substring(0, 100)}...`} />
+        <Meta
+          title={title}
+          description={`${description && description.substring(0, 100)}...`}
+        />
       </Card>
       {isDeletePopupVisible && (
         <ConfirmationPopup
@@ -80,6 +93,6 @@ const {user} = useSelector((state) => ({ ...state }));
       )}
     </div>
   );
-}
+};
 
 export default AdminCard;

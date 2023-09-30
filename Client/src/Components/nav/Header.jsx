@@ -1,17 +1,17 @@
-import React from 'react';
-import SideBar from './Sidebar';
+import React from "react";
+import SideBar from "./Sidebar";
 import styles from "./Nav.module.css";
-import { NavLink, useNavigate } from 'react-router-dom';
-import { AiOutlineUserAdd } from 'react-icons/ai';
+import { NavLink, useNavigate } from "react-router-dom";
+import { AiOutlineUserAdd } from "react-icons/ai";
 import { BiUserPin } from "react-icons/bi";
-import { signOut } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
-import { auth } from '../../firebase';
-import { toast } from 'react-toastify';
-import { FiLogOut } from "react-icons/fi"
-import { useSelector } from 'react-redux';
-import AdminSideBar from './AdminSideBar';
-import Search from '../Search/Search';
+import { signOut } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { auth } from "../../firebase";
+import { toast } from "react-toastify";
+import { FiLogOut } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import AdminSideBar from "./AdminSideBar";
+import Search from "../Search/Search";
 
 const Header = ({ path }) => {
   const dispatch = useDispatch();
@@ -27,45 +27,60 @@ const Header = ({ path }) => {
       toast.info("You have Logged out");
       navigate("/login");
     });
-  }
+  };
 
   return (
     <div className={path === "/" ? styles.HomeGradient : styles.flexContainer}>
-      {user && user.role === 'admin' ? (
+      {user && user.role === "admin" ? (
         <AdminSideBar path={path} />
       ) : (
         <SideBar path={path} />
       )}
-        <div className={styles.centeredSearch}>
-          <Search path={path}/>
-        </div>
+      <div className={styles.centeredSearch}>
+        <Search path={path} />
+      </div>
       <div className={styles.navLinkContainer}>
         {!user && (
           <>
             <NavLink to="/register" className={styles.link}>
-              <AiOutlineUserAdd size={32} style={{ color: path === "/" ? "white" : "blue" }} />
-              <span style={{ color: path === "/" ? "white" : "blue" }}>Register</span>
+              <AiOutlineUserAdd
+                size={32}
+                style={{ color: path === "/" ? "white" : "blue" }}
+              />
+              <span style={{ color: path === "/" ? "white" : "blue" }}>
+                Register
+              </span>
             </NavLink>
             <NavLink to="/login" className={styles.link}>
-              <BiUserPin size={32} style={{ color: path === "/" ? "white" : "blue" }} />
-              <span style={{ color: path === "/" ? "white" : "blue" }}>Login</span>
+              <BiUserPin
+                size={32}
+                style={{ color: path === "/" ? "white" : "blue" }}
+              />
+              <span style={{ color: path === "/" ? "white" : "blue" }}>
+                Login
+              </span>
             </NavLink>
           </>
         )}
         {user && (
           <button
             className={styles.logoutButton}
-            style={{ border: 'none' }}
+            style={{ border: "none" }}
             onClick={logout}
           >
-            <FiLogOut size={32} style={{ color: path === "/" ? "white" : "blue" }} />
-            <span style={{ color: path === "/" ? "white" : "blue" }}>Logout</span>
+            <FiLogOut
+              size={32}
+              style={{ color: path === "/" ? "white" : "blue" }}
+            />
+            <span style={{ color: path === "/" ? "white" : "blue" }}>
+              Logout
+            </span>
           </button>
         )}
         {/* Center the Search component horizontally */}
       </div>
     </div>
   );
-}
+};
 
 export default Header;

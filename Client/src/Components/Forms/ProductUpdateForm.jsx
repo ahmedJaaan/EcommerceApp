@@ -1,10 +1,9 @@
-import React from 'react';
-import { RingLoader } from 'react-spinners';
-import styles from '../../Pages/admin/Product/Product.module.css';
-import {Select} from 'antd';
+import React from "react";
+import { RingLoader } from "react-spinners";
+import styles from "../../Pages/admin/Product/Product.module.css";
+import { Select } from "antd";
 import FileUpload from "./FileUpload";
-const {Option} = Select;
-
+const { Option } = Select;
 
 const ProductUpdateForm = ({
   handleSubmit,
@@ -17,7 +16,7 @@ const ProductUpdateForm = ({
   arrayOfSubs,
   setArrayOfSubs,
   selectedCategory,
-  subOptions
+  subOptions,
 }) => {
   const {
     title,
@@ -37,7 +36,7 @@ const ProductUpdateForm = ({
       <h1 className={styles.productsHeading}>Update Product</h1>
       <h4 className={styles.productsSubHeading}>Category</h4>
 
-       <div className={styles.dropdownContainer}>
+      <div className={styles.dropdownContainer}>
         <select
           id="categoryDropdown"
           className={styles.shippingDropdown}
@@ -54,35 +53,32 @@ const ProductUpdateForm = ({
       </div>
 
       <>
-      <h4 className={styles.productsSubHeading}>Sub Category</h4>
-      <Select
-      mode="multiple"
-      style={{ width: '100%' }}
-      placeholder="Select Sub Category"
-      value={arrayOfSubs}
-      name="subs"
-      onChange={(value) => setArrayOfSubs(value)}
-      >
-        <Option value="" >Select Sub Category</Option>
-        {subOptions.map((subItem) => (
-          <Option key={subItem._id} value={subItem._id}>{subItem.name}</Option>
-        ))}
-      </Select>
+        <h4 className={styles.productsSubHeading}>Sub Category</h4>
+        <Select
+          mode="multiple"
+          style={{ width: "100%" }}
+          placeholder="Select Sub Category"
+          value={arrayOfSubs}
+          name="subs"
+          onChange={(value) => setArrayOfSubs(value)}
+        >
+          <Option value="">Select Sub Category</Option>
+          {subOptions.map((subItem) => (
+            <Option key={subItem._id} value={subItem._id}>
+              {subItem.name}
+            </Option>
+          ))}
+        </Select>
       </>
-      
-      <FileUpload 
-      values={values} 
-      setValues={setValues} 
-      images={images}
-      />
 
+      <FileUpload values={values} setValues={setValues} images={images} />
 
       <h4 className={styles.productsSubHeading}>Title</h4>
       <input
         name="title"
         type="text"
         value={title}
-        placeholder='Enter Product Title'
+        placeholder="Enter Product Title"
         onChange={handleChange}
         className={styles.productInput}
       />
@@ -91,7 +87,7 @@ const ProductUpdateForm = ({
         name="description"
         type="text"
         value={description}
-        placeholder='Enter Product Description'
+        placeholder="Enter Product Description"
         onChange={handleChange}
         className={styles.productInput}
       />
@@ -100,7 +96,7 @@ const ProductUpdateForm = ({
         name="price"
         type="number"
         value={price}
-        placeholder='Enter Product Price'
+        placeholder="Enter Product Price"
         onChange={handleChange}
         className={styles.productInput}
       />
@@ -109,7 +105,7 @@ const ProductUpdateForm = ({
         name="quantity"
         type="number"
         value={quantity}
-        placeholder='Enter Product Quantity'
+        placeholder="Enter Product Quantity"
         onChange={handleChange}
         className={styles.productInput}
       />
@@ -118,7 +114,7 @@ const ProductUpdateForm = ({
         name="color"
         type="text"
         value={color}
-        placeholder='Enter Product Color'
+        placeholder="Enter Product Color"
         onChange={handleChange}
         className={styles.productInput}
       />
@@ -126,7 +122,7 @@ const ProductUpdateForm = ({
       <input
         name="brand"
         type="text"
-        placeholder='Enter Product Brand'
+        placeholder="Enter Product Brand"
         value={brand}
         onChange={handleChange}
         className={styles.productInput}
@@ -144,9 +140,9 @@ const ProductUpdateForm = ({
       <br />
       <button className={styles.productButton} disabled={loading}>
         {loading ? (
-          <RingLoader size={25} color={'white'} loading={loading} />
+          <RingLoader size={25} color={"white"} loading={loading} />
         ) : (
-          'Update Product'
+          "Update Product"
         )}
       </button>
     </form>

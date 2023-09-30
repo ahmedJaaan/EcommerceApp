@@ -1,15 +1,14 @@
-import React from 'react'
-import Typewriter from "typewriter-effect"
+import React from "react";
+import Typewriter from "typewriter-effect";
 
-
-const TypewriterEffect = ({text}) => 
-    <Typewriter options={{
+const TypewriterEffect = ({ text }) => (
+  <Typewriter
+    options={{
       strings: text,
       autoStart: true,
-      loop: true
+      loop: true,
     }}
-    />
- 
+  />
+);
 
-
-export default TypewriterEffect
+export default TypewriterEffect;

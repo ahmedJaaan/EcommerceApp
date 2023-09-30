@@ -28,7 +28,7 @@ import ProductUpdate from "./Pages/admin/Product/ProductUpdate";
 import Product from "./Pages/Product";
 import CategoryHome from "./Components/Category/CategoryHome";
 import SubHome from "./Components/Category/SubHome";
-import Shop from "./Components/Search/Shop";
+import SearchFilter from "./Components/Search/SearchFilter";
 function App() {
   const [userRole, setUserRole] = useState(null);
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ function App() {
       <Header path={location} />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/shop" element={<Shop />} />
+        <Route exact path="/shop" element={<SearchFilter />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/register/complete" element={<RegisterComplete />} />
         <Route exact path="/login" element={<Login />} />

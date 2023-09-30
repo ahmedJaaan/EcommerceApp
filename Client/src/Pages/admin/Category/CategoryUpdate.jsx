@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { updateCategory, getCategory } from "../../../APIs/Category";
 import styles from "../../auth/auth.module.css";
 import { RingLoader } from "react-spinners";
 import { useNavigate, useParams } from "react-router-dom";
-
 
 const CategoryUpdate = () => {
   const [name, setName] = useState("");
@@ -33,7 +32,7 @@ const CategoryUpdate = () => {
     e.preventDefault();
     setLoading(true);
 
-    updateCategory(slug , { name }, user.token)
+    updateCategory(slug, { name }, user.token)
       .then((res) => {
         toast.success(`${res.name} is updated`);
         setLoading(false);
@@ -53,7 +52,9 @@ const CategoryUpdate = () => {
   };
 
   return (
-    <div className={`${styles.categoryCreateContainer} ${styles.textCenter} ${styles.mt30}`}>
+    <div
+      className={`${styles.categoryCreateContainer} ${styles.textCenter} ${styles.mt30}`}
+    >
       <form onSubmit={handleSubmit} className={styles.form}>
         <h1 className={styles.headingForRegistration}>Update Category</h1>
 
@@ -65,15 +66,15 @@ const CategoryUpdate = () => {
           autoFocus
           placeholder="Enter Category Name to update"
         />
-        <button type="submit" className={styles.registrationButton} disabled={loading}>
+        <button
+          type="submit"
+          className={styles.registrationButton}
+          disabled={loading}
+        >
           {loading ? (
-            <RingLoader
-              size={25}
-              color={'white'}
-              loading={loading}
-            />
+            <RingLoader size={25} color={"white"} loading={loading} />
           ) : (
-            'Update'
+            "Update"
           )}
         </button>
       </form>

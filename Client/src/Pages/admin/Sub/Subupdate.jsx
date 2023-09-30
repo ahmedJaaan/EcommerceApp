@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import { updateSub, getSub } from '../../../APIs/Sub';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { updateSub, getSub } from "../../../APIs/Sub";
 import styles from "../../auth/auth.module.css";
 import { RingLoader } from "react-spinners";
 import { useNavigate, useParams } from "react-router-dom";
-import { getCategories } from '../../../APIs/Category';
+import { getCategories } from "../../../APIs/Category";
 
 const CategoryUpdate = () => {
   const [name, setName] = useState("");
@@ -13,13 +13,13 @@ const CategoryUpdate = () => {
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state); 
+  const { user } = useSelector((state) => state);
   const { slug } = useParams();
 
   useEffect(() => {
     loadCategories();
     loadSub();
-  }, []); 
+  }, []);
 
   const loadCategories = () => {
     getCategories()
@@ -27,7 +27,7 @@ const CategoryUpdate = () => {
         setCategories(res);
       })
       .catch((err) => {
-        console.error('Error loading categories:', err);
+        console.error("Error loading categories:", err);
       });
   };
 
@@ -38,7 +38,7 @@ const CategoryUpdate = () => {
         setParent(res.parent); // Set the parent category based on the loaded subcategory
       })
       .catch((err) => {
-        console.error('Error loading subcategory:', err);
+        console.error("Error loading subcategory:", err);
       });
   };
 
@@ -48,7 +48,7 @@ const CategoryUpdate = () => {
 
     updateSub(slug, { name, parent }, user.token) // Send both name and parent
       .then((res) => {
-        toast.success(`${res.name} is updated`); 
+        toast.success(`${res.name} is updated`);
         setLoading(false);
         setName("");
         setParent("");
@@ -67,7 +67,9 @@ const CategoryUpdate = () => {
   };
 
   return (
-    <div className={`${styles.categoryCreateContainer} ${styles.textCenter} ${styles.mt30}`}>
+    <div
+      className={`${styles.categoryCreateContainer} ${styles.textCenter} ${styles.mt30}`}
+    >
       <form onSubmit={handleSubmit} className={styles.form}>
         <h1 className={styles.headingForRegistration}>Update Sub Category</h1>
         <div className={styles.dropdownContainer}>
@@ -79,7 +81,11 @@ const CategoryUpdate = () => {
           >
             <option>Select Category</option>
             {categories.map((category) => (
-              <option key={category._id} value={category._id} selected={category._id === parent}>
+              <option
+                key={category._id}
+                value={category._id}
+                selected={category._id === parent}
+              >
                 {category.name}
               </option>
             ))}
@@ -93,15 +99,15 @@ const CategoryUpdate = () => {
           autoFocus
           placeholder="Enter Subcategory Name to update"
         />
-        <button type="submit" className={styles.registrationButton} disabled={loading}>
+        <button
+          type="submit"
+          className={styles.registrationButton}
+          disabled={loading}
+        >
           {loading ? (
-            <RingLoader
-              size={25}
-              color={'white'}
-              loading={loading}
-            />
+            <RingLoader size={25} color={"white"} loading={loading} />
           ) : (
-            'Update'
+            "Update"
           )}
         </button>
       </form>

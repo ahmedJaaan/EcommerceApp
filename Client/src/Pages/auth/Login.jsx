@@ -1,93 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { toast } from 'react-toastify';
-import styles from './auth.module.css';
-import { auth, googleAuthProvider } from '../../firebase'; 
-import { AiOutlineMail } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { RingLoader } from 'react-spinners'; 
-import { FcGoogle } from 'react-icons/fc'; 
-import { createOrUpdateUser } from '../../APIs/auth';
-
+import React, { useState, useEffect } from "react";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { toast } from "react-toastify";
+import styles from "./auth.module.css";
+import { auth, googleAuthProvider } from "../../firebase";
+import { AiOutlineMail } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
+import { RingLoader } from "react-spinners";
+import { FcGoogle } from "react-icons/fc";
+import { createOrUpdateUser } from "../../APIs/auth";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false); 
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false); 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => ({ ...state }))
+  const { user } = useSelector((state) => ({ ...state }));
   // // console.log(user);
   useEffect(() => {
     if (user && user.token) {
-      navigate('/');
+      navigate("/");
     }
   }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); 
+    setIsLoading(true);
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
       // console.log("hhhhhhhhhhhh",idTokenResult.token)
       createOrUpdateUser(idTokenResult.token)
-      .then((res) => {
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            name: res.name,
-            email: res.email,
-            token: idTokenResult.token,
-            role: res.role,
-            _id: res._id,
-          },
-        });
-      })
-      .catch((err) => console.log("error in creating or updating user",err));
-    navigate('/');
+        .then((res) => {
+          dispatch({
+            type: "LOGGED_IN_USER",
+            payload: {
+              name: res.name,
+              email: res.email,
+              token: idTokenResult.token,
+              role: res.role,
+              _id: res._id,
+            },
+          });
+        })
+        .catch((err) => console.log("error in creating or updating user", err));
+      navigate("/");
       toast.success("Logged in successfully");
     } catch (error) {
-      if (error.code === 'auth/invalid-email') {
-        toast.error('Invalid email address.');
-      } else if (error.code === 'auth/wrong-password') {
-        toast.error('Invalid password.');
+      if (error.code === "auth/invalid-email") {
+        toast.error("Invalid email address.");
+      } else if (error.code === "auth/wrong-password") {
+        toast.error("Invalid password.");
       } else {
         toast.error("Failed to log in. Please check your credentials.");
       }
     } finally {
       setIsLoading(false);
-  }}
+    }
+  };
   const googleLogin = async () => {
-    setIsGoogleLoading(true); 
+    setIsGoogleLoading(true);
     try {
-      const result = await signInWithPopup(auth, googleAuthProvider); 
+      const result = await signInWithPopup(auth, googleAuthProvider);
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
       createOrUpdateUser(idTokenResult.token)
-      .then((res) => {
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            name: res.name,
-            email: res.email,
-            token: idTokenResult.token,
-            role: res.role,
-            _id: res._id,
-          },
-        });
-      })
-      .catch((err) => console.log("error in creating or updating user",err));
-      
-      navigate('/');
+        .then((res) => {
+          dispatch({
+            type: "LOGGED_IN_USER",
+            payload: {
+              name: res.name,
+              email: res.email,
+              token: idTokenResult.token,
+              role: res.role,
+              _id: res._id,
+            },
+          });
+        })
+        .catch((err) => console.log("error in creating or updating user", err));
+
+      navigate("/");
     } catch (error) {
       console.log(error);
     } finally {
       setIsGoogleLoading(false);
-      toast.success("You have logged in using Google")
+      toast.success("You have logged in using Google");
     }
   };
   const loginFormJSX = (
@@ -117,11 +117,7 @@ const Login = () => {
         disabled={!email || password.length < 6}
       >
         {isLoading ? (
-          <RingLoader
-            size={25}
-            color={'white'} 
-            loading={isLoading}
-          />
+          <RingLoader size={25} color={"white"} loading={isLoading} />
         ) : (
           <>
             <AiOutlineMail size={25} />
@@ -129,18 +125,14 @@ const Login = () => {
           </>
         )}
       </button>
-      <p style={{color: 'blueviolet'}}>or</p>
+      <p style={{ color: "blueviolet" }}>or</p>
       <button
         onClick={googleLogin}
-        type="button" 
+        type="button"
         className={styles.GoogleButton}
       >
         {isGoogleLoading ? (
-          <RingLoader
-            size={25}
-            color={'white'} 
-            loading={isGoogleLoading}
-          />
+          <RingLoader size={25} color={"white"} loading={isGoogleLoading} />
         ) : (
           <>
             <FcGoogle size={25} />
@@ -148,7 +140,12 @@ const Login = () => {
           </>
         )}
       </button>
-      <Link style={{marginTop: '3px', textDecoration: 'none'}}to="/forgot/password">Forgot Password?</Link>
+      <Link
+        style={{ marginTop: "3px", textDecoration: "none" }}
+        to="/forgot/password"
+      >
+        Forgot Password?
+      </Link>
     </form>
   );
 

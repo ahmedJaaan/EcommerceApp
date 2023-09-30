@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { getProduct, updateProduct } from '../../../APIs/product';
-import { useSelector } from 'react-redux';
-import ProductUpdateForm from '../../../Components/Forms/ProductUpdateForm';
-import { getCategories, getCategorySub } from '../../../APIs/Category';
-import { toast } from 'react-toastify';
-
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { getProduct, updateProduct } from "../../../APIs/product";
+import { useSelector } from "react-redux";
+import ProductUpdateForm from "../../../Components/Forms/ProductUpdateForm";
+import { getCategories, getCategorySub } from "../../../APIs/Category";
+import { toast } from "react-toastify";
 
 const initialState = {
-  title: '',
-  description: '',
-  price: '',
-  category: '',
+  title: "",
+  description: "",
+  price: "",
+  category: "",
   subs: [],
-  shipping: 'Yes',
-  quantity: '',
+  shipping: "Yes",
+  quantity: "",
   images: [],
-  color: '',
-  brand: '',
+  color: "",
+  brand: "",
 };
 
 const ProductUpdate = () => {
@@ -25,7 +24,7 @@ const ProductUpdate = () => {
   const [subOptions, setSubOptions] = useState([]);
   const [categories, setCategories] = useState([]);
   const [arrayOfSubs, setArrayOfSubs] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");   
+  const [selectedCategory, setSelectedCategory] = useState("");
   const { user } = useSelector((state) => state);
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -39,15 +38,14 @@ const ProductUpdate = () => {
     getProduct(slug)
       .then((product) => {
         setValues({ ...values, ...product });
-        getCategorySub(product.category._id)
-          .then((response) => {
-            setSubOptions(response);
-          });
+        getCategorySub(product.category._id).then((response) => {
+          setSubOptions(response);
+        });
         const arr = product.subs.map((item) => item._id);
         setArrayOfSubs(arr);
       })
       .catch((err) => {
-        console.error('Error loading product:', err);
+        console.error("Error loading product:", err);
       });
   };
 
@@ -57,7 +55,7 @@ const ProductUpdate = () => {
         setCategories(c);
       })
       .catch((err) => {
-        console.error('Error loading categories:', err);
+        console.error("Error loading categories:", err);
       });
   };
 
@@ -76,31 +74,28 @@ const ProductUpdate = () => {
           const errorMessage = err.response.data;
           toast.error(errorMessage);
         }
-      })  
+      });
   };
   const handleCategoryChange = (e) => {
     e.preventDefault();
-      setValues({ ...values, subs: [] });
-      
-      
-      setSelectedCategory(e.target.value);
-      
-      
-      
-      getCategorySub(e.target.value)
-        .then((response) => {
-          setSubOptions(response);
-        })
-        .catch((error) => {
-          console.error('Error loading subcategories:', error);
-        });
-      
-      if(values.category._id === e.target.value) {
-        loadProduct();
-      }
-      setArrayOfSubs([]);
+    setValues({ ...values, subs: [] });
+
+    setSelectedCategory(e.target.value);
+
+    getCategorySub(e.target.value)
+      .then((response) => {
+        setSubOptions(response);
+      })
+      .catch((error) => {
+        console.error("Error loading subcategories:", error);
+      });
+
+    if (values.category._id === e.target.value) {
+      loadProduct();
+    }
+    setArrayOfSubs([]);
   };
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });

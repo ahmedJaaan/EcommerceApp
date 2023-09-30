@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { getCategories } from '../../../APIs/Category';
-import { createSub, removeSub, getSubs } from '../../../APIs/Sub';
-import styles from '../Admin.module.css';
-import ConfirmationPopup from '../../../Components/Popup/Popup';
-import CategoryForm from '../../../Components/Forms/CategoryForm';
-import LocalSearch from '../../../Components/Forms/LocalSearch';
+import { getCategories } from "../../../APIs/Category";
+import { createSub, removeSub, getSubs } from "../../../APIs/Sub";
+import styles from "../Admin.module.css";
+import ConfirmationPopup from "../../../Components/Popup/Popup";
+import CategoryForm from "../../../Components/Forms/CategoryForm";
+import LocalSearch from "../../../Components/Forms/LocalSearch";
 import { Link } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
 import { GoTrash } from "react-icons/go";
 import { RingLoader } from "react-spinners";
 
 const SubCreate = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [categoryToDelete, setCategoryToDelete] = useState('');
+  const [categoryToDelete, setCategoryToDelete] = useState("");
   const [deleteLoading, setDeleteLoading] = useState(false);
-  const [categoryNameToDelete, setCategoryNameToDelete] = useState('');
-  const [keyword, setKeyword] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [categoryNameToDelete, setCategoryNameToDelete] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [subs, setSubs] = useState([]);
   const { user } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
     loadCategories();
-    loadSubs()
+    loadSubs();
   }, []);
 
   const loadCategories = () => {
@@ -37,12 +37,10 @@ const SubCreate = () => {
         setCategories(res);
       })
       .catch((err) => {
-        console.error('Error loading categories:', err);
+        console.error("Error loading categories:", err);
       });
   };
 
-
-  
   const loadSubs = () => {
     getSubs()
       .then((res) => {
@@ -50,7 +48,7 @@ const SubCreate = () => {
         setSubs(res);
       })
       .catch((err) => {
-        console.error('Error loading categories:', err);
+        console.error("Error loading categories:", err);
       });
   };
 
@@ -78,13 +76,13 @@ const SubCreate = () => {
           const errorMessage = err.response.data;
           toast.error(errorMessage);
         } else {
-          toast.error('An error occurred.');
+          toast.error("An error occurred.");
         }
       });
   };
 
   const cancelDelete = () => {
-    setCategoryToDelete('');
+    setCategoryToDelete("");
     setShowConfirmation(false);
   };
 
@@ -92,17 +90,17 @@ const SubCreate = () => {
     e.preventDefault();
 
     if (!selectedCategory) {
-      toast.error('Please select a parent category for the subcategory.');
+      toast.error("Please select a parent category for the subcategory.");
       return;
     }
 
     setLoading(true);
 
-    createSub( {name, parent: selectedCategory}, user.token)
+    createSub({ name, parent: selectedCategory }, user.token)
       .then((res) => {
         toast.success(`${res.name} is created`);
         setLoading(false);
-        setName('');
+        setName("");
         loadSubs();
       })
       .catch((err) => {
@@ -112,13 +110,15 @@ const SubCreate = () => {
           const errorMessage = err.response.data;
           toast.error(errorMessage);
         } else {
-          toast.error('An error occurred.');
+          toast.error("An error occurred.");
         }
       });
   };
 
   return (
-    <div className={`${styles.categoryCreateContainer} ${styles.textCenter} ${styles.mt30}`}>
+    <div
+      className={`${styles.categoryCreateContainer} ${styles.textCenter} ${styles.mt30}`}
+    >
       <h2 className={`${styles.categoryCreateHeading}`}>Select Category</h2>
       <div className={styles.dropdownContainer}>
         <select
@@ -126,7 +126,7 @@ const SubCreate = () => {
           className={styles.categoryDropdown}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
-        <option>Select Category</option>
+          <option>Select Category</option>
           {categories.map((category) => (
             <option key={category._id} value={category._id}>
               {category.name}
@@ -147,15 +147,18 @@ const SubCreate = () => {
       <LocalSearch keyword={keyword} setKeyword={setKeyword} styles={styles} />
       <hr />
       <ul>
-      {subs.filter(searched(keyword)).map((s) => (
+        {subs.filter(searched(keyword)).map((s) => (
           <li key={s._id} className={styles.container}>
             <span className={styles.categoryName}>{s.name}</span>
             <Link to={`/admin/sub/${s.slug}`} className={styles.icon}>
               <CiEdit size={20} />
             </Link>
-            <span className={styles.deleteicon} onClick={() => handleRemove(s.slug, s.name)}>
+            <span
+              className={styles.deleteicon}
+              onClick={() => handleRemove(s.slug, s.name)}
+            >
               {deleteLoading ? (
-                <RingLoader color={'#ffffff'} loading={true} size={15} /> 
+                <RingLoader color={"#ffffff"} loading={true} size={15} />
               ) : (
                 <GoTrash size={20} />
               )}
