@@ -154,3 +154,8 @@ export const fetchProductByFilter = async (arg) => {
     throw error;
   }
 };
+
+
+export const getSearch = async (arg) => {
+  
+}

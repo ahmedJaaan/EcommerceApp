@@ -4,23 +4,52 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from "../Cards/ProductCard";
 import styles from './Shop.module.css';
 import { fetchProductByFilter } from '../../APIs/product';
-
+import SearchMenu from './SearchMenu';
+import { getCategories } from '../../APIs/Category';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
+    const [price, setPrice] = useState([0, 0]);
+    const [categories, setCategories] = useState([]);
+    const [ok, setOk] = useState(false);
+
     const {search} = useSelector((state) => ({...state}));
     const {text} = search;
 
+
     const dispatch = useDispatch();
+
+
 
     useEffect(() => {
         loadAllProducts();
+        getCategories().then(res => {
+            setCategories(res);
+        })
     }, []);
 
     useEffect(() => {
-        fetchProducts({query: text});
-    }, [text])
-    
+        const delay = 300; 
+        const timeoutId = setTimeout(() => {
+            fetchProducts({ query: text });
+        }, delay);
+        return () => clearTimeout(timeoutId); 
+    }, [text]);
+
+    useEffect(() => {
+        fetchProducts({ price });
+    }, [ok]);
+    const handleSlider = (value) => {
+        dispatch({
+            type: "SEARCH", 
+            payload: {text: ""}
+        })
+        setPrice(value);
+        setTimeout(() => {
+            setOk(!ok)
+        }, 300)
+    }
+
     const fetchProducts = (arg) => {
         fetchProductByFilter(arg)
             .then(res => {
@@ -56,8 +85,12 @@ const Shop = () => {
             ))}
             </div>
         </div>
-        <div>
-            Search
+        <div >
+            <SearchMenu 
+            handleSlider={handleSlider} 
+            price={price}
+            categories={categories}
+            />
         </div>
     </div>
     </>
