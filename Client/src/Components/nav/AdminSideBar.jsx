@@ -11,12 +11,7 @@ import { BiMenuAltLeft, BiCategoryAlt } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { SiApachekafka, SiQuantconnect, SiPydantic } from "react-icons/si";
-import {
-  BsClockHistory,
-  BsUbuntu,
-  BsGearWideConnected,
-  BsBagHeart,
-} from "react-icons/bs";
+import { BsClockHistory, BsUbuntu, BsBagHeart } from "react-icons/bs";
 import { PiLockKey } from "react-icons/pi";
 import { IoTicketOutline } from "react-icons/io5";
 import { FaConnectdevelop } from "react-icons/fa";
@@ -24,7 +19,6 @@ import { LiaModx } from "react-icons/lia";
 import { Avatar } from "@mui/material";
 import styles from "./Nav.module.css";
 import { TbBrandReact } from "react-icons/tb";
-import { GrCloudlinux } from "react-icons/gr";
 const AdminSideBar = ({ path }) => {
   const [state, setState] = React.useState({
     left: false,

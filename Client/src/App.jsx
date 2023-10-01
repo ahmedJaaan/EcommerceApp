@@ -28,7 +28,7 @@ import ProductUpdate from "./Pages/admin/Product/ProductUpdate";
 import Product from "./Pages/Product";
 import CategoryHome from "./Components/Category/CategoryHome";
 import SubHome from "./Components/Category/SubHome";
-import SearchFilter from "./Components/Search/SearchFilter";
+import SearchFilter from "./Components/Filter/SearchFilter";
 function App() {
   const [userRole, setUserRole] = useState(null);
   const dispatch = useDispatch();

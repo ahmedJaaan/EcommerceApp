@@ -10,8 +10,8 @@ const FilterMenu = ({
   handleCheck,
   categoriesIds,
 }) => {
-  const [isPriceListVisible, setPriceListVisible] = useState(true);
-  const [isCategoryListVisible, setCategoryListVisible] = useState(true);
+  const [isPriceListVisible, setPriceListVisible] = useState(false);
+  const [isCategoryListVisible, setCategoryListVisible] = useState(false);
   const togglePriceListVisibility = () => {
     setPriceListVisible(!isPriceListVisible);
   };

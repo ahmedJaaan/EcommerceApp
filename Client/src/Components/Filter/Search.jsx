@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import styles from "./Search.module.css";
-import { BiSearchAlt } from "react-icons/bi";
+import styles from "./FilterMenu.module.css";
 const Search = ({ path }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

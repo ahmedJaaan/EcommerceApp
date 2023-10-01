@@ -1,0 +1,144 @@
+.button {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  text-align: start;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #f8f2f2;
+}
+
+.dropdownIcon {
+  margin-top: 3px;
+  margin-left: auto;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.inverted {
+  transform: rotate(180deg);
+}
+
+.list {
+  margin-left: 10px;
+  margin-right: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.slide-in-out {
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  max-height: 500px;
+  opacity: 1;
+}
+
+.slide-in-out.hidden {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.listItemCategory {
+  flex: 1 1 33.33%;
+  background-color: #fff;
+  max-width: 33.33%;
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.containerStyle {
+  display: grid;
+  grid-template-columns: 9fr 3fr;
+  gap: 10px;
+  margin: 10px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 10px;
+}
+
+.productGridItem {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.noProduct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeSearch {
+  outline: none;
+  width: 1000px;
+  border: none;
+  color: black;
+  font-size: 20px;
+  border-radius: 50px;
+  border: 2px solid blue;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: rgb(182, 182, 207);
+  padding: 3px;
+}
+
+.searchInput {
+  outline: none;
+  width: 800px;
+  border: none;
+  text-align: center;
+  border-bottom: 2px solid aquamarine;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.searchInput:active {
+  border-bottom: 3px solid aquamarine;
+}
+
+
+@media only screen and (max-width: 767px) {
+  .containerStyle {
+    grid-template-columns: 1fr;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .homeSearch {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .searchInput {
+    width: 100%;
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .containerStyle {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+

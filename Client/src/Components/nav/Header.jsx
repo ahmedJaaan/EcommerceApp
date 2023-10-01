@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { FiLogOut } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import AdminSideBar from "./AdminSideBar";
-import Search from "../Search/Search";
+import Search from "../Filter/Search";
 
 const Header = ({ path }) => {
   const dispatch = useDispatch();
