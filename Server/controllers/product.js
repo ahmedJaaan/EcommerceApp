@@ -205,20 +205,92 @@ const handleCategory = async (req, res, category) => {
     res.status(500).send("Error in searching products category");
   }
 };
+const handleStar = async (req, res, stars) => {
+  try {
+    const aggregates = await Product.aggregate([
+      {
+        $project: {
+          document: "$$ROOT",
+          floorAverage: {
+            $floor: { $avg: "$ratings.star" },
+          },
+        },
+      },
+      { $match: { floorAverage: stars } },
+    ]).limit(12);
+
+    const productIds = aggregates.map((agg) => agg.document._id);
+
+    const products = await Product.find({ _id: { $in: productIds } })
+      .populate("category", "_id name")
+      .populate("subs", "_id name")
+      .populate("ratings")
+      .exec();
+
+    res.json(products);
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ error: "An error occurred" });
+  }
+};
+
+const handleSub = async (req, res, subs) => {
+  try {
+    const products = await Product.find({ subs })
+      .populate("category", "_id name")
+      .populate("subs", "_id name")
+      .populate("ratings")
+      .exec();
+    res.json(products);
+  } catch (error) {
+    console.error("Error HandleSUb:", error);
+    res.status(500).json({ error: "An error occurred In handleSUb" });
+  }
+};
+
+const handleColor = async (req, res, color) => {
+  try {
+    const products = await Product.find({ color })
+      .populate("category", "_id name")
+      .populate("subs", "_id name")
+      .populate("ratings")
+      .exec();
+    res.json(products);
+  } catch (error) {
+    console.error("Error in searching products by color", error);
+    res.status(500).json({ error: "An error occurred in handleColor" });
+  }
+};
 
 exports.searchFilters = async (req, res) => {
-  const { query, price, category } = req.body;
+  const { query, price, category, stars, subs, color } = req.body;
 
   if (query) {
     await handleQuery(req, res, query);
+    // console.log(query);
   }
 
   if (price != undefined) {
     await handlePrice(req, res, price);
-    console.log(price);
+    // console.log(price);
   }
   if (category) {
     await handleCategory(req, res, category);
     // console.log(category);
+  }
+
+  if (stars) {
+    await handleStar(req, res, stars);
+    // console.log(stars);
+  }
+
+  if (subs) {
+    await handleSub(req, res, subs);
+    // console.log(subs);
+  }
+
+  if (color) {
+    await handleColor(req, res, color);
+    console.log(color);
   }
 };

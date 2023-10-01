@@ -6,6 +6,7 @@ import { fetchProductByFilter } from "../../APIs/product";
 import { getCategories } from "../../APIs/Category";
 import FilterMenu from "./FilterMenu";
 import FilteredProducts from "./FilteredProducts";
+import { getSubs } from "../../APIs/Sub";
 
 const SearchFilter = () => {
   const [products, setProducts] = useState([]);
@@ -13,7 +14,9 @@ const SearchFilter = () => {
   const [categories, setCategories] = useState([]);
   const [ok, setOk] = useState(false);
   const [categoriesIds, setCategoriesIds] = useState([]);
-
+  const [stars, setStars] = useState("");
+  const [subs, setSubs] = useState([]);
+  const [sub, setSub] = useState("");
   const { search } = useSelector((state) => ({ ...state }));
   const { text } = search;
 
@@ -23,6 +26,9 @@ const SearchFilter = () => {
     loadAllProducts();
     getCategories().then((res) => {
       setCategories(res);
+    });
+    getSubs().then((res) => {
+      setSubs(res);
     });
   }, []);
 
@@ -92,7 +98,15 @@ const SearchFilter = () => {
         console.log(err);
       });
   };
+  const handleStarClick = (num) => {
+    setStars(num);
+    fetchProducts({ stars: num });
+  };
 
+  const handleSub = (sub) => {
+    setSub(sub);
+    fetchProducts({ subs: sub });
+  };
   return (
     <>
       <div className={styles.containerStyle}>
@@ -100,11 +114,14 @@ const SearchFilter = () => {
         <div>
           <FilterMenu
             price={price}
-            handleSlider={handleSlider}
             categories={categories}
             fetchProducts={fetchProducts}
             categoriesIds={categoriesIds}
+            handleSlider={handleSlider}
+            handleSub={handleSub}
             handleCheck={handleCheck}
+            handleStarClick={handleStarClick}
+            subs={subs}
           />
         </div>
       </div>
