@@ -1,4 +1,5 @@
 import React from "react";
+import { StyleProvider } from "@ant-design/cssinjs";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
@@ -12,9 +13,11 @@ const store = createStore(rootReducer, composeWithDevTools());
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <StyleProvider hashPriority="high">
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </StyleProvider>
     </React.StrictMode>
   </Provider>
 );

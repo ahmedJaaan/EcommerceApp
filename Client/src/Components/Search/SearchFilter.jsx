@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { getProductsByCount } from "../../APIs/product";
 import { useSelector, useDispatch } from "react-redux";
-import ProductCard from "../Cards/ProductCard";
 import styles from "./Shop.module.css";
 import { fetchProductByFilter } from "../../APIs/product";
-import SearchMenu from "./SearchMenu";
 import { getCategories } from "../../APIs/Category";
+import FilterMenu from "./FilterMenu";
+import { Checkbox } from "antd";
+import FilteredProducts from "./FilteredProducts";
 
 const SearchFilter = () => {
   const [products, setProducts] = useState([]);
   const [price, setPrice] = useState([0, 0]);
   const [categories, setCategories] = useState([]);
   const [ok, setOk] = useState(false);
+  const [categoriesIds, setCategoriesIds] = useState([]);
 
   const { search } = useSelector((state) => ({ ...state }));
   const { text } = search;
@@ -36,11 +38,17 @@ const SearchFilter = () => {
   useEffect(() => {
     fetchProducts({ price });
   }, [ok]);
+
+  useEffect(() => {
+    fetchProducts({ category: categoriesIds });
+  }, [categoriesIds]);
+
   const handleSlider = (value) => {
     dispatch({
       type: "SEARCH",
       payload: { text: "" },
     });
+    // setCategoriesIds([]);
     setPrice(value);
     setTimeout(() => {
       setOk(!ok);
@@ -55,6 +63,24 @@ const SearchFilter = () => {
       .catch((err) => {
         console.log("Error in fetching products filter", err);
       });
+  };
+  const handleCheck = (e) => {
+    dispatch({
+      type: "SEARCH",
+      payload: { text: "" },
+    });
+    // setPrice([0, 0]);
+    const inTheState = [...categoriesIds];
+    const justChecked = e.target.value;
+    const foundInState = inTheState.indexOf(justChecked);
+    if (foundInState === -1) {
+      inTheState.push(justChecked);
+    } else {
+      inTheState.splice(foundInState, 1);
+    }
+    setCategoriesIds(inTheState);
+    fetchProducts({ category: inTheState });
+    // console.log(inTheState);
   };
 
   const loadAllProducts = () => {
@@ -71,22 +97,15 @@ const SearchFilter = () => {
   return (
     <>
       <div className={styles.containerStyle}>
+        <FilteredProducts styles={styles} products={products} />
         <div>
-          {products && products.length < 1 && <h1>`No Products Found`</h1>}
-          <div className={styles.productGrid}>
-            {products &&
-              products.map((p) => (
-                <div key={p._id} className={styles.productGridItem}>
-                  <ProductCard product={p} />
-                </div>
-              ))}
-          </div>
-        </div>
-        <div>
-          <SearchMenu
-            handleSlider={handleSlider}
+          <FilterMenu
             price={price}
+            handleSlider={handleSlider}
             categories={categories}
+            fetchProducts={fetchProducts}
+            categoriesIds={categoriesIds}
+            handleCheck={handleCheck}
           />
         </div>
       </div>

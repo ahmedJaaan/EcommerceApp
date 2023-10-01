@@ -193,15 +193,17 @@ const handlePrice = async (req, res, price) => {
 
 const handleCategory = async (req, res, category) => {
   try {
-    const products = await Product.find(
-      { category }
-        .populate("category", "_id name")
-        .populate("subs", "_id name ")
-        .populate("ratings")
-        .exec()
-    );
+    const products = await Product.find({ category })
+      .populate("category", "_id name")
+      .populate("subs", "_id name")
+      .populate("ratings")
+      .exec();
+
     res.json(products);
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error in searching products category", error);
+    res.status(500).send("Error in searching products category");
+  }
 };
 
 exports.searchFilters = async (req, res) => {
@@ -217,5 +219,6 @@ exports.searchFilters = async (req, res) => {
   }
   if (category) {
     await handleCategory(req, res, category);
+    // console.log(category);
   }
 };

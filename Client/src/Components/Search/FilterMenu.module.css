@@ -1,0 +1,59 @@
+/* FilterMenu.module.css */
+.button {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    text-align: start;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    transition: background-color 0.3s ease; 
+  }
+  
+  .button:hover {
+    cursor: pointer;
+    background-color: #f8f2f2; 
+  }
+  
+  .dropdownIcon {
+    margin-top: 3px;
+    margin-left: auto;
+    transform: rotate(0deg); 
+    transition: transform 0.3s ease; 
+  }
+  
+  .inverted {
+    transform: rotate(180deg); 
+  }
+  
+  .list {
+    margin-left: 10px;
+    margin-right: 10px;
+    list-style: none;
+    padding: 0;
+  }
+
+.slide-in-out {
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    max-height: 500px; 
+    opacity: 1;
+  }
+  
+  .slide-in-out.hidden {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+  
+  .listItemCategory {
+    flex: 1 1 33.33%;
+    background-color: #fff;
+    max-width: 33.33%;
+    box-sizing: border-box;
+    padding: 8px;
+  }
+  

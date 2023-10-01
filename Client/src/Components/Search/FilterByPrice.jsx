@@ -1,34 +1,55 @@
 import React from "react";
-import { Menu, Slider } from "antd";
+import { Slider } from "antd";
+import { AiOutlineDollar } from "react-icons/ai";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
-const { SubMenu } = Menu;
-
-const FilterByPrice = ({ handleSlider, price }) => {
+const FilterByPrice = ({
+  handleSlider,
+  price,
+  togglePriceListVisibility,
+  isPriceListVisible,
+  styles,
+}) => {
   return (
-    <SubMenu
-      title="Filter By Price"
-      style={{
-        width: "100%",
-        backgroundColor: "lightblue",
-        padding: "10px",
-        margin: 0,
-        marginBottom: "20px",
-      }}
-    >
-      <Slider
-        style={{
-          marginTop: "50px",
-          marginLeft: 0,
-          width: "200px",
-        }}
-        range
-        tipFormatter={(value) => `$${value}`}
-        value={price}
-        onChange={handleSlider}
-        max={5000}
-        trackStyle={{ backgroundColor: "blue" }}
-      />
-    </SubMenu>
+    <>
+      <button onClick={togglePriceListVisibility} className={styles.button}>
+        <AiOutlineDollar /> Filter By Price
+        <span
+          className={`${styles.dropdownIcon} ${
+            isPriceListVisible ? styles.inverted : ""
+          }`}
+        >
+          <RiArrowDropDownLine size={30} />
+        </span>
+      </button>
+      <ul
+        className={`${styles.list} ${
+          isPriceListVisible
+            ? styles["slide-in-out"]
+            : `${styles["slide-in-out"]} ${styles.hidden}`
+        }`}
+      >
+        <li
+          className={styles.listItem}
+          style={{
+            position: "relative",
+            listStyle: "none",
+            margin: 0,
+            padding: 0,
+            backgroundColor: "#fff",
+          }}
+        >
+          <Slider
+            style={{ width: "100%", backgroundColor: "#fff" }}
+            range
+            tipFormatter={(value) => `$${value}`}
+            value={price}
+            onChange={handleSlider}
+            max={5000}
+          />
+        </li>
+      </ul>
+    </>
   );
 };
 
