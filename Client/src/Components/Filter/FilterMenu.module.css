@@ -11,6 +11,7 @@
   border-radius: 10px;
   padding: 10px;
   transition: background-color 0.3s ease;
+  outline: none;
 }
 
 .button:hover {
@@ -27,6 +28,20 @@
 
 .inverted {
   transform: rotate(180deg);
+}
+
+.colorAndBrandInput {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid aquamarine;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.colorAndBrandInput:active {
+  border-bottom: 3px solid aquamarine;
 }
 
 .list {

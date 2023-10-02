@@ -262,8 +262,22 @@ const handleColor = async (req, res, color) => {
   }
 };
 
+const handleBrand = async (req, res, brand) => {
+  try {
+    const products = await Product.find({ brand })
+      .populate("category", "_id name")
+      .populate("subs", "_id name")
+      .populate("ratings")
+      .exec();
+    res.json(products);
+  } catch (error) {
+    console.error("Error in searching products by brand", error);
+    res.status(500).json({ error: "An error occurred in handleBrand" });
+  }
+};
+
 exports.searchFilters = async (req, res) => {
-  const { query, price, category, stars, subs, color } = req.body;
+  const { query, price, category, stars, subs, color, brand } = req.body;
 
   if (query) {
     await handleQuery(req, res, query);
@@ -292,5 +306,10 @@ exports.searchFilters = async (req, res) => {
   if (color) {
     await handleColor(req, res, color);
     console.log(color);
+  }
+
+  if (brand) {
+    await handleBrand(req, res, brand);
+    console.log(brand);
   }
 };

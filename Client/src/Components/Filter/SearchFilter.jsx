@@ -17,6 +17,8 @@ const SearchFilter = () => {
   const [stars, setStars] = useState("");
   const [subs, setSubs] = useState([]);
   const [sub, setSub] = useState("");
+  const [color, setColor] = useState("");
+  const [brand, setBrand] = useState("");
   const { search } = useSelector((state) => ({ ...state }));
   const { text } = search;
 
@@ -48,12 +50,23 @@ const SearchFilter = () => {
     fetchProducts({ category: categoriesIds });
   }, [categoriesIds]);
 
+  useEffect(() => {
+    if (color) {
+      fetchProducts({ color });
+    }
+  }, [color]);
+
+  useEffect(() => {
+    if (brand) {
+      fetchProducts({ brand });
+    }
+  }, [brand]);
+
   const handleSlider = (value) => {
     dispatch({
       type: "SEARCH",
       payload: { text: "" },
     });
-    // setCategoriesIds([]);
     setPrice(value);
     setTimeout(() => {
       setOk(!ok);
@@ -69,12 +82,22 @@ const SearchFilter = () => {
         console.log("Error in fetching products filter", err);
       });
   };
+
+  const loadAllProducts = () => {
+    getProductsByCount(12)
+      .then((p) => {
+        setProducts(p);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleCheck = (e) => {
     dispatch({
       type: "SEARCH",
       payload: { text: "" },
     });
-    // setPrice([0, 0]);
     const inTheState = [...categoriesIds];
     const justChecked = e.target.value;
     const foundInState = inTheState.indexOf(justChecked);
@@ -85,19 +108,8 @@ const SearchFilter = () => {
     }
     setCategoriesIds(inTheState);
     fetchProducts({ category: inTheState });
-    // console.log(inTheState);
   };
 
-  const loadAllProducts = () => {
-    getProductsByCount(12)
-      .then((p) => {
-        // console.log(data);
-        setProducts(p);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   const handleStarClick = (num) => {
     setStars(num);
     fetchProducts({ stars: num });
@@ -107,6 +119,17 @@ const SearchFilter = () => {
     setSub(sub);
     fetchProducts({ subs: sub });
   };
+
+  const handleColor = (color) => {
+    setColor(color);
+    fetchProducts({ color });
+  };
+
+  const handleBrand = (brand) => {
+    setBrand(brand);
+    fetchProducts({ brand });
+  };
+
   return (
     <>
       <div className={styles.containerStyle}>
@@ -122,6 +145,10 @@ const SearchFilter = () => {
             handleCheck={handleCheck}
             handleStarClick={handleStarClick}
             subs={subs}
+            color={color}
+            handleColor={handleColor}
+            handleBrand={handleBrand}
+            brand={brand}
           />
         </div>
       </div>

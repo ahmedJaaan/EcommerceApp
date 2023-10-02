@@ -3,9 +3,11 @@ import styles from "./FilterMenu.module.css";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import FilterByCategory from "./FilterByCategory";
 import FilterByPrice from "./FilterByPrice";
-import { AiOutlineDollar } from "react-icons/ai";
 import FilterByStars from "./FilterByStars";
 import FilterBySub from "./FilterBySub";
+import FilterByColor from "./FilterByColor";
+import { TbBrand4Chan } from "react-icons/tb";
+import FilterbyBrand from "./FilterbyBrand";
 
 const FilterMenu = ({
   price,
@@ -15,12 +17,18 @@ const FilterMenu = ({
   categoriesIds,
   handleStarClick,
   subs,
+  color,
+  handleColor,
   handleSub,
+  handleBrand,
+  brand,
 }) => {
   const [isPriceListVisible, setPriceListVisible] = useState(false);
   const [isCategoryListVisible, setCategoryListVisible] = useState(false);
   const [isStarRatingVisible, setStarRatingVisible] = useState(false);
   const [isSubsVisible, setSubsVisible] = useState(false);
+  const [isColorVisible, setColorVisible] = useState(false);
+  const [isBrandVisible, setBrandVisible] = useState(false);
   const togglePriceListVisibility = () => {
     setPriceListVisible(!isPriceListVisible);
   };
@@ -35,6 +43,14 @@ const FilterMenu = ({
 
   const toggleSubsVisibility = () => {
     setSubsVisible(!isSubsVisible);
+  };
+
+  const toggleColorVisibility = () => {
+    setColorVisible(!isColorVisible);
+  };
+
+  const toggleBrandVisibility = () => {
+    setBrandVisible(!isBrandVisible);
   };
 
   return (
@@ -69,6 +85,20 @@ const FilterMenu = ({
         isSubsVisible={isSubsVisible}
         subs={subs}
         handleSub={handleSub}
+      />
+      <FilterByColor
+        toggleColorVisibility={toggleColorVisibility}
+        styles={styles}
+        isColorVisible={isColorVisible}
+        color={color}
+        handleColor={handleColor}
+      />
+      <FilterbyBrand
+        toggleBrandVisibility={toggleBrandVisibility}
+        styles={styles}
+        isBrandVisible={isBrandVisible}
+        brand={brand}
+        handleBrand={handleBrand}
       />
     </div>
   );
