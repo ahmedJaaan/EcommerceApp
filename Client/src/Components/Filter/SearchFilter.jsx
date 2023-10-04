@@ -62,17 +62,6 @@ const SearchFilter = () => {
     }
   }, [brand]);
 
-  const handleSlider = (value) => {
-    dispatch({
-      type: "SEARCH",
-      payload: { text: "" },
-    });
-    setPrice(value);
-    setTimeout(() => {
-      setOk(!ok);
-    }, 300);
-  };
-
   const fetchProducts = (arg) => {
     fetchProductByFilter(arg)
       .then((res) => {
@@ -82,7 +71,6 @@ const SearchFilter = () => {
         console.log("Error in fetching products filter", err);
       });
   };
-
   const loadAllProducts = () => {
     getProductsByCount(12)
       .then((p) => {
@@ -93,11 +81,32 @@ const SearchFilter = () => {
       });
   };
 
+  const handleSlider = (value) => {
+    dispatch({
+      type: "SEARCH",
+      payload: { text: "" },
+    });
+    setCategoriesIds([]);
+    setStars("");
+    setSub("");
+    setColor("");
+    setBrand("");
+    setPrice(value);
+    setTimeout(() => {
+      setOk(!ok);
+    }, 300);
+  };
+
   const handleCheck = (e) => {
     dispatch({
       type: "SEARCH",
       payload: { text: "" },
     });
+    setPrice([0, 0]);
+    setStars("");
+    setSub("");
+    setColor("");
+    setBrand("");
     const inTheState = [...categoriesIds];
     const justChecked = e.target.value;
     const foundInState = inTheState.indexOf(justChecked);
@@ -111,21 +120,57 @@ const SearchFilter = () => {
   };
 
   const handleStarClick = (num) => {
+    dispatch({
+      type: "SEARCH",
+      payload: { text: "" },
+    });
+    setPrice([0, 0]);
+    setCategoriesIds([]);
+    setSub("");
+    setColor("");
+    setBrand("");
     setStars(num);
     fetchProducts({ stars: num });
   };
 
   const handleSub = (sub) => {
+    dispatch({
+      type: "SEARCH",
+      payload: { text: "" },
+    });
+    setStars("");
+    setPrice([0, 0]);
+    setCategoriesIds([]);
+    setBrand("");
+    setColor("");
     setSub(sub);
     fetchProducts({ subs: sub });
   };
 
   const handleColor = (color) => {
+    dispatch({
+      type: "SEARCH",
+      payload: { text: "" },
+    });
+    setSub("");
+    setStars("");
+    setPrice([0, 0]);
+    setCategoriesIds([]);
+    setBrand("");
     setColor(color);
     fetchProducts({ color });
   };
 
   const handleBrand = (brand) => {
+    dispatch({
+      type: "SEARCH",
+      payload: { text: "" },
+    });
+    setSub("");
+    setStars("");
+    setPrice([0, 0]);
+    setCategoriesIds([]);
+    setColor("");
     setBrand(brand);
     fetchProducts({ brand });
   };

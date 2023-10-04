@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./ProductCard.module.css";
+import styles from "./cards.module.css";
 import { Card } from "antd";
 import { DiRaphael } from "react-icons/di";
 import { GiCartwheel } from "react-icons/gi";
@@ -12,10 +12,42 @@ import { Tabs } from "antd";
 import ReactStars from "react-stars";
 import StarRatingPopup from "../Popup/StarRatingPopup";
 import { showAverage } from "../../APIs/rating";
+import { Tooltip } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import _ from "lodash";
+import { toast } from "react-toastify";
+
 const { TabPane } = Tabs;
 
 const SingleProduct = ({ product, onStarClick, star }) => {
   const { title, description, images, _id } = product;
+  const [tooltip, setTooltip] = useState("Click to add");
+  const { user, cart } = useSelector((state) => ({ ...state }));
+  const dispatch = useDispatch();
+  let unique = [];
+
+  const handleAddToCart = () => {
+    if (typeof window !== "undefined") {
+      if (localStorage.getItem("cart")) {
+        unique = JSON.parse(localStorage.getItem("cart"));
+      }
+      unique.push({
+        ...product,
+        count: 1,
+      });
+      unique = _.uniqWith(unique, _.isEqual);
+      localStorage.setItem("cart", JSON.stringify(unique));
+    }
+    setTooltip("Added");
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: unique,
+    });
+    dispatch({
+      type: "TOGGLE_DRAWER",
+      payload: true,
+    });
+  };
 
   return (
     <div className={styles.containerStyle}>
@@ -70,10 +102,12 @@ const SingleProduct = ({ product, onStarClick, star }) => {
         <Card
           actions={[
             <div className={styles.actions}>
-              <div className={styles.cartIcon}>
-                <GiCartwheel size={32} />
-                <br />
-                Add To Cart
+              <div className={styles.cartIcon} onClick={handleAddToCart}>
+                <Tooltip title={tooltip}>
+                  <GiCartwheel size={32} />
+                  <br />
+                  Add To Cart
+                </Tooltip>
               </div>
               <div className={styles.wishlistIcon}>
                 <NavLink

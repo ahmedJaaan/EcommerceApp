@@ -9,7 +9,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { RingLoader } from "react-spinners";
 import { FcGoogle } from "react-icons/fc";
 import { createOrUpdateUser } from "../../APIs/auth";
-
+import { useLocation } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,13 +17,28 @@ const Login = () => {
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useSelector((state) => ({ ...state }));
   // // console.log(user);
   useEffect(() => {
+    let intended = location.state?.from;
+    if (intended) {
+      return;
+    }
     if (user && user.token) {
       navigate("/");
     }
-  }, [user]);
+  }, [user, navigate, location]);
+
+  const intendedRedirect = (res) => {
+    const intended = location.state?.from;
+    // console.log(intended);
+    if (intended) {
+      navigate(intended);
+    } else {
+      navigate("/");
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,9 +60,10 @@ const Login = () => {
               _id: res._id,
             },
           });
+          intendedRedirect(res);
         })
         .catch((err) => console.log("error in creating or updating user", err));
-      navigate("/");
+
       toast.success("Logged in successfully");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
@@ -79,10 +95,9 @@ const Login = () => {
               _id: res._id,
             },
           });
+          intendedRedirect(res);
         })
         .catch((err) => console.log("error in creating or updating user", err));
-
-      navigate("/");
     } catch (error) {
       console.log(error);
     } finally {

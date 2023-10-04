@@ -29,6 +29,8 @@ import Product from "./Pages/Product";
 import CategoryHome from "./Components/Category/CategoryHome";
 import SubHome from "./Components/Category/SubHome";
 import SearchFilter from "./Components/Filter/SearchFilter";
+import Cart from "./Pages/user/Cart";
+import SideDrawer from "./Components/drawer/SideDrawer";
 function App() {
   const [userRole, setUserRole] = useState(null);
   const dispatch = useDispatch();
@@ -73,6 +75,7 @@ function App() {
     <>
       <ToastContainer />
       <Header path={location} />
+      <SideDrawer />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/shop" element={<SearchFilter />} />
@@ -83,6 +86,7 @@ function App() {
         <Route exact path="/product/:slug" element={<Product />} />
         <Route path="/category/:slug" element={<CategoryHome />} />
         <Route path="/sub/:slug" element={<SubHome />} />
+        <Route path="/cart" element={<Cart />} />
         <Route element={<UserRoute />}>
           <Route exact path="/user/history" element={<History />} />
           <Route exact path="/user/password" element={<Password />} />

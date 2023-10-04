@@ -19,6 +19,9 @@ import { LiaModx } from "react-icons/lia";
 import { Avatar } from "@mui/material";
 import styles from "./Nav.module.css";
 import { TbBrandReact } from "react-icons/tb";
+import { MdOutlineLocalGroceryStore } from "react-icons/md";
+import { Badge } from "antd";
+
 const AdminSideBar = ({ path }) => {
   const [state, setState] = React.useState({
     left: false,
@@ -32,7 +35,7 @@ const AdminSideBar = ({ path }) => {
     setState({ ...state, [anchor]: false });
   };
 
-  const { user } = useSelector((state) => ({ ...state }));
+  const { user, cart } = useSelector((state) => ({ ...state }));
 
   const customItems = [
     {
@@ -44,6 +47,15 @@ const AdminSideBar = ({ path }) => {
       text: "Search and Filter",
       link: "/shop",
       icon: <SiPydantic size={32} style={{ color: "white" }} />,
+    },
+    {
+      text: (
+        <Badge count={cart.length} offset={[13, 0]} size="small">
+          <span style={{ color: "white", fontSize: "16px" }}>Cart</span>
+        </Badge>
+      ),
+      link: "/cart",
+      icon: <MdOutlineLocalGroceryStore size={32} style={{ color: "white" }} />,
     },
     {
       text: "Admin Dashboard",
@@ -145,7 +157,11 @@ const AdminSideBar = ({ path }) => {
   return (
     <div>
       <Button onClick={toggleDrawer("left", true)} style={{ fontSize: 50 }}>
-        <BiMenuAltLeft style={{ color: path === "/" ? "white" : "blue" }} />
+        <Badge count={cart.length} offset={[7, 10]} size="medium" color="green">
+          <BiMenuAltLeft
+            style={{ color: path === "/" ? "white" : "blue", fontSize: 50 }}
+          />
+        </Badge>
       </Button>
       <SwipeableDrawer
         anchor="left"
