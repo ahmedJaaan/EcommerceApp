@@ -1,17 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Cart.module.css";
 import ProductCardInCheckOut from "../../Components/Cards/ProductCardInCheckOut";
-
+import { userCart } from "../../APIs/user";
 const Cart = () => {
   const { cart, user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const getTotal = () => {
     return cart.reduce((currentValue, nextValue) => {
       return currentValue + nextValue.price * nextValue.count;
     }, 0);
+  };
+
+  const saveOrderToDb = () => {
+    console.log("hello");
+    userCart(cart, user.token)
+      .then((res) => {
+        if (res.ok) {
+          navigate("/checkout");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const showCartItems = () => (
@@ -93,7 +106,7 @@ const Cart = () => {
           <hr />
           {user ? (
             <button
-              //   onClick={saveOrderToDb}
+              onClick={saveOrderToDb}
               className={styles.button}
               disabled={cart.length === 0}
             >
