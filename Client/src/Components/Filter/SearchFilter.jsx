@@ -38,6 +38,9 @@ const SearchFilter = () => {
     const delay = 300;
     const timeoutId = setTimeout(() => {
       fetchProducts({ query: text });
+      if (!text) {
+        loadAllProducts();
+      }
     }, delay);
     return () => clearTimeout(timeoutId);
   }, [text]);

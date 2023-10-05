@@ -4,8 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./Cart.module.css";
 import ProductCardInCheckOut from "../../Components/Cards/ProductCardInCheckOut";
 import { userCart } from "../../APIs/user";
+import { PropagateLoader } from "react-spinners";
+
 const Cart = () => {
   const { cart, user } = useSelector((state) => ({ ...state }));
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const getTotal = () => {
@@ -15,11 +18,13 @@ const Cart = () => {
   };
 
   const saveOrderToDb = () => {
+    setLoading(true);
     console.log("hello");
     userCart(cart, user.token)
       .then((res) => {
         if (res.ok) {
           navigate("/checkout");
+          setLoading(false);
         }
       })
       .catch((err) => {
@@ -110,7 +115,15 @@ const Cart = () => {
               className={styles.button}
               disabled={cart.length === 0}
             >
-              Proceed To Checkout
+              {loading ? (
+                <PropagateLoader
+                  color={"#fff"}
+                  size={15}
+                  style={{ padding: "10px" }}
+                />
+              ) : (
+                "Proceed To Checkout"
+              )}
             </button>
           ) : (
             <NavLink

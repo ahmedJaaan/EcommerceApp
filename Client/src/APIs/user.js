@@ -23,3 +23,26 @@ export const getUserCart = async (authToken) => {
   });
   return response.data;
 };
+export const emptyUserCart = async (authToken) => {
+  const response = await axios.delete("http://localhost:8080/api/user/cart", {
+    headers: {
+      authToken,
+    },
+  });
+  return response.data;
+};
+
+export const saveUserAddress = async (authToken, address) => {
+  const response = await axios.post(
+    "http://localhost:8080/api/user/address",
+    {
+      address,
+    },
+    {
+      headers: {
+        authToken,
+      },
+    }
+  );
+  return response.data;
+};

@@ -41,8 +41,6 @@ exports.userCart = async (req, res) => {
       orderedBy: user._id,
     });
     await newCart.save();
-
-    console.log("Cart saved", newCart);
     res.json({ ok: true });
   } catch (error) {
     console.error(error);
@@ -62,4 +60,25 @@ exports.getUserCart = async (req, res) => {
     console.error("error in get user cart", error);
     res.status(500).json({ error: "Internal server error" });
   }
+};
+
+exports.emptyCart = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.user.email }).exec();
+    const cart = await Cart.findOne({ orderedBy: user._id }).exec();
+    await cart.deleteOne();
+    res.json({ ok: true });
+  } catch (error) {
+    console.error("error in empty cart", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.saveAddress = async (req, res) => {
+  const userAddress = await User.findOneAndUpdate(
+    { email: req.user.email },
+    { address: req.body.address },
+    { new: true }
+  ).exec();
+  res.json(userAddress);
 };
