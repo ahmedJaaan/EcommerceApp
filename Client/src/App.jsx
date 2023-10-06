@@ -32,6 +32,7 @@ import SearchFilter from "./Components/Filter/SearchFilter";
 import Cart from "./Pages/user/Cart";
 import SideDrawer from "./Components/drawer/SideDrawer";
 import Checkout from "./Pages/user/Checkout";
+import CreateCoupon from "./Pages/admin/coupon/CreateCoupon";
 function App() {
   const [userRole, setUserRole] = useState(null);
   const dispatch = useDispatch();
@@ -99,6 +100,7 @@ function App() {
           element={<AdminRoute allowedRoles={["admin"]} userRole={userRole} />}
         >
           <Route path="/admin/category" element={<CategoryCreate />} />
+          <Route path="/admin/coupon" element={<CreateCoupon />} />
           <Route path="/admin/category/:slug" element={<CategoryUpdate />} />
           <Route path="/admin/sub" element={<SubCreate />} />
           <Route path="/admin/sub/:slug" element={<SubUpdate />} />

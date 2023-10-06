@@ -80,5 +80,6 @@ exports.saveAddress = async (req, res) => {
     { address: req.body.address },
     { new: true }
   ).exec();
-  res.json(userAddress);
+  console.log(userAddress);
+  res.json({ ok: true });
 };

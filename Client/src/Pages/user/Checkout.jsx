@@ -43,14 +43,14 @@ const Checkout = () => {
         setAddressSaved(true);
         toast.success("Address saved");
       } else {
-        toast.error("Error in saving address");
+        toast.error("Address not saved");
       }
     });
   };
   return (
     <div className={styles.gridContainer}>
       <div>
-        <h1>DElivery</h1>
+        <h1>Delivery Address</h1>
         <br />
         <br />
         <ReactQuill theme="snow" value={adress} onChange={setAdress} />
@@ -76,7 +76,9 @@ const Checkout = () => {
         Cart Total : {total}
         <div className={styles.gridContainer}>
           <div>
-            <button disabled={!saveAddressToDb}>Place Order</button>
+            <button disabled={!addressSaved || !products.length}>
+              Place Order
+            </button>
           </div>
           <div>
             <button disabled={!products.length} onClick={emptyCart}>

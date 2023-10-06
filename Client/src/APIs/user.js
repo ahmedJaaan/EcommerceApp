@@ -33,16 +33,20 @@ export const emptyUserCart = async (authToken) => {
 };
 
 export const saveUserAddress = async (authToken, address) => {
-  const response = await axios.post(
-    "http://localhost:8080/api/user/address",
-    {
-      address,
-    },
-    {
-      headers: {
-        authToken,
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/api/user/address",
+      {
+        address,
       },
-    }
-  );
-  return response.data;
+      {
+        headers: {
+          authToken,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };

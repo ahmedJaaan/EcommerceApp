@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema(
     //     ref: "Product"
     // }
     // ]
+
+    images: {
+      type: Array,
+      default: [],
+    },
   },
   { timestamps: true }
 );
