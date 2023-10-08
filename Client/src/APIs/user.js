@@ -50,3 +50,23 @@ export const saveUserAddress = async (authToken, address) => {
     console.error(error);
   }
 };
+
+export const applyCoupon = async (coupon, authToken) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/api/user/cart/coupon",
+      {
+        coupon,
+      },
+      {
+        headers: {
+          authToken,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error.response.data;
+  }
+};

@@ -33,6 +33,7 @@ import Cart from "./Pages/user/Cart";
 import SideDrawer from "./Components/drawer/SideDrawer";
 import Checkout from "./Pages/user/Checkout";
 import CreateCoupon from "./Pages/admin/coupon/CreateCoupon";
+import Payment from "./Pages/user/Payment";
 function App() {
   const [userRole, setUserRole] = useState(null);
   const dispatch = useDispatch();
@@ -93,6 +94,7 @@ function App() {
           <Route exact path="/user/history" element={<History />} />
           <Route exact path="/user/password" element={<Password />} />
           <Route exact path="/user/wishlist" element={<Wishlist />} />
+          <Route exact path="/payment" element={<Payment />} />
           <Route exact path="/user/profile" element={<UpdateProfile />} />
           <Route exact path="/checkout" element={<Checkout />} />
         </Route>

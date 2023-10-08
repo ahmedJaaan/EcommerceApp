@@ -1,7 +1,7 @@
 const User = require("../Models/user");
 const Cart = require("../Models/cart");
 const Product = require("../Models/product");
-
+const Coupon = require("../Models/coupon");
 exports.userCart = async (req, res) => {
   try {
     const { cart } = req.body;
@@ -54,10 +54,15 @@ exports.getUserCart = async (req, res) => {
     const cart = await Cart.findOne({ orderedBy: user._id })
       .populate("products.product", "_id title images price")
       .exec();
+
+    if (!cart) {
+      return res.status(404).json({ error: "Cart not found" });
+    }
+
     const { cartTotal, products, totalAfterDiscount } = cart;
     res.json({ cartTotal, products, totalAfterDiscount });
   } catch (error) {
-    console.error("error in get user cart", error);
+    console.error("Error in get user cart", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
@@ -82,4 +87,40 @@ exports.saveAddress = async (req, res) => {
   ).exec();
   console.log(userAddress);
   res.json({ ok: true });
+};
+exports.applyCouponToUser = async (req, res) => {
+  try {
+    const { coupon } = req.body;
+    const validCoupon = await Coupon.findOne({ name: coupon }).exec();
+    if (validCoupon === null) {
+      return res.status(404).json({ error: "Invalid coupon code" });
+    }
+    const user = await User.findOne({ email: req.user.email }).exec();
+    const { cartTotal, products } = await Cart.findOne({
+      orderedBy: user._id,
+    })
+      .populate("products.product", "_id title price")
+      .exec();
+
+    const discountAmount = (cartTotal * (validCoupon.discount / 100)).toFixed(
+      2
+    );
+    const totalAfterDiscount = Math.floor(
+      (cartTotal - discountAmount).toFixed(2)
+    );
+
+    await Cart.findOneAndUpdate(
+      { orderedBy: user._id },
+      { totalAfterDiscount },
+      { new: true }
+    ).exec();
+    res.json({
+      success: true,
+      message: "Coupon applied successfully",
+      totalAfterDiscount,
+    });
+  } catch (error) {
+    console.error("Error in applying coupon", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };

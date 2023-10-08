@@ -29,6 +29,8 @@ const Cart = () => {
       })
       .catch((err) => {
         console.log(err);
+        toast.error("Something went wrong");
+        setLoading(false);
       });
   };
 
@@ -67,48 +69,28 @@ const Cart = () => {
         <div>
           <h1 style={{ textAlign: "center" }}>Order Summary</h1>
           <hr />
-          <>
-            <h4
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginRight: "10px",
-                marginLeft: "5px",
-              }}
-            >
-              Products <span>Price</span>
-            </h4>
-          </>
-          {cart.map((c, i) => (
-            <div key={i}>
-              <p
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  backgroundColor: "#eee",
-                  padding: "10px",
-                  borderRadius: "10px",
-                }}
-              >
-                {c && c.title} x {c && c.count}
-                <span>=${c && c.price * c.count}</span>
-              </p>
-            </div>
-          ))}
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((c, i) => (
+                <tr key={i}>
+                  <td>{c && c.title}</td>
+                  <td>{c && c.count}</td>
+                  <td>${c && c.price * c.count}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <hr />
-          <div
-            style={{
-              backgroundColor: "#eee",
-              padding: "10px",
-              borderRadius: "5px",
-            }}
-          >
-            <span style={{ display: "flex", justifyContent: "space-between" }}>
-              <span>Total Price:</span>
-              <span>${getTotal()}</span>
-            </span>
+          <div className={styles.totalAmountSection}>
+            Total Price: <b style={{ marginLeft: "auto" }}>${getTotal()}</b>
           </div>
-          <hr />
           {user ? (
             <button
               onClick={saveOrderToDb}

@@ -4,3 +4,99 @@
     gap: 10px;
     margin: 10px;
 }
+
+.Button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    outline: none;
+    background: none;
+    border: none;
+    font-size: 15px;
+    text-align: center;
+    background: blueviolet;
+    border-radius: 50px;
+    width: 100%;
+    padding: 7px;
+    margin-top: 20px;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.Button:hover {
+    cursor: pointer;
+    background-color: rgb(61, 41, 116);
+    transform: scale(1.015);
+}
+
+.Button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+.heading {
+    text-align: center;
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+
+.couponInput {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid aquamarine;
+    text-align: center;
+    font-size: 25px;
+    margin-top:50px ;
+}
+
+
+
+.couponInput:active {
+    border-bottom: 3px solid aquamarine;
+}
+
+.productSummary {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.emptyCart {
+    background-color: red;
+}
+
+.emptyCart:hover {
+    background-color: rgb(207, 0, 0);
+}
+
+
+.totalAmountSection {
+    display: flex;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
+  .totalAmountSection b {
+    font-size: 18px;
+    color: #ff5733; 
+  }
+  
+
+  .total {
+    margin-left: auto;
+  }
+
+  .striked {
+    margin-left: auto;
+    text-decoration: line-through;
+    text-decoration-thickness: 3px;
+    text-decoration-color: red;
+  }
+
