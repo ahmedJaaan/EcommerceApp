@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../Pages/admin/Product/Product.module.css";
+import styles from "../../Styles/Product.module.css";
 import Resizer from "react-image-file-resizer";
 import axios from "axios";
 import { useSelector } from "react-redux";

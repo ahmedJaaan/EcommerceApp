@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CgEditUnmask } from "react-icons/cg";
-import styles from "./cards.module.css";
+import styles from "../../Styles/cards.module.css";
 import defaultImg from "../../assets/5191452-200.png";
 import ConfirmationPopup from "../Popup/Popup";
 import { removeProduct } from "../../APIs/product";

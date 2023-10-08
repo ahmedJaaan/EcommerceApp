@@ -3,11 +3,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
 import { getCoupons, create, removeCoupon } from "../../../APIs/coupon";
-import styles from "./coupon.module.css";
+import styles from "../../../Styles/coupon.module.css";
 import { useSelector } from "react-redux";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import ConfirmationPopup from "../../../Components/Popup/Popup"; // Import the ConfirmationPopup component
-
+import ConfirmationPopup from "../../../Components/Popup/Popup";
+import { RingLoader } from "react-spinners";
 const CreateCoupon = () => {
   const [name, setName] = useState("");
   const [discount, setDiscount] = useState("");
@@ -16,7 +16,7 @@ const CreateCoupon = () => {
   const [loading, setLoading] = useState(false);
   const [isDeleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
   const [couponToDelete, setCouponToDelete] = useState(null);
-  const [isTyping, setIsTyping] = useState(false); // State to track if user is typing
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     loadCoupons();
@@ -34,6 +34,7 @@ const CreateCoupon = () => {
         setName("");
         setDiscount("");
         setExpiry("");
+        setIsTyping(false);
         loadCoupons();
       })
       .catch((err) => {
@@ -88,31 +89,36 @@ const CreateCoupon = () => {
     <div className={styles.container}>
       <h1 style={{ textAlign: "center" }}>Create Coupon</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h4 className={styles.h4}>Coupon Name</h4>
+        <h4 className={styles.h4}>Coupon Code</h4>
         <input
           type="text"
-          placeholder="Coupon Name"
+          placeholder="Coupon Code"
           value={name}
           onChange={(e) => {
             setIsTyping(true);
             setName(e.target.value.toUpperCase());
           }}
-          onBlur={() => setIsTyping(false)}
           className={styles.input}
           required
         />
         {isTyping && (name.length < 6 || name.length > 12) ? (
-          <p style={{ color: "red" }}>
-            Name Should be At least 6 Characters and Maximum 12
+          <p
+            className={`${styles.error} ${
+              isTyping &&
+              (name.length < 6 || name.length > 12) &&
+              styles["error-message"]
+            }`}
+          >
+            Coupon Code Should be At least 6 Characters and Maximum 12
           </p>
         ) : null}
         <br />
-        <h4 className={styles.h4}>Discount</h4>
+        <h4 className={styles.h4}>Discount%</h4>
         <input
-          type="text"
-          placeholder="Enter How Much Discount You Wanna Give?"
+          type="Number"
+          placeholder="Discount You Wanna Give?"
           value={discount}
-          onChange={(e) => setDiscount(e.target.value.toLowerCase())}
+          onChange={(e) => setDiscount(e.target.value)}
           className={styles.input}
           required
         />
@@ -132,10 +138,17 @@ const CreateCoupon = () => {
             type="submit"
             className={styles.btn}
             disabled={
-              name.length < 6 || name.length > 12 || discount.length < 1
+              name.length < 6 ||
+              name.length > 12 ||
+              discount.length < 1 ||
+              expiry === ""
             }
           >
-            Submit
+            {loading ? (
+              <RingLoader size={20} color={"#fff"} />
+            ) : (
+              "Create Coupon"
+            )}
           </button>
         </div>
       </form>
@@ -157,7 +170,7 @@ const CreateCoupon = () => {
               coupon.map((p) => (
                 <tr key={p._id}>
                   <td>{p.name}</td>
-                  <td>{p.discount}</td>
+                  <td>{p.discount}%</td>
                   <td>{formatDate(p.expiry)}</td>
                   <td>
                     <button

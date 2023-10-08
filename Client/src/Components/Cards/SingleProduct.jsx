@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./cards.module.css";
+import styles from "../../Styles/cards.module.css";
 import { Card } from "antd";
 import { DiRaphael } from "react-icons/di";
 import { GiCartwheel } from "react-icons/gi";

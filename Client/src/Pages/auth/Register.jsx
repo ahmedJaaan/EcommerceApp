@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { sendSignInLinkToEmail } from "firebase/auth";
 import { toast } from "react-toastify";
-import styles from "./auth.module.css";
+import styles from "../../Styles/auth.module.css";
 import { auth } from "../../firebase";
 import { RingLoader } from "react-spinners";
 import { useSelector } from "react-redux";

@@ -5,7 +5,7 @@ import SingleProduct from "../Components/Cards/SingleProduct";
 import { useSelector } from "react-redux";
 import { getRelated } from "../APIs/product";
 import ProductCard from "../Components/Cards/ProductCard";
-import styles from "./Home.module.css";
+import styles from "../Styles/Home.module.css";
 
 const Product = () => {
   const [product, setProduct] = useState({});

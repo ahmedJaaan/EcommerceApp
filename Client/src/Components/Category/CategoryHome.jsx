@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getCategory } from "../../APIs/Category";
 import ProductCard from "../Cards/ProductCard";
 import { NavLink, useParams } from "react-router-dom";
-import styles from "../../Pages/Home.module.css";
+import styles from "../../Styles/Home.module.css";
 
 const CategoryHome = () => {
   const [category, setCategory] = useState({});

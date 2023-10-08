@@ -1,6 +1,6 @@
 import React from "react";
 import SideBar from "./Sidebar";
-import styles from "./Nav.module.css";
+import styles from "../../Styles/Nav.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { BiUserPin } from "react-icons/bi";

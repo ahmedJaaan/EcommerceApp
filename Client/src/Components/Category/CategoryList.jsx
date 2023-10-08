@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { getCategories } from "../../APIs/Category";
-import styles from "./CategoryList.module.css";
+import styles from "../../Styles/CategoryList.module.css";
 import TypewriterEffect from "../Cards/TypewriterEffect";
 
 const CategoryList = () => {

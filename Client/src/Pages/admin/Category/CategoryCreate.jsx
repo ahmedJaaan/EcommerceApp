@@ -6,7 +6,7 @@ import {
   getCategories,
   removeCategory,
 } from "../../../APIs/Category";
-import styles from "../Admin.module.css";
+import styles from "../../../Styles/Admin.module.css";
 import { RingLoader } from "react-spinners";
 import { CiEdit } from "react-icons/ci";
 import { Link } from "react-router-dom";

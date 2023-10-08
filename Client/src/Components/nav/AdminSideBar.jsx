@@ -17,7 +17,7 @@ import { IoTicketOutline } from "react-icons/io5";
 import { FaConnectdevelop } from "react-icons/fa";
 import { LiaModx } from "react-icons/lia";
 import { Avatar } from "@mui/material";
-import styles from "./Nav.module.css";
+import styles from "../../Styles/Nav.module.css";
 import { TbBrandReact } from "react-icons/tb";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { Badge } from "antd";

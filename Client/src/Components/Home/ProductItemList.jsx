@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./ProductItemList.module.css";
-import { useParams } from "react-router-dom";
+import styles from "../../Styles/ProductItemList.module.css";
 
 const ProductItemList = ({ product }) => {
   const {

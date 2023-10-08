@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { updateSub, getSub } from "../../../APIs/Sub";
-import styles from "../../auth/auth.module.css";
+import styles from "../../../Styles/auth.module.css";
 import { RingLoader } from "react-spinners";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCategories } from "../../../APIs/Category";
@@ -35,7 +35,7 @@ const CategoryUpdate = () => {
     getSub(slug)
       .then((res) => {
         setName(res.name);
-        setParent(res.parent); // Set the parent category based on the loaded subcategory
+        setParent(res.parent);
       })
       .catch((err) => {
         console.error("Error loading subcategory:", err);
@@ -46,7 +46,7 @@ const CategoryUpdate = () => {
     e.preventDefault();
     setLoading(true);
 
-    updateSub(slug, { name, parent }, user.token) // Send both name and parent
+    updateSub(slug, { name, parent }, user.token)
       .then((res) => {
         toast.success(`${res.name} is updated`);
         setLoading(false);

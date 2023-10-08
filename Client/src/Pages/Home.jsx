@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getProducts } from "../APIs/product";
 import { HashLoader } from "react-spinners";
-import styles from "./Home.module.css";
+import styles from "../Styles/Home.module.css";
 import NewArrival from "../Components/Home/NewArrival";
 import BestSellers from "../Components/Home/BestSellers";
 import LandingSection from "../Components/Home/LandingSection";

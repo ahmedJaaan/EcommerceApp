@@ -33,10 +33,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: large;
     color: #fff;
     background: rgb(149, 35, 255);
-    padding: 3px;
+    padding: 5px;
     border-radius: 50px;
     width: 50%;
     cursor: pointer;
@@ -90,3 +89,13 @@ table {
     cursor: not-allowed;
     opacity: 0.5;
   }
+
+
+.error {
+    color: red;
+    transition: opacity 0.3s ease;
+}
+
+.error-message {
+    opacity: 1;
+}

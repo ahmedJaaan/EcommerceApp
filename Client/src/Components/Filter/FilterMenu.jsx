@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import styles from "./FilterMenu.module.css";
-import { RiArrowDropDownLine } from "react-icons/ri";
+import styles from "../../Styles/FilterMenu.module.css";
 import FilterByCategory from "./FilterByCategory";
 import FilterByPrice from "./FilterByPrice";
 import FilterByStars from "./FilterByStars";
 import FilterBySub from "./FilterBySub";
 import FilterByColor from "./FilterByColor";
-import { TbBrand4Chan } from "react-icons/tb";
 import FilterbyBrand from "./FilterbyBrand";
 
 const FilterMenu = ({

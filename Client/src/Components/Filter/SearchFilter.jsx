@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getProductsByCount } from "../../APIs/product";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./FilterMenu.module.css";
+import styles from "../../Styles/FilterMenu.module.css";
 import { fetchProductByFilter } from "../../APIs/product";
 import { getCategories } from "../../APIs/Category";
 import FilterMenu from "./FilterMenu";

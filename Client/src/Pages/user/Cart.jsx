@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./Cart.module.css";
+import styles from "../../Styles/Cart.module.css";
 import ProductCardInCheckOut from "../../Components/Cards/ProductCardInCheckOut";
 import { userCart } from "../../APIs/user";
 import { PropagateLoader } from "react-spinners";

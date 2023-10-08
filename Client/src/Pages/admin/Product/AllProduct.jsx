@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getProductsByCount } from "../../../APIs/product";
 import { HashLoader } from "react-spinners";
-import styles from "../Dashboard.module.css";
+import styles from "../../../Styles/Dashboard.module.css";
 import AdminCard from "../../../Components/Cards/AdminCard";
 import { removeProduct } from "../../../APIs/product";
 

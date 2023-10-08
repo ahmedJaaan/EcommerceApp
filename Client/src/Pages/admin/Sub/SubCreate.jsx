@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getCategories } from "../../../APIs/Category";
 import { createSub, removeSub, getSubs } from "../../../APIs/Sub";
-import styles from "../Admin.module.css";
+import styles from "../../../Styles/Admin.module.css";
 import ConfirmationPopup from "../../../Components/Popup/Popup";
 import CategoryForm from "../../../Components/Forms/CategoryForm";
 import LocalSearch from "../../../Components/Forms/LocalSearch";

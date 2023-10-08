@@ -4,7 +4,7 @@ import { MdOutlineViewInAr } from "react-icons/md";
 import { FaOpencart } from "react-icons/fa";
 import defaultImg from "../../assets/5191452-200.png";
 import { NavLink } from "react-router-dom";
-import styles from "./cards.module.css";
+import styles from "../../Styles/cards.module.css";
 import { showAverage } from "../../APIs/rating";
 import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";

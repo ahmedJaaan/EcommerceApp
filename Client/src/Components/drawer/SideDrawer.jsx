@@ -1,11 +1,10 @@
 import React from "react";
 import { Drawer, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Drawe.module.css";
+import styles from "../../Styles/Drawer.module.css";
 import { NavLink } from "react-router-dom";
 import defaultImg from "../../assets/5191452-200.png";
-import { SiCarto } from "react-icons/si";
-import { TbBrandGolang, TbShoppingCart } from "react-icons/tb";
+import { TbShoppingCart } from "react-icons/tb";
 const SideDrawer = () => {
   const dispatch = useDispatch();
   const { cart, drawer } = useSelector((state) => ({ ...state }));

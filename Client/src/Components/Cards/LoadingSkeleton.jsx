@@ -1,6 +1,6 @@
 import { Card, Skeleton } from "antd";
 import React from "react";
-import styles from "./cards.module.css";
+import styles from "../../Styles/cards.module.css";
 
 const LoadingSkeleton = ({ count }) => {
   const generateRows = () => {

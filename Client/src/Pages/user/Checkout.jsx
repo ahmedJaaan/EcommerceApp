@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Checkout.module.css";
+import styles from "../../Styles/Checkout.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserCart, emptyUserCart, saveUserAddress } from "../../APIs/user";
 import { toast } from "react-toastify";

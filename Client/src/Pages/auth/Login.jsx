@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { toast } from "react-toastify";
-import styles from "./auth.module.css";
+import styles from "../../Styles/auth.module.css";
 import { auth, googleAuthProvider } from "../../firebase";
 import { AiOutlineMail } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";

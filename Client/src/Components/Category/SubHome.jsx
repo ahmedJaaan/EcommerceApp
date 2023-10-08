@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getSub } from "../../APIs/Sub";
 import ProductCard from "../Cards/ProductCard";
 import { useParams } from "react-router-dom";
-import styles from "../../Pages/Home.module.css";
+import styles from "../../Styles/Home.module.css";
 
 const SubHome = () => {
   const [sub, setSub] = useState({});

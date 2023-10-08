@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { signInWithEmailLink, updatePassword } from "firebase/auth";
 import { toast } from "react-toastify";
-import styles from "./auth.module.css";
+import styles from "../../Styles/auth.module.css";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { RingLoader } from "react-spinners";
