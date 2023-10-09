@@ -70,3 +70,23 @@ export const applyCoupon = async (coupon, authToken) => {
     return error.response.data;
   }
 };
+
+export const createOrder = async (authToken, stripeResponse) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/api/user/order",
+      {
+        stripeResponse,
+      },
+      {
+        headers: {
+          authToken,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error.response.data;
+  }
+};

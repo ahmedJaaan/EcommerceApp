@@ -2,6 +2,8 @@ const User = require("../Models/user");
 const Cart = require("../Models/cart");
 const Product = require("../Models/product");
 const Coupon = require("../Models/coupon");
+const Order = require("../Models/order");
+
 exports.userCart = async (req, res) => {
   try {
     const { cart } = req.body;
@@ -121,6 +123,35 @@ exports.applyCouponToUser = async (req, res) => {
     });
   } catch (error) {
     console.error("Error in applying coupon", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.createOrder = async (req, res) => {
+  try {
+    const { paymentIntent } = req.body.stripeResponse;
+    const user = await User.findOne({ email: req.user.email }).exec();
+    const { products } = await Cart.findOne({
+      orderedBy: user._id,
+    }).exec();
+    let newOrder = await new Order({
+      products,
+      paymentIntent,
+      orderedBy: user._id,
+      orderStatus: "Not Processed",
+    }).save();
+    let bulkOption = products.map((item) => {
+      return {
+        updateOne: {
+          filter: { _id: item.product._id },
+          update: { $inc: { quantity: -item.count, sold: +item.count } },
+        },
+      };
+    });
+    let updated = await Product.bulkWrite(bulkOption, {});
+    res.json({ ok: true });
+  } catch (error) {
+    console.log("Error in creating order", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };

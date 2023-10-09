@@ -5,7 +5,7 @@ import { createPaymentIntent } from "../../APIs/stripe";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineCheckCircle, AiOutlineDollarCircle } from "react-icons/ai";
 import { PulseLoader, RingLoader } from "react-spinners";
-
+import { createOrder, emptyUserCart } from "../../APIs/user";
 const StripeCheckout = () => {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -68,6 +68,22 @@ const StripeCheckout = () => {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
     } else {
+      createOrder(user.token, payload).then((res) => {
+        if (res.ok) {
+          if (typeof window !== "undefined") {
+            localStorage.removeItem("cart");
+          }
+          dispatch({
+            type: "ADD_TO_CART",
+            payload: [],
+          });
+          dispatch({
+            type: "COUPON_APPLIED",
+            payload: false,
+          });
+          emptyUserCart(user.token);
+        }
+      });
       setError(null);
       setProcessing(false);
       setSucceeded(true);

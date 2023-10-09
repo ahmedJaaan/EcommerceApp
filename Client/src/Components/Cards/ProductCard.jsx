@@ -13,7 +13,9 @@ const { Meta } = Card;
 
 const ProductCard = ({ product }) => {
   const { title, description, images, slug, price } = product;
-  const [tooltip, setTooltip] = useState("Click to add");
+  const [tooltip, setTooltip] = useState(
+    product.quantity > 0 ? "click to add" : "Out of Stock"
+  );
   const { user, cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
   let unique = [];
@@ -97,7 +99,15 @@ const ProductCard = ({ product }) => {
             </div>
             <>
               <div className={styles.userIcon}>
-                <div onClick={handleAddToCart}>
+                <button
+                  onClick={handleAddToCart}
+                  style={{
+                    backgroundColor: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                  disabled={product.quantity < 1}
+                >
                   <Tooltip title={tooltip} placement="topRight">
                     <FaOpencart
                       key="delete"
@@ -107,17 +117,29 @@ const ProductCard = ({ product }) => {
                         marginLeft: "150px",
                       }}
                     />
-                    <span
-                      style={{
-                        color: "red",
-                        marginLeft: "150px",
-                      }}
-                      onClick={handleAddToCart}
-                    >
-                      Add to Cart
-                    </span>
+                    {product.quantity < 1 ? (
+                      <span
+                        style={{
+                          color: "red",
+                          marginLeft: "150px",
+                        }}
+                        onClick={handleAddToCart}
+                      >
+                        Out of Stock
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          color: "red",
+                          marginLeft: "150px",
+                        }}
+                        onClick={handleAddToCart}
+                      >
+                        Add to Cart
+                      </span>
+                    )}
                   </Tooltip>
-                </div>
+                </button>
               </div>
             </>
           </div>,
