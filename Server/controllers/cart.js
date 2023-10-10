@@ -155,3 +155,16 @@ exports.createOrder = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+exports.orders = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.user.email }).exec();
+    const userOrders = await Order.find({ orderedBy: user._id })
+      .populate("products.product")
+      .exec();
+    res.json(userOrders);
+  } catch (error) {
+    console.log("Error in orders", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};

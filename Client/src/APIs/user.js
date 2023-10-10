@@ -90,3 +90,17 @@ export const createOrder = async (authToken, stripeResponse) => {
     return error.response.data;
   }
 };
+
+export const getUserOrders = async (authToken) => {
+  try {
+    const response = await axios.get("http://localhost:8080/api/user/orders", {
+      headers: {
+        authToken,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error.response.data;
+  }
+};

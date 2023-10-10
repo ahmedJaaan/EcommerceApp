@@ -1,0 +1,42 @@
+
+.paymentInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f9f9f9; 
+    padding: 20px; 
+    border-radius: 10px; 
+  }
+  
+  .paymentInfoItem {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #fff; 
+    padding: 10px; 
+    border-radius: 5px; 
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); 
+  }
+
+  .table {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .historyContainer {
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .eachOrder {
+    background-color: #fff; 
+    border-radius: 5px; 
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); 
+    background-color: #f9f9f9; 
+    margin-bottom: 100px;
+  }
+
+  .thead{
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); 
+  }
