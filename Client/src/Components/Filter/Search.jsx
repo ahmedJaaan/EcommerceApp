@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "../../Styles/FilterMenu.module.css";
@@ -7,7 +7,6 @@ const Search = ({ path }) => {
   const dispatch = useDispatch();
   const { search } = useSelector((state) => ({ ...state }));
   const { text } = search;
-
   const handleChange = (e) => {
     dispatch({
       type: "SEARCH",
@@ -20,6 +19,15 @@ const Search = ({ path }) => {
     navigate(`/shop?${text}`);
   };
 
+  let searchStyle;
+  if (path === "/") {
+    searchStyle = styles.homeSearch;
+  } else if (path === "/user/history") {
+    searchStyle = styles.historySearch;
+  } else {
+    searchStyle = styles.searchInput;
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -28,7 +36,7 @@ const Search = ({ path }) => {
           value={text}
           onChange={handleChange}
           placeholder="Search Products"
-          className={path === "/" ? styles.homeSearch : styles.searchInput}
+          className={searchStyle}
         />
       </form>
     </div>

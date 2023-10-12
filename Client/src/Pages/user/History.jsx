@@ -4,7 +4,9 @@ import { getUserOrders } from "../../APIs/user";
 import { toast } from "react-toastify";
 import ShowPaymentInfo from "../../Components/Cards/ShowPaymentInfo";
 import styles from "../../Styles/History.module.css";
-
+import Header from "../../Components/nav/Header";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import Invoice from "../../Components/Order/Invoice";
 const History = () => {
   const [orders, setOrders] = useState([]);
   const { user } = useSelector((state) => ({ ...state }));
@@ -18,18 +20,52 @@ const History = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    console.log(orders.products);
+  });
+
   const showOrderInTable = (order) => {
     return (
       <div key={order._id} className={styles.table}>
-        <table>
+        <table style={{ textAlign: "center" }}>
           <thead className={styles.thead}>
             <tr>
-              <th scop="col">Title</th>
-              <th scop="col">Price</th>
-              <th scop="col">Brand</th>
-              <th scop="col">Color</th>
-              <th scop="col">Count</th>
-              <th scop="col">Shipping</th>
+              <th
+                scop="col"
+                style={{ background: "transparent", textAlign: "center" }}
+              >
+                Title
+              </th>
+              <th
+                scop="col"
+                style={{ background: "transparent", textAlign: "center" }}
+              >
+                Price
+              </th>
+              <th
+                scop="col"
+                style={{ background: "transparent", textAlign: "center" }}
+              >
+                Brand
+              </th>
+              <th
+                scop="col"
+                style={{ background: "transparent", textAlign: "center" }}
+              >
+                Color
+              </th>
+              <th
+                scop="col"
+                style={{ background: "transparent", textAlign: "center" }}
+              >
+                Count
+              </th>
+              <th
+                scop="col"
+                style={{ background: "transparent", textAlign: "center" }}
+              >
+                Shipping
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -52,19 +88,29 @@ const History = () => {
   const showEachOrder = () =>
     orders.map((order, i) => (
       <div key={i} className={styles.eachOrder}>
-        <p>
-          <ShowPaymentInfo order={order} styles={styles} />
-        </p>
+        <ShowPaymentInfo order={order} styles={styles} />
         {showOrderInTable(order)}
-        <div>Download Pdf</div>
+        {ShowPdfDownloadLink()}
       </div>
     ));
 
+  const ShowPdfDownloadLink = () => (
+    <PDFDownloadLink
+      document={<Invoice orders={orders} styles={styles} />}
+      fileName="invoice.pdf"
+    >
+      <button className={styles.downloadBtn}>Download Invoice Pdf</button>
+    </PDFDownloadLink>
+  );
+
   return (
     <div className={styles.historyContainer}>
-      <h1>History</h1>
-      <h4>{orders.length > 0 ? "Orders" : "No orders"}</h4>
-      {orders.length > 0 ? showEachOrder() : "No orders"}
+      <Header path={"/user/history"} />
+      <div style={{ padding: "20px" }}>
+        <h1 className={styles.heading}>Purchase History</h1>
+        <h4>{orders.length > 0 ? null : "No orders"}</h4>
+        {orders.length > 0 ? showEachOrder() : "No orders"}
+      </div>
     </div>
   );
 };

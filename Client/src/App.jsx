@@ -34,6 +34,7 @@ import SideDrawer from "./Components/drawer/SideDrawer";
 import Checkout from "./Pages/user/Checkout";
 import CreateCoupon from "./Pages/admin/coupon/CreateCoupon";
 import Payment from "./Pages/user/Payment";
+
 function App() {
   const [userRole, setUserRole] = useState(null);
   const dispatch = useDispatch();
@@ -48,7 +49,6 @@ function App() {
         currentUser(idTokenResult.token)
           .then((res) => {
             setUserRole(res.role);
-            // console.log("Response from currentUser API:", res);
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
@@ -68,16 +68,21 @@ function App() {
       unSubscribe();
     };
   }, [dispatch]);
+
   let locationPath = useLocation();
 
   useEffect(() => {
     setLocation(locationPath.pathname);
   }, [locationPath]);
 
+  const renderHeader = location !== "/user/history" && (
+    <Header path={location} />
+  );
+
   return (
     <>
       <ToastContainer />
-      <Header path={location} />
+      {renderHeader}
       <SideDrawer />
       <Routes>
         <Route exact path="/" element={<Home />} />
