@@ -74,10 +74,8 @@ function App() {
   useEffect(() => {
     setLocation(locationPath.pathname);
   }, [locationPath]);
-
-  const renderHeader = location !== "/user/history" && (
-    <Header path={location} />
-  );
+  const renderHeader = location !== "/user/history" &&
+    location !== "/admin/dashboard" && <Header path={location} />;
 
   return (
     <>

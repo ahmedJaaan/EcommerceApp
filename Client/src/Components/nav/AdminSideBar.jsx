@@ -58,7 +58,7 @@ const AdminSideBar = ({ path }) => {
       icon: <MdOutlineLocalGroceryStore size={32} style={{ color: "white" }} />,
     },
     {
-      text: "Admin Dashboard",
+      text: "Process Orders",
       link: "/admin/dashboard",
       icon: <FaConnectdevelop size={32} style={{ color: "white" }} />,
     },

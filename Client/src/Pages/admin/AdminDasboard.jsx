@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { getProductsByCount } from "../../APIs/product";
-import { HashLoader } from "react-spinners";
-import AdminCard from "../../Components/Cards/AdminCard";
 import { getOrders, updateOrderStatus } from "../../APIs/admin";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Orders from "../../Components/Order/Orders";
+import styles from "../../Styles/History.module.css";
+import Header from "../../Components/nav/Header";
 const AdminDasboard = () => {
   const [orders, setOrders] = useState([]);
   const { user } = useSelector((state) => ({ ...state }));
@@ -28,10 +27,20 @@ const AdminDasboard = () => {
   };
 
   return (
-    <>
-      <h1 style={{ textAlign: "center" }}>Admin Dashboard</h1>
+    <div className={styles.gradientBackground}>
+      <Header path={"/admin/dashboard"} />
+      <h1
+        style={{
+          textAlign: "center",
+          color: "navy",
+          fontWeight: "400",
+          fontSize: "50px",
+        }}
+      >
+        Process Orders
+      </h1>
       <Orders orders={orders} handleStatusChange={handleStatusChange} />
-    </>
+    </div>
   );
 };
 

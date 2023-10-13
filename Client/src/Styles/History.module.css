@@ -5,6 +5,27 @@
   font-size: 45px;
 }
 
+.gradientBackground {
+  background: linear-gradient(45deg, #ff6b6b, #7b68ee, #68a8ee, #68eedd);
+  background-size: 400% 400%;
+  animation: gradientBackground 10s infinite;
+  margin: 0;
+  margin-bottom: 0;
+  border: 1px solid transparent;
+}
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 
 
 .paymentInfoContainer {
@@ -69,14 +90,14 @@
   font-size: 16px;
 }
 
-  @keyframes gradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

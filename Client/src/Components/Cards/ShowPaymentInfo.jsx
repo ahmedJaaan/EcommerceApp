@@ -37,6 +37,10 @@ const ShowPaymentInfo = ({ order, styles }) => {
         <span>Ordered on:</span>
         <span>{formatDate(order.paymentIntent[0].created * 1000)}</span>
       </div>
+      <div className={styles.paymentInfoItem}>
+        <span>Status</span>
+        <span>{order.orderStatus}</span>
+      </div>
     </div>
   );
 };

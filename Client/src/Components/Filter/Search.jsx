@@ -22,7 +22,7 @@ const Search = ({ path }) => {
   let searchStyle;
   if (path === "/") {
     searchStyle = styles.homeSearch;
-  } else if (path === "/user/history") {
+  } else if (path === "/user/history" || path === "/admin/dashboard") {
     searchStyle = styles.historySearch;
   } else {
     searchStyle = styles.searchInput;

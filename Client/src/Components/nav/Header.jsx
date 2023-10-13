@@ -77,7 +77,6 @@ const Header = ({ path }) => {
             </span>
           </button>
         )}
-        {/* Center the Search component horizontally */}
       </div>
     </div>
   );
