@@ -5,7 +5,7 @@ import styles from "../../Styles/FilterMenu.module.css";
 const Search = ({ path }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { search } = useSelector((state) => ({ ...state }));
+  const { search } = useSelector((state) => state);
   const { text } = search;
   const handleChange = (e) => {
     dispatch({

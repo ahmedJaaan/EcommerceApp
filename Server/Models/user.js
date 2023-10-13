@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
-const ObjectId = mongoose.Schema;
-const userSchema = new mongoose.Schema(
+const { Schema } = mongoose;
+
+const userSchema = new Schema(
   {
     name: String,
     email: {
@@ -18,12 +19,12 @@ const userSchema = new mongoose.Schema(
       default: [],
     },
     address: String,
-    // wishlist: [{
-    //     type: ObjectId,
-    //     ref: "Product"
-    // }
-    // ]
-
+    wishlist: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+      },
+    ],
     images: {
       type: Array,
       default: [],

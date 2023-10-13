@@ -281,7 +281,7 @@ exports.searchFilters = async (req, res) => {
 
   if (query) {
     await handleQuery(req, res, query);
-    // console.log(query);
+    console.log(query);
   }
 
   if (price != undefined) {
@@ -305,11 +305,11 @@ exports.searchFilters = async (req, res) => {
 
   if (color) {
     await handleColor(req, res, color);
-    console.log(color);
+    // console.log(color);
   }
 
   if (brand) {
     await handleBrand(req, res, brand);
-    console.log(brand);
+    // console.log(brand);
   }
 };

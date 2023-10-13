@@ -128,7 +128,6 @@ const SearchFilter = () => {
       payload: { text: "" },
     });
     setPrice([0, 0]);
-    setCategoriesIds([]);
     setSub("");
     setColor("");
     setBrand("");
@@ -143,7 +142,6 @@ const SearchFilter = () => {
     });
     setStars("");
     setPrice([0, 0]);
-    setCategoriesIds([]);
     setBrand("");
     setColor("");
     setSub(sub);
@@ -158,7 +156,6 @@ const SearchFilter = () => {
     setSub("");
     setStars("");
     setPrice([0, 0]);
-    setCategoriesIds([]);
     setBrand("");
     setColor(color);
     fetchProducts({ color });
@@ -172,7 +169,6 @@ const SearchFilter = () => {
     setSub("");
     setStars("");
     setPrice([0, 0]);
-    setCategoriesIds([]);
     setColor("");
     setBrand(brand);
     fetchProducts({ brand });

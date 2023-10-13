@@ -76,11 +76,14 @@
 }
 
 .wishlistIcon {
+  background: none;
+  border: none;
+  cursor: pointer;
   transition: 0.3s ease;
 }
 
 .wishlistIcon:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .ratingIcon {

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "../../Styles/cards.module.css";
 import { Card } from "antd";
-import { DiRaphael } from "react-icons/di";
 import { GiCartwheel } from "react-icons/gi";
+import { AiOutlineHeart } from "react-icons/ai";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import defaultImage from "../../assets/5191452-200.png";
@@ -110,14 +110,14 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                 </Tooltip>
               </div>
               <div className={styles.wishlistIcon}>
-                <NavLink
+                <button
                   className={styles.wishlistIcon}
-                  style={{ color: "blueViolet" }}
+                  style={{ color: "red" }}
                 >
-                  <DiRaphael size={32} />
+                  <AiOutlineHeart size={32} />
                   <br />
                   Add To wishlist
-                </NavLink>
+                </button>
                 ,
               </div>
 

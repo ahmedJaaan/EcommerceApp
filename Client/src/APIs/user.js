@@ -104,3 +104,60 @@ export const getUserOrders = async (authToken) => {
     return error.response.data;
   }
 };
+
+export const getWishList = async (authToken) => {
+  try {
+    const response = await axios.get(
+      "http://localhost:8080/api/user/wishlist",
+      {
+        headers: {
+          authToken,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error.response.data;
+  }
+};
+
+export const addToWishlist = async (authToken, productId) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/api/user/wishlist",
+      {
+        productId,
+      },
+      {
+        headers: {
+          authToken,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error.response.data;
+  }
+};
+
+export const removeFromWishlist = async (authToken, productId) => {
+  try {
+    const response = await axios.put(
+      `{http://localhost:8080/api/user/wishlist/${productId}}`,
+      {
+        productId,
+      },
+      {
+        headers: {
+          authToken,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error.response.data;
+  }
+};
