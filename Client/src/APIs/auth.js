@@ -52,3 +52,21 @@ export const currentAdmin = async (authtoken) => {
     throw error;
   }
 };
+
+export const updateUser = async (name, authtoken) => {
+  try {
+    const response = await axios.put(
+      "http://localhost:8080/api/update-user",
+      name,
+      {
+        headers: {
+          authtoken,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error in Updating User:", error);
+    throw error;
+  }
+};

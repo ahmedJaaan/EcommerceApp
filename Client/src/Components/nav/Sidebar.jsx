@@ -15,7 +15,9 @@ import { BsClockHistory } from "react-icons/bs";
 import { PiLockKey } from "react-icons/pi";
 import { BsBagHeart } from "react-icons/bs";
 import { LiaModx } from "react-icons/lia";
-import { GrCloudlinux } from "react-icons/gr";
+import { Badge } from "antd";
+import { MdOutlineLocalGroceryStore } from "react-icons/md";
+import { Avatar } from "@mui/material";
 const SideBar = ({ path }) => {
   const [state, setState] = React.useState({
     left: false,
@@ -29,7 +31,7 @@ const SideBar = ({ path }) => {
     setState({ ...state, [anchor]: false });
   };
 
-  const { user } = useSelector((state) => ({ ...state }));
+  const { user, cart } = useSelector((state) => ({ ...state }));
 
   const customItems = [
     {
@@ -38,9 +40,18 @@ const SideBar = ({ path }) => {
       icon: <SiApachekafka size={32} style={{ color: "white" }} />,
     },
     {
-      text: "Shop",
+      text: "Search and Filter",
       link: "/shop",
       icon: <SiPydantic size={32} style={{ color: "white" }} />,
+    },
+    {
+      text: (
+        <Badge count={cart.length} offset={[13, 0]} size="small">
+          <span style={{ color: "white", fontSize: "16px" }}>Cart</span>
+        </Badge>
+      ),
+      link: "/cart",
+      icon: <MdOutlineLocalGroceryStore size={32} style={{ color: "white" }} />,
     },
     {
       text: "History",
@@ -99,7 +110,11 @@ const SideBar = ({ path }) => {
   return (
     <div>
       <Button onClick={toggleDrawer("left", true)} style={{ fontSize: 50 }}>
-        <BiMenuAltLeft style={{ color: path === "/" ? "white" : "blue" }} />
+        <Badge count={cart.length} offset={[7, 10]} size="medium" color="green">
+          <BiMenuAltLeft
+            style={{ color: path === "/" ? "white" : "blue", fontSize: 50 }}
+          />
+        </Badge>
       </Button>
       <SwipeableDrawer
         anchor="left"
@@ -120,13 +135,27 @@ const SideBar = ({ path }) => {
         >
           Menu
         </h1>
-        {/* {user && user.name && (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
-            <img src={user.picture} alt={user.name}  />
-            <h3 style={{ color: 'white', marginTop: '10px' }}>{user.name}</h3>
-          </div>
-        )}  */}
-
+        {user && user.name && (
+          <NavLink
+            to="/user/profile"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Avatar
+              src={user.picture[0]}
+              sx={{
+                width: 40,
+                height: 40,
+                marginRight: "10px",
+                marginLeft: "5px",
+              }}
+            />
+            <h3 style={{ color: "white" }}>{user.name}</h3>
+          </NavLink>
+        )}
         {list("left")}
       </SwipeableDrawer>
     </div>

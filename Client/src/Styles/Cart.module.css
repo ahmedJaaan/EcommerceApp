@@ -90,15 +90,13 @@ td {
     transform: scale(1.025);
 }
 
-
-.NavLink{
+.NavLink {
     transition: font-size 0.3s ease;
 }
 
-.NavLink:hover{
+.NavLink:hover {
     font-size: 18px;
 }
-
 
 .totalAmountSection {
     display: flex;
@@ -107,10 +105,43 @@ td {
     border-radius: 5px;
     padding: 10px;
     margin-top: 20px;
-  }
-  
-  .totalAmountSection b {
+}
+
+.totalAmountSection b {
     font-size: 18px;
-    color: #ff5733; 
-  }
-  
+    color: #ff5733;
+}
+
+
+@media (max-width: 768px) {
+    .gridContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .countInput {
+        width: 100%;
+    }
+
+    .removeBtn {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .gridContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .countInput {
+        width: 100%;
+    }
+
+    .removeBtn {
+        width: 100%;
+    }
+
+    .thread {
+        overflow-x: auto;
+    }
+}

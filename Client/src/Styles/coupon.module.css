@@ -1,101 +1,119 @@
-.conatiner{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+/* Base styles */
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-
 .h4 {
-    font-weight: 300;
-    font-size: large;
-
+  font-weight: 300;
+  font-size: large;
 }
 
 .input {
-    width: 100%;
-    margin: 1px;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid aquamarine;
-    padding: 10px;
-    font-size: large;
+  width: 100%;
+  margin: 1px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid aquamarine;
+  padding: 10px;
+  font-size: large;
 }
 
-
 .input:active {
-    border-bottom: 3px solid aquamarine;
+  border-bottom: 3px solid aquamarine;
 }
 
 .btn {
-    background: none;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background: rgb(149, 35, 255);
-    padding: 5px;
-    border-radius: 50px;
-    width: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgb(149, 35, 255);
+  padding: 5px;
+  border-radius: 50px;
+  width: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
 }
 
 .btn:hover {
-    transform: scale(1.05);
-    background: rgb(255, 0, 0);
-    color: black;
+  transform: scale(1.05);
+  background: rgb(255, 0, 0);
+  color: black;
 }
 
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  
-  td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  
-  .deleteBtn {
-    background: none;
-    border: none;
-    color: red;
-    font-size: 25px;
-    transition: all 0.3s ease;
-  }
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
 
-  .deleteBtn:hover{
-    transform: scale(1.25);
-    cursor: pointer;
-  }
+th {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
 
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
 
-  .btn:disabled{
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
+.deleteBtn {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 25px;
+  transition: all 0.3s ease;
+}
 
+.deleteBtn:hover {
+  transform: scale(1.25);
+  cursor: pointer;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
 
 .error {
-    color: red;
-    transition: opacity 0.3s ease;
+  color: red;
+  transition: opacity 0.3s ease;
 }
 
 .error-message {
-    opacity: 1;
+  opacity: 1;
+}
+
+
+@media screen and (max-width: 768px) {
+  .input {
+      font-size: medium;
+  }
+}
+
+
+@media screen and (max-width: 576px) {
+  .input {
+      font-size: small;
+  }
+
+  .btn {
+      width: 80%;
+  }
+
+  .h4 {
+      font-size: small;
+  }
 }

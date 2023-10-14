@@ -90,6 +90,23 @@ export const createOrder = async (authToken, stripeResponse) => {
     return error.response.data;
   }
 };
+export const createCashOrderForUser = async (authToken, COD, coupon) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/api/user/cash-order",
+      { COD, couponApplied: coupon },
+      {
+        headers: {
+          authToken,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error.response.data;
+  }
+};
 
 export const getUserOrders = async (authToken) => {
   try {
@@ -158,6 +175,5 @@ export const removeFromWishlist = async (authToken, productId) => {
     return response.data;
   } catch (error) {
     console.error("Error in removing from wishlist", error);
-    // return error.response.data;
   }
 };

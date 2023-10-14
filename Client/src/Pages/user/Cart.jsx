@@ -5,7 +5,7 @@ import styles from "../../Styles/Cart.module.css";
 import ProductCardInCheckOut from "../../Components/Cards/ProductCardInCheckOut";
 import { userCart } from "../../APIs/user";
 import { PropagateLoader } from "react-spinners";
-
+import { toast } from "react-toastify";
 const Cart = () => {
   const { cart, user } = useSelector((state) => ({ ...state }));
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,26 @@ const Cart = () => {
 
   const saveOrderToDb = () => {
     setLoading(true);
-    console.log("hello");
+    userCart(cart, user.token)
+      .then((res) => {
+        if (res.ok) {
+          navigate("/checkout");
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Something went wrong");
+        setLoading(false);
+      });
+  };
+
+  const saveOrderCashToDb = () => {
+    setLoading(true);
+    dispatch({
+      type: "COD",
+      payload: true,
+    });
     userCart(cart, user.token)
       .then((res) => {
         if (res.ok) {
@@ -92,21 +111,38 @@ const Cart = () => {
             Total Price: <b style={{ marginLeft: "auto" }}>${getTotal()}</b>
           </div>
           {user ? (
-            <button
-              onClick={saveOrderToDb}
-              className={styles.button}
-              disabled={cart.length === 0}
-            >
-              {loading ? (
-                <PropagateLoader
-                  color={"#fff"}
-                  size={15}
-                  style={{ padding: "10px" }}
-                />
-              ) : (
-                "Proceed To Checkout"
-              )}
-            </button>
+            <>
+              <button
+                onClick={saveOrderToDb}
+                className={styles.button}
+                disabled={cart.length === 0}
+              >
+                {loading ? (
+                  <PropagateLoader
+                    color={"#fff"}
+                    size={15}
+                    style={{ padding: "10px" }}
+                  />
+                ) : (
+                  "Proceed To Checkout"
+                )}
+              </button>
+              <button
+                onClick={saveOrderCashToDb}
+                className={styles.button}
+                disabled={cart.length === 0}
+              >
+                {loading ? (
+                  <PropagateLoader
+                    color={"#fff"}
+                    size={15}
+                    style={{ padding: "10px" }}
+                  />
+                ) : (
+                  "Cash On Delivery"
+                )}
+              </button>
+            </>
           ) : (
             <NavLink
               to="/login"

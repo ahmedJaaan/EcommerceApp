@@ -137,3 +137,118 @@
     background-position: 0% 50%;
   }
 }
+
+/* Base styles */
+
+/* Your existing styles for screens above 1023px go here */
+
+/* Media Queries for Tablets (768px to 1023px) */
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .heading {
+      font-size: 36px;
+  }
+
+  .wishListContainer {
+      margin: 15px;
+      padding: 8px;
+  }
+
+  .removeBtn {
+      padding: 8px;
+  }
+
+  .nav {
+      font-size: 20px;
+      padding: 8px;
+  }
+
+  .gradientBackground {
+      margin: 0;
+  }
+
+  .paymentInfoContainer {
+      gap: 8px;
+      padding: 15px;
+  }
+
+  .paymentInfoItem {
+      font-size: 14px;
+      padding: 10px;
+  }
+
+  .table {
+      margin: 5px;
+      padding: 5px;
+  }
+
+  .historyContainer {
+      padding: 15px;
+  }
+
+  .eachOrder {
+      margin-bottom: 15px;
+      padding: 15px;
+  }
+
+
+  .downloadBtn {
+      font-size: 14px;
+      padding: 8px;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .heading {
+      font-size: 24px;
+  }
+
+  .wishListContainer {
+      margin: 10px;
+      padding: 5px;
+  }
+
+  .removeBtn {
+      padding: 5px;
+  }
+
+  .nav {
+      font-size: 18px;
+      padding: 5px;
+  }
+
+  .gradientBackground {
+      margin: 0;
+  }
+
+  .paymentInfoContainer {
+      gap: 5px;
+      padding: 10px;
+  }
+
+  .paymentInfoItem {
+      font-size: 12px;
+      padding: 8px;
+  }
+
+  .table {
+      margin: 3px;
+      padding: 3px;
+  }
+
+  .historyContainer {
+      padding: 10px;
+  }
+
+  .eachOrder {
+      margin-bottom: 10px;
+      padding: 10px;
+  }
+
+
+  .downloadBtn {
+      font-size: 12px;
+      padding: 5px;
+  }
+}

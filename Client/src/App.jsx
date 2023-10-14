@@ -57,6 +57,7 @@ function App() {
                 token: idTokenResult.token,
                 role: res.role,
                 _id: res._id,
+                picture: res.picture,
               },
             });
           })

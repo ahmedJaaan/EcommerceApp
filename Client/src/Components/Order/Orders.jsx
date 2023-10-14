@@ -29,6 +29,7 @@ const Orders = ({ orders, handleStatusChange }) => {
                 >
                   <MenuItem value="Not Processed">Not Processed</MenuItem>
                   <MenuItem value="Processing">Processing</MenuItem>
+                  <MenuItem value="Cash On Delivery">Cash On Delivery</MenuItem>
                   <MenuItem value="Dispatched">Dispatched</MenuItem>
                   <MenuItem value="Cancelled">Cancelled</MenuItem>
                   <MenuItem value="Delivered">Delivered</MenuItem>

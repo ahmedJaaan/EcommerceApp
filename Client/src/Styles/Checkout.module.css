@@ -35,13 +35,11 @@
     cursor: not-allowed;
 }
 
-
 .heading {
     text-align: center;
     font-size: 25px;
     font-weight: lighter;
 }
-
 
 .couponInput {
     width: 100%;
@@ -50,10 +48,8 @@
     border-bottom: 2px solid aquamarine;
     text-align: center;
     font-size: 25px;
-    margin-top:50px ;
+    margin-top: 50px;
 }
-
-
 
 .couponInput:active {
     border-bottom: 3px solid aquamarine;
@@ -64,7 +60,6 @@
     justify-content: space-between;
 }
 
-
 .emptyCart {
     background-color: red;
 }
@@ -73,7 +68,6 @@
     background-color: rgb(207, 0, 0);
 }
 
-
 .totalAmountSection {
     display: flex;
     background-color: #f5f5f5;
@@ -81,22 +75,48 @@
     border-radius: 5px;
     padding: 10px;
     margin-top: 20px;
-  }
-  
-  .totalAmountSection b {
+}
+
+.totalAmountSection b {
     font-size: 18px;
-    color: #ff5733; 
-  }
-  
+    color: #ff5733;
+}
 
-  .total {
+.total {
     margin-left: auto;
-  }
+}
 
-  .striked {
+.striked {
     margin-left: auto;
     text-decoration: line-through;
     text-decoration-thickness: 3px;
     text-decoration-color: red;
-  }
+}
 
+
+@media screen and (max-width: 768px) {
+    .gridContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .couponInput {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    .Button {
+        margin-top: 10px;
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+    .heading {
+        font-size: 20px;
+    }
+
+    .couponInput {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+}

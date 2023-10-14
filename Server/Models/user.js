@@ -25,7 +25,7 @@ const userSchema = new Schema(
         ref: "Product",
       },
     ],
-    images: {
+    picture: {
       type: Array,
       default: [],
     },

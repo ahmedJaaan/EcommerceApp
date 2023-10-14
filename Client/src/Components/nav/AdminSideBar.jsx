@@ -194,7 +194,7 @@ const AdminSideBar = ({ path }) => {
             }}
           >
             <Avatar
-              src={user.picture}
+              src={user.picture[0]}
               sx={{
                 width: 40,
                 height: 40,

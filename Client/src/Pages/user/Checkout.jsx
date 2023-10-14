@@ -6,6 +6,7 @@ import {
   emptyUserCart,
   saveUserAddress,
   applyCoupon,
+  createCashOrderForUser,
 } from "../../APIs/user";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -27,7 +28,8 @@ const Checkout = () => {
   const [addressLoading, setAddressLoading] = useState(false);
   const [couponLoading, setCouponLoading] = useState(false);
   const [cartLoading, setCartLoading] = useState(false);
-  const { user } = useSelector((state) => ({ ...state }));
+  const { user, COD } = useSelector((state) => ({ ...state }));
+  const couponTrueOrFalse = useSelector((state) => state.coupon);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -210,6 +212,33 @@ const Checkout = () => {
     </>
   );
 
+  const createCashOrder = () => {
+    createCashOrderForUser(user.token, COD, couponTrueOrFalse).then((res) => {
+      if (res.ok) {
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("cart");
+        }
+      }
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: [],
+      });
+      dispatch({
+        type: "COUPON_APPLIED",
+        payload: false,
+      });
+      dispatch({
+        type: "COD",
+        payload: false,
+      });
+      emptyUserCart(user.token);
+      setTimeout(() => {
+        toast.success("Order placed successfully");
+        navigate("/user/history");
+      }, 1000);
+    });
+  };
+
   return (
     <div className={styles.gridContainer}>
       <div>
@@ -222,14 +251,25 @@ const Checkout = () => {
         {showProductsSummary()}
         <div className={styles.gridContainer}>
           <div>
-            <button
-              disabled={!addressSaved || !products.length}
-              onClick={() => navigate("/payment")}
-              className={styles.Button}
-            >
-              Place Order
-              <TbShip size={20} />
-            </button>
+            {COD === false ? (
+              <button
+                disabled={!addressSaved || !products.length}
+                onClick={() => navigate("/payment")}
+                className={styles.Button}
+              >
+                Place Order
+                <TbShip size={20} />
+              </button>
+            ) : (
+              <button
+                disabled={!addressSaved || !products.length}
+                onClick={createCashOrder}
+                className={styles.Button}
+              >
+                Place Order
+                <TbShip size={20} />
+              </button>
+            )}
           </div>
           <div>
             <button

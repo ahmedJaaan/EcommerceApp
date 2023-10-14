@@ -1,62 +1,97 @@
 .flexContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .HomeGradient {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: blue;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.HomeGradient {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blue;
+}
+
+.navLinkContainer {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.link:hover {
+  background-color: lightblue;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.logoutButton {
+  text-decoration: none;
+  color: inherit;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  background: none;
+}
+
+.logoutButton:hover {
+  background-color: lightblue;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.drawer {
+  overflow: hidden;
+}
+
+.centeredSearch {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  width: 100%;
+}
+
+
+@media (max-width: 768px) {
   .navLinkContainer {
-    display: flex;
-    align-items: center;
+      margin-top: 15px;
+      justify-content: center;
   }
 
   .link {
-    text-decoration: none; 
-    color: inherit; 
-    margin-right: 20px; 
-    display: flex; 
-    align-items: center; 
-  }
-  .link:hover {
-    background-color: lightblue;
-    border-radius: 10px;
-    padding: 10px;
+      margin-right: 0;
+      margin-bottom: 10px;
   }
 
   .logoutButton {
-    text-decoration: none; 
-    color: inherit; 
-    margin-right: 20px; 
-    display: flex; 
-    align-items: center;
-    background: none; 
+      margin-right: 0;
+      margin-bottom: 10px;
   }
-  .logoutButton:hover {
-    background-color: lightblue;
-    border-radius: 10px;
-    padding: 10px;
-    cursor: pointer;
-    background: lightblue;
-  }
-  
-
-  .drawer{
-    overflow: hidden;
-  }
+}
 
 
-  .centeredSearch {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-    width: 100%; 
+@media (max-width: 576px) {
+  
+  .navLinkContainer {
+      margin-top: 10px;
+      justify-content: center;
   }
-  
-  
+
+  .link {
+      margin-right: 0;
+      margin-bottom: 5px;
+  }
+
+  .logoutButton {
+      margin-right: 0;
+      margin-bottom: 5px;
+  }
+}

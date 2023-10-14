@@ -1,6 +1,6 @@
 const User = require("../Models/user");
 
-exports.createOrUpdateUser = async (req, res, next) => {
+exports.createOrUpdateUser = async (req, res) => {
   const { name, picture, email } = req.user;
 
   const user = await User.findOneAndUpdate(
@@ -28,6 +28,21 @@ exports.currentUser = async (req, res) => {
     res.json(user);
   } catch (err) {
     console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+exports.updateUser = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const user = await User.findOneAndUpdate(
+      { email: req.user.email },
+      { name },
+      { new: true }
+    );
+    res.json(user);
+  } catch (err) {
+    console.error(err, "error in updating user");
     res.status(500).json({ error: "Server error" });
   }
 };

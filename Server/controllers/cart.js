@@ -3,7 +3,7 @@ const Cart = require("../Models/cart");
 const Product = require("../Models/product");
 const Coupon = require("../Models/coupon");
 const Order = require("../Models/order");
-
+const uniqid = require("uniqid");
 exports.userCart = async (req, res) => {
   try {
     const { cart } = req.body;
@@ -161,6 +161,7 @@ exports.orders = async (req, res) => {
     const user = await User.findOne({ email: req.user.email }).exec();
     const userOrders = await Order.find({ orderedBy: user._id })
       .populate("products.product")
+      .sort({ createdAt: -1 })
       .exec();
     res.json(userOrders);
   } catch (error) {
@@ -209,6 +210,54 @@ exports.removeFromWishlist = async (req, res) => {
     res.json({ ok: true });
   } catch (error) {
     console.log("Error in wishlist", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.createCashOrder = async (req, res) => {
+  try {
+    const { COD, couponApplied } = req.body;
+
+    const user = await User.findOne({ email: req.user.email }).exec();
+    const userCart = await Cart.findOne({
+      orderedBy: user._id,
+    }).exec();
+    if (!COD) {
+      return res.status(400).send("Create cash order failed");
+    }
+
+    let finalAmount = 0;
+
+    if (userCart.totalAfterDiscount) {
+      finalAmount = Math.round(userCart.totalAfterDiscount * 100);
+    } else {
+      finalAmount = Math.round(userCart.cartTotal * 100);
+    }
+    let newOrder = await new Order({
+      products: userCart.products,
+      paymentIntent: {
+        id: uniqid(),
+        amount: finalAmount,
+        currency: "usd",
+        status: "Cash on Delivery",
+        created: Date.now(),
+        payment_method_types: ["cash"],
+      },
+      orderedBy: user._id,
+      orderStatus: "Cash On Delivery",
+    }).save();
+    let bulkOption = userCart.products.map((item) => {
+      return {
+        updateOne: {
+          filter: { _id: item.product._id },
+          update: { $inc: { quantity: -item.count, sold: +item.count } },
+        },
+      };
+    });
+    let updated = await Product.bulkWrite(bulkOption, {});
+    res.json({ ok: true });
+  } catch (error) {
+    console.log("Error in creating order", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
