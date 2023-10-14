@@ -15,8 +15,9 @@ import { showAverage } from "../../APIs/rating";
 import { Tooltip } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
+import { addToWishlist } from "../../APIs/user";
 import { toast } from "react-toastify";
-
+import { useNavigate } from "react-router-dom";
 const { TabPane } = Tabs;
 
 const SingleProduct = ({ product, onStarClick, star }) => {
@@ -24,6 +25,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
   const [tooltip, setTooltip] = useState("Click to add");
   const { user, cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let unique = [];
 
   const handleAddToCart = () => {
@@ -49,6 +51,13 @@ const SingleProduct = ({ product, onStarClick, star }) => {
     });
   };
 
+  const handleAddToWishlist = (e) => {
+    e.preventDefault();
+    addToWishlist(user.token, product._id).then((res) => {
+      toast.success("Added to wishlist");
+      navigate("/user/wishlist");
+    });
+  };
   return (
     <div className={styles.containerStyle}>
       <div>
@@ -111,6 +120,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
               </div>
               <div className={styles.wishlistIcon}>
                 <button
+                  onClick={handleAddToWishlist}
                   className={styles.wishlistIcon}
                   style={{ color: "red" }}
                 >

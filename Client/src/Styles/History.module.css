@@ -5,6 +5,42 @@
   font-size: 45px;
 }
 
+.wishListContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 10px;
+  background: rgb(228, 234, 236);
+  border-radius: 10px;
+}
+
+.removeBtn {
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background: none;
+  color: red;
+  transition: transform 0.4s, background-color 0.3s, padding 0.5s;
+}
+
+.removeBtn:hover {
+  transform: scale(1.1);
+  padding: 10px;
+}
+
+.nav{
+  text-decoration: none;
+  font-size: 25px;
+  cursor: pointer;
+  transition: transform 0.4s, color 0.3s, padding 0.5s;
+}
+
+.nav:hover{
+  color: blue;
+  transform: scale(1.1);
+  padding: 10px;
+}
+
 .gradientBackground {
   background: linear-gradient(45deg, #ff6b6b, #7b68ee, #68a8ee, #68eedd);
   background-size: 400% 400%;

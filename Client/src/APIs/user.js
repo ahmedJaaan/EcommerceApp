@@ -117,7 +117,7 @@ export const getWishList = async (authToken) => {
     );
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("Error in getting wishlist:", error);
     return error.response.data;
   }
 };
@@ -145,7 +145,7 @@ export const addToWishlist = async (authToken, productId) => {
 export const removeFromWishlist = async (authToken, productId) => {
   try {
     const response = await axios.put(
-      `{http://localhost:8080/api/user/wishlist/${productId}}`,
+      `http://localhost:8080/api/user/wishlist/${productId}`,
       {
         productId,
       },
@@ -157,7 +157,7 @@ export const removeFromWishlist = async (authToken, productId) => {
     );
     return response.data;
   } catch (error) {
-    console.error(error);
-    return error.response.data;
+    console.error("Error in removing from wishlist", error);
+    // return error.response.data;
   }
 };

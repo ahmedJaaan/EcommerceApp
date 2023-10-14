@@ -177,6 +177,7 @@ exports.addToWishlist = async (req, res) => {
       { $addToSet: { wishlist: productId } },
       { new: true }
     ).exec();
+    // console.log(user);
     res.json({ ok: true });
   } catch (error) {
     console.log("Error in adding to wishlist", error);
@@ -184,12 +185,13 @@ exports.addToWishlist = async (req, res) => {
   }
 };
 
-exports.removeFromWishlist = async (req, res) => {
+exports.wishlist = async (req, res) => {
   try {
     const list = await User.findOne({ email: req.user.email })
       .select("wishlist")
       .populate("wishlist")
       .exec();
+    // console.log("yuguuyugyuyf", list);
     res.json(list);
   } catch (error) {
     console.log("Error in removing from wishlist", error);
@@ -197,10 +199,10 @@ exports.removeFromWishlist = async (req, res) => {
   }
 };
 
-exports.wishlist = async (req, res) => {
+exports.removeFromWishlist = async (req, res) => {
   try {
     const { productId } = req.params;
-    const user = await User.findOne(
+    const user = await User.findOneAndUpdate(
       { email: req.user.email },
       { $pull: { wishlist: productId } }
     ).exec();
