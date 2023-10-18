@@ -145,7 +145,7 @@ const SideBar = ({ path }) => {
             }}
           >
             <Avatar
-              src={user.picture[0]}
+              src={user.picture}
               sx={{
                 width: 40,
                 height: 40,

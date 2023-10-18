@@ -205,6 +205,7 @@ const handleCategory = async (req, res, category) => {
     res.status(500).send("Error in searching products category");
   }
 };
+
 const handleStar = async (req, res, stars) => {
   try {
     const aggregates = await Product.aggregate([
@@ -217,7 +218,7 @@ const handleStar = async (req, res, stars) => {
         },
       },
       { $match: { floorAverage: stars } },
-    ]).limit(12);
+    ]).limit(6);
 
     const productIds = aggregates.map((agg) => agg.document._id);
 

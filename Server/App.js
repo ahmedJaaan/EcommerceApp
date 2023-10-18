@@ -7,7 +7,8 @@ const fs = require("fs");
 require("dotenv").config();
 
 const app = express();
-
+// const mongoUrl =
+// "mongodb+srv://AhmedJan:Ahmedjan@cluster0.t9w8iwq.mongodb.net/?retryWrites=true&w=majority";
 mongoose
   .connect("mongodb://localhost:27017/E-Commerce")
   .then(() => console.log("connected to Database"))
