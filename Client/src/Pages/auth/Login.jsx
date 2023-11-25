@@ -105,7 +105,7 @@ const Login = () => {
       toast.success("You have logged in using Google");
     }
   };
-  const loginFormJSX = (
+  const loginForm = (
     <form onSubmit={handleSubmit} className={styles.form}>
       <h1 className={styles.headingForRegistration}>Login</h1>
 
@@ -164,7 +164,7 @@ const Login = () => {
     </form>
   );
 
-  return <div className={styles.container}>{loginFormJSX}</div>;
+  return <div className={styles.container}>{loginForm}</div>;
 };
 
 export default Login;
