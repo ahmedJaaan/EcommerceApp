@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import defaultImg from "../../assets/5191452-200.png";
 import { TbShoppingCart } from "react-icons/tb";
 import { Card } from "antd";
+
 const { Meta } = Card;
 const SideDrawer = () => {
   const dispatch = useDispatch();

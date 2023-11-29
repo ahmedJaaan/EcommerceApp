@@ -10,7 +10,7 @@ export const userCart = async (cart, authToken) => {
       headers: {
         authToken,
       },
-    }
+    },
   );
   return response.data;
 };
@@ -43,7 +43,7 @@ export const saveUserAddress = async (authToken, address) => {
         headers: {
           authToken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -62,7 +62,7 @@ export const applyCoupon = async (coupon, authToken) => {
         headers: {
           authToken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -82,7 +82,7 @@ export const createOrder = async (authToken, stripeResponse) => {
         headers: {
           authToken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -99,7 +99,7 @@ export const createCashOrderForUser = async (authToken, COD, coupon) => {
         headers: {
           authToken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -130,7 +130,7 @@ export const getWishList = async (authToken) => {
         headers: {
           authToken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -150,7 +150,7 @@ export const addToWishlist = async (authToken, productId) => {
         headers: {
           authToken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -170,7 +170,7 @@ export const removeFromWishlist = async (authToken, productId) => {
         headers: {
           authToken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {

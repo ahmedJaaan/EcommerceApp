@@ -13,7 +13,7 @@ export const getCategories = async () => {
 export const getCategory = async (slug) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/category/${slug}`
+      `http://localhost:8080/api/category/${slug}`,
     );
     return response.data;
   } catch (error) {
@@ -30,7 +30,7 @@ export const removeCategory = async (slug, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -48,7 +48,7 @@ export const updateCategory = async (slug, category, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -66,7 +66,7 @@ export const createCategory = async (category, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -78,7 +78,7 @@ export const createCategory = async (category, authtoken) => {
 export const getCategorySub = async (_id) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/category/subs/${_id}`
+      `http://localhost:8080/api/category/subs/${_id}`,
     );
     return response.data;
   } catch (error) {

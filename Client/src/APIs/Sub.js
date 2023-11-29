@@ -28,7 +28,7 @@ export const removeSub = async (slug, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -46,7 +46,7 @@ export const updateSub = async (slug, sub, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {

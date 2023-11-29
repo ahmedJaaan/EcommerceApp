@@ -13,10 +13,11 @@ import { toast } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { MdOutlineDataSaverOff } from "react-icons/md";
-import { PropagateLoader, RingLoader, SyncLoader } from "react-spinners";
+import { RingLoader, SyncLoader } from "react-spinners";
 import { IoTicketOutline } from "react-icons/io5";
 import { FaMartiniGlassEmpty } from "react-icons/fa6";
 import { TbShip } from "react-icons/tb";
+
 const Checkout = () => {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);

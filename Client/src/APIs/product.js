@@ -9,7 +9,7 @@ export const createProduct = async (product, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -21,7 +21,7 @@ export const createProduct = async (product, authtoken) => {
 export const getProductsByCount = async (count) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/products/${count}`
+      `http://localhost:8080/api/products/${count}`,
     );
     return response.data;
   } catch (error) {
@@ -38,7 +38,7 @@ export const removeProduct = async (slug, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -50,7 +50,7 @@ export const removeProduct = async (slug, authtoken) => {
 export const getProduct = async (slug) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/product/${slug}`
+      `http://localhost:8080/api/product/${slug}`,
     );
     return response.data;
   } catch (error) {
@@ -68,7 +68,7 @@ export const updateProduct = async (slug, product, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -94,7 +94,7 @@ export const getProducts = async (sort, order, page) => {
 export const getProductsCount = async () => {
   try {
     const response = await axios.get(
-      "http://localhost:8080/api/products/total"
+      "http://localhost:8080/api/products/total",
     );
     return response.data;
   } catch (error) {
@@ -112,7 +112,7 @@ export const productStars = async (productId, star, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -124,7 +124,7 @@ export const productStars = async (productId, star, authtoken) => {
 export const getRelated = async (productId) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/product/related/${productId}`
+      `http://localhost:8080/api/product/related/${productId}`,
     );
     return response.data;
   } catch (error) {
@@ -137,7 +137,7 @@ export const fetchProductByFilter = async (arg) => {
   try {
     const response = await axios.post(
       "http://localhost:8080/api/search/filters",
-      arg
+      arg,
     );
     return response.data;
   } catch (error) {
@@ -146,4 +146,5 @@ export const fetchProductByFilter = async (arg) => {
   }
 };
 
-export const getSearch = async (arg) => {};
+export const getSearch = async (arg) => {
+};

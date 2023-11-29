@@ -25,7 +25,7 @@ const Register = () => {
 
     if (!email) {
       toast.error("Email is required");
-      setIsLoading(false); // Reset loading state
+      setIsLoading(false);
       return;
     }
 
@@ -37,9 +37,10 @@ const Register = () => {
     sendSignInLinkToEmail(auth, email, actionCodeSettings)
       .then(() => {
         toast.success(
-          `Email has been Sent To ${email} For Registration, Please Check Your Inbox for Link`
+          `Email has been Sent To ${email} For Registration, Please Check Your Inbox for Link`,
         );
         window.localStorage.setItem("emailForRegistration", email);
+        console.log("Email has been Sent To ", email);
       })
       .catch((err) => {
         console.log(err);

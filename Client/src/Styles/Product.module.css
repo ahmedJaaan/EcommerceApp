@@ -1,141 +1,141 @@
 .productContainer {
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  justify-content: center;
-  margin: 10px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    margin: 10px;
 }
 
 .productsHeading {
-  text-align: center;
+    text-align: center;
 }
 
 .productInput {
-  outline: none;
-  width: 100%;
-  border: none;
-  border-bottom: 2px solid aquamarine;
-  font-size: 20px;
-  margin-bottom: 10px;
+    outline: none;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid aquamarine;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .productInput:active {
-  border-bottom: 3px solid aquamarine;
+    border-bottom: 3px solid aquamarine;
 }
 
 .productsSubHeading {
-  font-weight: 500;
+    font-weight: 500;
 }
 
 .shippingDropdown {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #ffffff;
-  border: none;
-  border-bottom: 2px solid aquamarine;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.3s;
-  width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #ffffff;
+    border: none;
+    border-bottom: 2px solid aquamarine;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    width: 100%;
 }
 
 .shippingDropdown:hover {
-  border-color: #3498db;
+    border-color: #3498db;
 }
 
 .shippingDropdown option {
-  background-color: #ffffff;
-  color: #333;
-  border-radius: 0%;
+    background-color: #ffffff;
+    color: #333;
+    border-radius: 0%;
 }
 
 .shippingDropdown option:checked {
-  background-color: #3498db;
-  color: #fff;
+    background-color: #3498db;
+    color: #fff;
 }
 
 .productButton {
-  background-color: rgb(74, 31, 194);
-  border-radius: 25px;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 30px;
-  margin-bottom: 100px;
+    background-color: rgb(74, 31, 194);
+    border-radius: 25px;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 100px;
 }
 
 .productButton:hover {
-  background-color: #000cb1;
-  cursor: pointer;
+    background-color: #000cb1;
+    cursor: pointer;
 }
 
 .uploadContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
 }
 
 .uploadLabel {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
 }
 
 .uploadLabel:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 .imageUploadInput {
-  display: none;
+    display: none;
 }
 
 
 @media (max-width: 768px) {
-  .productContainer {
-      margin: 5px;
-  }
+    .productContainer {
+        margin: 5px;
+    }
 
-  .productInput {
-      font-size: 18px;
-  }
+    .productInput {
+        font-size: 18px;
+    }
 
-  .shippingDropdown {
-      font-size: 14px;
-  }
+    .shippingDropdown {
+        font-size: 14px;
+    }
 
-  .productButton {
-      margin-top: 20px;
-      margin-bottom: 50px;
-  }
+    .productButton {
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
 
-  .uploadLabel {
-      padding: 8px 16px;
-  }
+    .uploadLabel {
+        padding: 8px 16px;
+    }
 }
 
 
 @media (max-width: 576px) {
-  .productInput {
-      font-size: 16px;
-  }
+    .productInput {
+        font-size: 16px;
+    }
 
-  .shippingDropdown {
-      font-size: 12px;
-  }
+    .shippingDropdown {
+        font-size: 12px;
+    }
 
-  .productButton {
-      margin-top: 10px;
-      margin-bottom: 30px;
-  }
+    .productButton {
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
 
-  .uploadLabel {
-      padding: 6px 12px;
-  }
+    .uploadLabel {
+        padding: 6px 12px;
+    }
 }

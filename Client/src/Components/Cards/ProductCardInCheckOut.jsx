@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { FiCheckCircle } from "react-icons/fi";
 import { CgUnavailable } from "react-icons/cg";
 import { IoMdRemove } from "react-icons/io";
+
 const ProductCardInCheckOut = ({ p, styles }) => {
   const dispatch = useDispatch();
 

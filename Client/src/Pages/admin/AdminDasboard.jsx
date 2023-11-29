@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Orders from "../../Components/Order/Orders";
 import styles from "../../Styles/History.module.css";
 import Header from "../../Components/nav/Header";
+
 const AdminDasboard = () => {
   const [orders, setOrders] = useState([]);
   const { user } = useSelector((state) => ({ ...state }));
@@ -27,7 +28,7 @@ const AdminDasboard = () => {
   };
 
   return (
-    <div className={styles.gradientBackground}>
+    <div className={styles.gradientBackground} style={{ height: "100vh" }}>
       <Header path={"/admin/dashboard"} />
       <h1
         style={{

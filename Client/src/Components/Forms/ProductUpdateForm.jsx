@@ -3,6 +3,7 @@ import { RingLoader } from "react-spinners";
 import styles from "../../Styles/Product.module.css";
 import { Select } from "antd";
 import FileUpload from "./FileUpload";
+
 const { Option } = Select;
 
 const ProductUpdateForm = ({

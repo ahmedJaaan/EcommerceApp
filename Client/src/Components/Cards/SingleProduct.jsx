@@ -18,6 +18,7 @@ import _ from "lodash";
 import { addToWishlist } from "../../APIs/user";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+
 const { TabPane } = Tabs;
 
 const SingleProduct = ({ product, onStarClick, star }) => {

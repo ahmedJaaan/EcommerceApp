@@ -5,6 +5,7 @@ import LoadingSkeleton from "../Cards/LoadingSkeleton";
 import ProductCard from "../Cards/ProductCard";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+
 const NewArrival = ({ styles }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);

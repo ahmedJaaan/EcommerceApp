@@ -13,7 +13,7 @@ export const removeCoupon = async (couponId, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -31,7 +31,7 @@ export const create = async (coupon, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {

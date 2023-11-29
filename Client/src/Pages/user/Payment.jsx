@@ -5,7 +5,7 @@ import StripeCheckout from "./StripeCheckout";
 import "../../Styles/stripe.css";
 
 const stripePromise = loadStripe(
-  "pk_test_51NxdiDHdScDtYNxMfDxWJfpw5K1qT0uhcwRT78OSxXToIKihZvQ8XAcrdlVTcpMggzSrXJMPCniixaYlG0urxQz200N4l5SOcJ"
+  "pk_test_51NxdiDHdScDtYNxMfDxWJfpw5K1qT0uhcwRT78OSxXToIKihZvQ8XAcrdlVTcpMggzSrXJMPCniixaYlG0urxQz200N4l5SOcJ",
 );
 
 const Payment = () => {

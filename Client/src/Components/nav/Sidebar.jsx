@@ -18,6 +18,7 @@ import { LiaModx } from "react-icons/lia";
 import { Badge } from "antd";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { Avatar } from "@mui/material";
+
 const SideBar = ({ path }) => {
   const [state, setState] = React.useState({
     left: false,
@@ -131,6 +132,7 @@ const SideBar = ({ path }) => {
             fontFamily: "sans-serif",
             fontWeight: "bold",
             fontSize: "40px",
+            marginLeft: "10px",
           }}
         >
           Menu

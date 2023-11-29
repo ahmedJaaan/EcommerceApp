@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import ConfirmationPopup from "../../../Components/Popup/Popup";
 import { RingLoader } from "react-spinners";
+
 const CreateCoupon = () => {
   const [name, setName] = useState("");
   const [discount, setDiscount] = useState("");

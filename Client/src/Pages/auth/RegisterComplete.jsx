@@ -41,7 +41,7 @@ const RegisterComplete = () => {
       const result = await signInWithEmailLink(
         auth,
         email,
-        window.location.href
+        window.location.href,
       );
       if (result.user.emailVerified === true) {
         window.localStorage.removeItem("emailForRegistration");
@@ -63,7 +63,7 @@ const RegisterComplete = () => {
               });
             })
             .catch((err) =>
-              console.log("error in creating or updating user", err)
+              console.log("error in creating or updating user", err),
             );
 
           navigate("/");

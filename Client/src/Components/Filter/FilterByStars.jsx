@@ -2,6 +2,7 @@ import React from "react";
 import Stars from "./Stars";
 import { AiOutlineStar } from "react-icons/ai";
 import { RiArrowDropDownLine } from "react-icons/ri";
+
 const FilterByStars = ({
   toggleStarRatingVisibility,
   isStarRatingVisible,

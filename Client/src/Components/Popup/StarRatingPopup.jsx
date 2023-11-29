@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { AiOutlineStar } from "react-icons/ai";
 import { useParams, useNavigate } from "react-router-dom";
+
 const StarRatingPopup = ({ children }) => {
   const { user } = useSelector((state) => ({ ...state }));
   const [visible, setVisible] = useState(false);

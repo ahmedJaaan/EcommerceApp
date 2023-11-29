@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineCheckCircle, AiOutlineDollarCircle } from "react-icons/ai";
 import { PulseLoader, RingLoader } from "react-spinners";
 import { createOrder, emptyUserCart } from "../../APIs/user";
+
 const StripeCheckout = () => {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);

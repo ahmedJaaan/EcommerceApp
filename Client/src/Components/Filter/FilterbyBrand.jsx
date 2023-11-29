@@ -1,6 +1,7 @@
 import React from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { TbBrand4Chan } from "react-icons/tb";
+
 const FilterbyBrand = ({
   toggleBrandVisibility,
   isBrandVisible,

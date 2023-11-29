@@ -41,7 +41,7 @@ exports.update = async (req, res) => {
     const updated = await Sub.findOneAndUpdate(
       { slug: req.params.slug },
       { name, parent, slug: slugify(name) },
-      { new: true }
+      { new: true },
     );
     res.json(updated);
   } catch (error) {

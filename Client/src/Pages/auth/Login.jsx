@@ -10,6 +10,7 @@ import { RingLoader } from "react-spinners";
 import { FcGoogle } from "react-icons/fc";
 import { createOrUpdateUser } from "../../APIs/auth";
 import { useLocation } from "react-router-dom";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +20,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useSelector((state) => ({ ...state }));
-  // // console.log(user);
+  // console.log(user);
   useEffect(() => {
     let intended = location.state?.from;
     if (intended) {
@@ -47,7 +48,7 @@ const Login = () => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
-      // console.log("hhhhhhhhhhhh",idTokenResult.token)
+      console.log("hhhhhhhhhhhh", idTokenResult.token);
       createOrUpdateUser(idTokenResult.token)
         .then((res) => {
           dispatch({
@@ -61,6 +62,7 @@ const Login = () => {
             },
           });
           intendedRedirect(res);
+          console.log("hhhhhhhhhhhh", idTokenResult.token);
         })
         .catch((err) => console.log("error in creating or updating user", err));
 

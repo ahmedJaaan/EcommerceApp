@@ -37,7 +37,7 @@ exports.update = async (req, res) => {
     const updated = await Category.findOneAndUpdate(
       { slug: req.params.slug },
       { name, slug: slugify(name) },
-      { new: true }
+      { new: true },
     );
     res.json(updated);
   } catch (error) {

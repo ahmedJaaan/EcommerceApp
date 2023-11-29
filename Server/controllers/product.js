@@ -53,7 +53,7 @@ exports.update = async (req, res) => {
     const updated = await Product.findOneAndUpdate(
       { slug: req.params.slug },
       req.body,
-      { new: true }
+      { new: true },
     );
     res.json(updated);
   } catch (error) {
@@ -109,7 +109,7 @@ exports.productStar = async (req, res) => {
     const { star } = req.body;
 
     const existingRatingObject = product.ratings.find(
-      (ele) => ele.postedBy.toString() === user._id.toString()
+      (ele) => ele.postedBy.toString() === user._id.toString(),
     );
 
     if (existingRatingObject === undefined) {
@@ -118,7 +118,7 @@ exports.productStar = async (req, res) => {
         {
           $push: { ratings: { star, postedBy: user._id } },
         },
-        { new: true }
+        { new: true },
       ).exec();
       //   console.log(ratingAdded);
       res.json(ratingAdded);
@@ -126,7 +126,7 @@ exports.productStar = async (req, res) => {
       const ratingUpdated = await Product.updateOne(
         { ratings: { $elemMatch: existingRatingObject } },
         { $set: { "ratings.$.star": star } },
-        { new: true }
+        { new: true },
       ).exec();
       //   console.log(ratingUpdated);
       res.json(ratingUpdated);

@@ -19,7 +19,7 @@ const SearchFilter = () => {
   const [sub, setSub] = useState("");
   const [color, setColor] = useState("");
   const [brand, setBrand] = useState("");
-const [hello, sethello] = useState("")
+  const [hello, sethello] = useState("");
   const { search } = useSelector((state) => ({ ...state }));
   const { text } = search;
 

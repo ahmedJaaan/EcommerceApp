@@ -6,6 +6,7 @@ import ProductCardInCheckOut from "../../Components/Cards/ProductCardInCheckOut"
 import { userCart } from "../../APIs/user";
 import { PropagateLoader } from "react-spinners";
 import { toast } from "react-toastify";
+
 const Cart = () => {
   const { cart, user } = useSelector((state) => ({ ...state }));
   const [loading, setLoading] = useState(false);
@@ -124,7 +125,7 @@ const Cart = () => {
                     style={{ padding: "10px" }}
                   />
                 ) : (
-                  "Proceed To Checkout"
+                  "Pay Online With Card"
                 )}
               </button>
               <button

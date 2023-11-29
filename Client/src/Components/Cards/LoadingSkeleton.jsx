@@ -16,14 +16,14 @@ const LoadingSkeleton = ({ count }) => {
             <Card>
               <Skeleton active />
             </Card>
-          </div>
+          </div>,
         );
       }
 
       totalRows.push(
         <div key={i} className={styles["card-row"]}>
           {row}
-        </div>
+        </div>,
       );
     }
 

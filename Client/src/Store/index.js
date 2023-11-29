@@ -5,6 +5,7 @@ import { cartReducer } from "./CartReducer";
 import { drawerReducer } from "./drawerReducer";
 import { couponReducer } from "./couponReducer";
 import { codReducer } from "./codReducer";
+
 const rootReducer = combineReducers({
   user: userReducer,
   search: searchReducer,

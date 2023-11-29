@@ -14,7 +14,7 @@ const { Meta } = Card;
 const ProductCard = ({ product }) => {
   const { title, description, images, slug, price } = product;
   const [tooltip, setTooltip] = useState(
-    product.quantity > 0 ? "click to add" : "Out of Stock"
+    product.quantity > 0 ? "click to add" : "Out of Stock",
   );
   const { user, cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();

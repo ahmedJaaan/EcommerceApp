@@ -32,7 +32,7 @@ const Password = () => {
         setIsLoading(false);
         console.log(
           "Case is sensitive please login again to change password",
-          err
+          err,
         );
       })
       .finally(() => {

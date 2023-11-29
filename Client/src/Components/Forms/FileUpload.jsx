@@ -21,7 +21,7 @@ const FileUpload = ({ values, setValues }) => {
           headers: {
             authtoken: user ? user.token : "",
           },
-        }
+        },
       )
       .then((res) => {
         const { images } = values;
@@ -59,7 +59,7 @@ const FileUpload = ({ values, setValues }) => {
                   headers: {
                     authtoken: user.token,
                   },
-                }
+                },
               )
               .then((res) => {
                 console.log(res.data);
@@ -72,7 +72,7 @@ const FileUpload = ({ values, setValues }) => {
                 setLoading(false);
               });
           },
-          "base64"
+          "base64",
         );
       }
     }

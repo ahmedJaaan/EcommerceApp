@@ -85,7 +85,7 @@ exports.saveAddress = async (req, res) => {
   const userAddress = await User.findOneAndUpdate(
     { email: req.user.email },
     { address: req.body.address },
-    { new: true }
+    { new: true },
   ).exec();
   console.log(userAddress);
   res.json({ ok: true });
@@ -105,16 +105,16 @@ exports.applyCouponToUser = async (req, res) => {
       .exec();
 
     const discountAmount = (cartTotal * (validCoupon.discount / 100)).toFixed(
-      2
+      2,
     );
     const totalAfterDiscount = Math.floor(
-      (cartTotal - discountAmount).toFixed(2)
+      (cartTotal - discountAmount).toFixed(2),
     );
 
     await Cart.findOneAndUpdate(
       { orderedBy: user._id },
       { totalAfterDiscount },
-      { new: true }
+      { new: true },
     ).exec();
     res.json({
       success: true,
@@ -176,7 +176,7 @@ exports.addToWishlist = async (req, res) => {
     const user = await User.findOneAndUpdate(
       { email: req.user.email },
       { $addToSet: { wishlist: productId } },
-      { new: true }
+      { new: true },
     ).exec();
     // console.log(user);
     res.json({ ok: true });
@@ -205,7 +205,7 @@ exports.removeFromWishlist = async (req, res) => {
     const { productId } = req.params;
     const user = await User.findOneAndUpdate(
       { email: req.user.email },
-      { $pull: { wishlist: productId } }
+      { $pull: { wishlist: productId } },
     ).exec();
     res.json({ ok: true });
   } catch (error) {

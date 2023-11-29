@@ -8,7 +8,7 @@ export const createPaymentIntent = async (authtoken) => {
       headers: {
         authtoken,
       },
-    }
+    },
   );
   return response.data;
 };

@@ -53,8 +53,10 @@ const ProductCreate = () => {
           ...initialState,
           images: [],
         });
-        navigate("/admin/products");
-        toast.success(`${res.title} is created`);
+        // navigate("/admin/products");
+        windows.alert(`${res.title} is created`);
+        windows.reload();
+        // toast.success(`${res.title} is created`);
       })
       .catch((err) => {
         console.log(err);

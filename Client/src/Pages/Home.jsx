@@ -7,6 +7,7 @@ import BestSellers from "../Components/Home/BestSellers";
 import LandingSection from "../Components/Home/LandingSection";
 import CategoryList from "../Components/Category/CategoryList";
 import SubList from "../Components/Category/SubList";
+
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);

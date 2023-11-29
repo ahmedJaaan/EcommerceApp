@@ -6,7 +6,7 @@ exports.createOrUpdateUser = async (req, res) => {
   const user = await User.findOneAndUpdate(
     { email },
     { name, picture },
-    { new: true }
+    { new: true },
   );
 
   if (user) {
@@ -38,7 +38,7 @@ exports.updateUser = async (req, res) => {
     const user = await User.findOneAndUpdate(
       { email: req.user.email },
       { name },
-      { new: true }
+      { new: true },
     );
     res.json(user);
   } catch (err) {

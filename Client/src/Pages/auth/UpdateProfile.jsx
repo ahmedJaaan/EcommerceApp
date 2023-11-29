@@ -53,7 +53,7 @@ const UpdateProfile = () => {
               headers: {
                 authtoken: user ? user.token : "",
               },
-            }
+            },
           )
           .then((res) => {
             const updatedUser = {
@@ -70,7 +70,7 @@ const UpdateProfile = () => {
             console.log("Error uploading avatar", err);
           });
       },
-      "base64"
+      "base64",
     );
   };
 

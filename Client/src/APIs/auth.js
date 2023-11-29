@@ -9,7 +9,7 @@ export const createOrUpdateUser = async (authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -27,7 +27,7 @@ export const currentUser = async (authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -44,7 +44,7 @@ export const currentAdmin = async (authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -62,7 +62,7 @@ export const updateUser = async (name, authtoken) => {
         headers: {
           authtoken,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {

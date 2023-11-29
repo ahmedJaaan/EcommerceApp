@@ -19,7 +19,7 @@ exports.orderStatus = async (req, res) => {
     const updated = await Order.findByIdAndUpdate(
       orderId,
       { orderStatus },
-      { new: true }
+      { new: true },
     ).exec();
 
     res.json(updated);

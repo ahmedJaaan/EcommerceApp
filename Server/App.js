@@ -19,7 +19,7 @@ app.use(bodyParser.json({ limit: "100mb" }));
 app.use(cors());
 
 fs.readdirSync("./Routes").map((r) =>
-  app.use("/api", require("./Routes/" + r))
+  app.use("/api", require("./Routes/" + r)),
 );
 
 app.listen(8080, () => {

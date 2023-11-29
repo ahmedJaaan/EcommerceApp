@@ -2,6 +2,7 @@ import React from "react";
 import ProductCard from "../Cards/ProductCard";
 import { HashLoader } from "react-spinners";
 import TypewriterEffect from "../Cards/TypewriterEffect";
+
 const FilteredProducts = ({ products, styles }) => {
   return (
     <div>
